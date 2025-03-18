@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+body {
+  background: #ffffff;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+
+}
+
+/* main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100vh
+} */
+
+button {
+  border-color: black;
+  border-width: 2px;
+  color: black;
+  width: fit-content;
+  padding: 8px;
+}
