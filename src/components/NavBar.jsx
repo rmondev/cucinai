@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import { UserAuth } from '@/app/context/AuthContext'
+import Link from 'next/link'
 
 const NavBar = () => {
 
@@ -24,13 +25,20 @@ const NavBar = () => {
   
   return (
     <nav className='flex flex-row p-4 justify-between'>
-      <h1 className='text-4xl'>CucinAI</h1>
+      <Link className='cursor-pointer' href='/'>
+        <h1 className='text-4xl'>CucinAI</h1>
+      </Link>
 
       {user && 
         <>
           <section className='flex flex-row justify-between'>
-            <button className='ml-4 cursor-pointer'>Recipes</button> 
-            <button className='ml-4 cursor-pointer'>Add a Recipe</button> 
+      
+            <Link href='/recipes'>
+              <button className='ml-4 cursor-pointer'>Recipes</button> 
+            </Link>
+            <Link href='/addRecipe'>
+              <button className='ml-4 cursor-pointer'>Add a Recipe</button> 
+            </Link>
           </section>
         </>
         }

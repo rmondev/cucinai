@@ -2,6 +2,7 @@
 import { UserAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'
 
+
 export default function Home() {
 
   const { user, googleSignIn, logOut } = UserAuth()
