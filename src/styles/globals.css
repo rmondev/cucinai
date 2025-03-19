@@ -17,10 +17,3 @@ body {
   height: 100vh
 } */
 
-button {
-  border-color: black;
-  border-width: 2px;
-  color: black;
-  width: fit-content;
-  padding: 8px;
-}
