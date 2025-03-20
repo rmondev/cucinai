@@ -10,13 +10,22 @@ export const AuthContextProvider = ({children}) => {
 
     const [user, setUser] = useState(null)
 
-    const googleSignIn = () =>{
+    const googleSignIn =  async () =>{
         const provider = new GoogleAuthProvider()
-        signInWithPopup(auth,provider)
+        
+        try{
+             await signInWithPopup(auth,provider)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    const logOut = () => {
-        signOut(auth)
+    const logOut = async () => {
+        try { 
+            await signOut(auth)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(()=> {

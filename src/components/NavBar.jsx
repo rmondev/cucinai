@@ -2,6 +2,8 @@
 import React from 'react'
 import { UserAuth } from '@/app/context/AuthContext'
 import Link from 'next/link'
+import Button from '@/components/Button'
+import GoogleButton from 'react-google-button'
 
 const NavBar = () => {
 
@@ -44,21 +46,26 @@ const NavBar = () => {
           <section className='flex flex-row justify-between'>
       
             <Link href='/recipes'>
-              <button className='cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Recipes</button> 
+              {/* <button className='cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Recipes</button>  */}
+              <Button title='Recipes'/>
             </Link>
             <Link href='/addRecipe'>
-              <button className='ml-4 cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Add Recipe</button> 
+              {/* <button className='ml-4 cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Add Recipe</button>  */}
+              <Button title='Add Recipe'/>
             </Link>
           </section>
         </>
         }
 
     
-        <button 
-          className='cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'
+        <Button 
+          title={!user ? 'Sign In' : 'Log Out'}
           onClick={!user ? handleSignIn : handleSignOut}>
-            {!user ? 'Sign In' : 'Log Out'}
-        </button>
+        </Button>
+
+        
+
+        
        
       
     </nav>

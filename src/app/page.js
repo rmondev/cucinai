@@ -1,11 +1,21 @@
 "use client";
 import { UserAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'
+import GoogleButton from 'react-google-button'
+
 
 
 export default function Home() {
 
   const { user, googleSignIn, logOut } = UserAuth()
+
+  const handleSignIn = async () => {
+    try {
+      await googleSignIn()
+    } catch (error) {
+      console.log(error)
+    }
+  };
   
   return (
     <main className='flex flex-col justify-center items-center content-center h-screen'>
@@ -23,8 +33,15 @@ export default function Home() {
           </section>
         </>
       
-        : 
-        <h1>Signed Out</h1>
+        :
+        <>
+          <GoogleButton
+            label={user? 'Log Out' : 'Sign in with Google'}
+            onClick={handleSignIn}
+          />
+      
+          <h1>Signed Out</h1>
+        </>
         }
         
  
