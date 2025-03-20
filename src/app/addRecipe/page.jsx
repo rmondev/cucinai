@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserAuth from '../context/AuthContext'
 
 const AddRecipe = () => {
@@ -9,14 +9,7 @@ const AddRecipe = () => {
     const [recipe, setRecipe] = useState({
         ingredients: [],
         instructions: []
-    }
-
-    // {
-    // ingredients: [{ name: "Apples", unit: "Cup", quantity: "1" }, { name: "Apples", unit: "Cup", quantity: "1" }, { name: "Apples", unit: "Cup", quantity: "1" }],
-    // instructions: ['1. Peel Apples blach sdad asdasdas dasdasda asdasdasda.', '2. Cut Apples asdasdasdasdasdasdadadadassda. dsadasdasdasdasdasdas.adasda. asdadadasdasda adsdas asdasda asdasdasd asdasdadad.', '3. Cook Apples sadad asdasda as sadasda asdaasda dsd dsdasadsdss d sd sdsadasdasd.'],
-    // }
-    
-);
+    });
 
     
 
@@ -68,9 +61,22 @@ const AddRecipe = () => {
 
   }
 
-  const addStepToInstructions = () => {
+  const addStepToInstructions = (formData) => {
+    let newStep = formData.get('step')
 
+    setRecipe(prevRecipe => ({
+        ...prevRecipe,
+        instructions: [...prevRecipe.instructions, `${prevRecipe.instructions.length + 1}. ${newStep}`]
+    }))
   }
+
+  const removeLastStep = () => {
+    setRecipe(prevRecipe => ({
+        ...prevRecipe,
+        instructions: prevRecipe.instructions.slice(0, -1) // ✅ Removes last step
+    }));
+  }
+
 
   return (
     <section className='p-4'>
@@ -88,19 +94,19 @@ const AddRecipe = () => {
                 <h1 className='text-2xl'>Add Ingredient:</h1>
                 <br></br>
                 <form action={addIngredient}>
-                    <div className='flex flex-row'>
+                    <div className='flex flex-row gap-2'>
                         
-                        <input className='border border-black p-1'
+                        <input className='border border-black p-1 rounded'
                         placeholder='Quantity'
                         type='text'
                         name='quantity'/>
 
-                        <input className='border border-black p-1'
+                        <input className='border border-black p-1 rounded'
                         placeholder='Unit'
                         type='text'
                         name='unit'/>
 
-                        <input className='border border-black p-1'
+                        <input className='border border-black p-1 rounded'
                         placeholder='Ingredient'
                         type='text'
                         name='name'/>
@@ -116,16 +122,16 @@ const AddRecipe = () => {
                 <form action={addStepToInstructions}>
                     <div className='flex flex-row'>
                         
-                        <textarea className='border border-black p-1 w-153'
+                        <textarea className='border border-black p-1 w-153 rounded'
                         
                         type='text'
                         name='step'/>
                     
                     </div>
                     <br></br>
-                    <button>Add Step to Instructions</button>
+                    <button>Add Step</button>
                 </form>
-
+                <button onClick={removeLastStep}>Remove Last Step</button>
             </section>
         }
         <br></br>

@@ -36,14 +36,14 @@ const NavBar = () => {
 
   
   return (
-    <nav className='flex flex-row p-4 justify-between'>
+    <nav className='flex flex-row p-2 justify-between'>
       <Link className='cursor-pointer' href='/'>
         <h1 className='xl:text-[48px] lg:text-[24px] md:text-[32px]'>CucinAI</h1>
       </Link>
 
       {user && 
         <>
-          <section className='flex flex-row justify-between'>
+          <section className='flex flex-row justify-between gap-2'>
       
             <Link href='/recipes'>
               {/* <button className='cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Recipes</button>  */}
@@ -57,11 +57,12 @@ const NavBar = () => {
         </>
         }
 
-    
-        <Button 
-          title={!user ? 'Sign In' : 'Log Out'}
-          onClick={!user ? handleSignIn : handleSignOut}>
-        </Button>
+        <div>
+          <Button 
+            title={!user ? 'Sign In' : 'Log Out'}
+            onClick={!user ? handleSignIn : handleSignOut}>
+          </Button>
+        </div>
 
         
 
