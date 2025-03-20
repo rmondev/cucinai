@@ -7,7 +7,7 @@ import GoogleButton from 'react-google-button'
 
 export default function Home() {
 
-  const { user, googleSignIn, logOut } = UserAuth()
+  const { user, googleSignIn } = UserAuth()
 
   const handleSignIn = async () => {
     try {
@@ -39,8 +39,6 @@ export default function Home() {
             label={user? 'Log Out' : 'Sign in with Google'}
             onClick={handleSignIn}
           />
-      
-          <h1>Signed Out</h1>
         </>
         }
         
