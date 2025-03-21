@@ -228,7 +228,7 @@ const AddRecipe = () => {
                                         <Button title='Remove Last Step'onClick={removeLastStep}/>
                                     </div>
                                 </form>
-                                { recipe.ingredients.length > 0 && recipe.instructions.length > 0 &&
+                                
                                     <div className='
                                         flex justify-end w-full mt-4
                                         sm:justify-end sm:w-full sm:mt-4
@@ -236,9 +236,11 @@ const AddRecipe = () => {
                                         lg:justify-end lg:w-full lg:mt-4
                                         xl:justify-end xl:w-full xl:mt-4'
                                         >
+                                        { recipe.ingredients.length > 0 && recipe.instructions.length > 0 &&
                                         <Button title='Add Recipe' onClick={saveToFirestore}/>
+                                        }
                                     </div>
-                                }
+                                
                             </section>
                         }
                     </div>

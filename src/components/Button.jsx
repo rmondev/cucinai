@@ -11,8 +11,7 @@ const Button = (props) => {
     sm:text-sm 
     md:text-lg 
     lg:text-xl 
-    xl:text-2xl
-    '
+    xl:text-2xl'
     onClick={props.onClick ? props.onClick : null}
     >
         {props.title}
