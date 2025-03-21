@@ -72,6 +72,11 @@ const AddRecipe = () => {
     }
 
     const addIngredient = (formData) => {
+        
+        if(formData.get('quantity') === '' || formData.get('name') === '' || formData.get('unit') === ''){
+            return
+        }
+
         let newIngredient = {
             quantity: formData.get('quantity'), 
             unit: formData.get('unit'), 
@@ -85,6 +90,10 @@ const AddRecipe = () => {
     }
 
     const addStepToInstructions = (formData) => {
+
+        if(formData.get('step') === ''){
+            return
+        }
         let newStep = formData.get('step')
         setRecipe(prevRecipe => ({
             ...prevRecipe,
