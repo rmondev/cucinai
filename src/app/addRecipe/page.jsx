@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { UserAuth } from '../context/AuthContext'
 import Button from '@/components/Button'
 import GoogleButton from 'react-google-button'
+import { persistRecipe } from '@/lib/db'
 
 const AddRecipe = () => {
     // State ==========================================
@@ -117,8 +118,12 @@ const AddRecipe = () => {
         }));
     }
 
-    const saveToFirestore = () => {
-        console.log(recipe)
+    const saveToFirestore = async () => {
+        try {
+            persistRecipe(recipe, user.uid)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
