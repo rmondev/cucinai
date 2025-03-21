@@ -24,21 +24,11 @@ const NavBar = () => {
         console.log(error)
       }
     };
-
-
-    // button {
-    //   border-color: black;
-    //   border-width: 2px;
-    //   color: black;
-    //   width: fit-content;
-    //   padding: 8px;
-    // }
-
   
   return (
     <nav className='flex flex-row p-2 justify-between'>
       <Link className='cursor-pointer' href='/'>
-        <h1 className='xl:text-[48px] lg:text-[24px] md:text-[32px]'>CucinAI</h1>
+        <h1 className='text-3xl'>CucinAI</h1>
       </Link>
 
       {user && 
