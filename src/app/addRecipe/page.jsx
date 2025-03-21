@@ -55,7 +55,6 @@ const AddRecipe = () => {
             ))
     );
 
-
     // Actions ============================================
     const handleClickNewRecipe = () => {
         setShowForm(true)
@@ -206,7 +205,6 @@ const AddRecipe = () => {
                                     </section>
                                 </form>
 
-                                
                                 {/* Add Steps Section */}
                                 <form className='lg:pt-4 border-2 border-black rounded-lg p-2 mt-2'action={addStepToInstructions}>
                                 <label className='
@@ -223,7 +221,6 @@ const AddRecipe = () => {
                                         type='text'
                                         name='step'/>
                                     </div>
-
 
                                     {/* Form-Instructions Button Container */}
                                     <div className='flex flex-row gap-2 pt-4'>
@@ -244,9 +241,6 @@ const AddRecipe = () => {
                                 }
                             </section>
                         }
-                        
-                    
-                    
                     </div>
 
                     {/* Ingredient List Section */}
@@ -277,10 +271,8 @@ const AddRecipe = () => {
                         </section>
                     </section>
                     }
-                </section>
-                
+                </section>  
             : 
-                
             <section className="flex flex-col justify-center items-center h-screen">
                 <div className='flex flex-col justify-center items-center gap-2'>
                     <p className="text-xl">Please Sign In</p>
