@@ -28,7 +28,16 @@ const NavBar = () => {
   return (
     <nav className='flex flex-row p-2 justify-between'>
       <Link className='cursor-pointer' href='/'>
-        <h1 className='text-3xl'>CucinAI</h1>
+        <h1 className='
+          text-xl
+          sm:text-2xl
+          md:text-3xl
+          lg:text-3xl
+          xl:text-4xl
+          '
+          >
+            CucinAI
+        </h1>
       </Link>
 
       {user && 

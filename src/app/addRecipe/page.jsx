@@ -227,25 +227,8 @@ const AddRecipe = () => {
 
                                     {/* Form-Instructions Button Container */}
                                     <div className='flex flex-row gap-2 pt-4'>
-                                        <button className="
-                                            cursor-pointer text-xs w-fit border-2 border-black p-1 rounded-lg
-                                            sm:text-md 
-                                            md:text-lg 
-                                            lg:text-xl 
-                                            xl:text-2xl"
-                                            >
-                                                Add Step
-                                        </button>
-                                        <button className='
-                                            cursor-pointer text-xs w-fit border-2 border-black p-1 rounded-lg
-                                            sm:text-md 
-                                            md:text-lg 
-                                            lg:text-xl 
-                                            xl:text-2xl'
-                                            onClick={removeLastStep}
-                                            >
-                                            Remove Last Step
-                                        </button>
+                                        <Button title='Add Step'/>
+                                        <Button title='Remove Last Step'onClick={removeLastStep}/>
                                     </div>
                                 </form>
                                 { recipe.ingredients.length > 0 && recipe.instructions.length > 0 &&
