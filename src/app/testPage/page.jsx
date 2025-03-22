@@ -20,11 +20,20 @@ const TestPage = () => {
     fetchRecipes();
   }, []); // empty dependency array = run once on mount
 
+  const listRecipes = () => (
+      recipes.map((recipe) => (
+        <div key={recipe.id}>
+          <p>Recipe Id: {recipe.id}</p>
+          <p>Recipe Title: {recipe.title}</p>
+        </div>
+      ))
+  )
+
+
   return (
-    <>
-        <Button title='Click Me'></Button>
-        <p>{recipes?.[0]?.title ?? 'No recipe'}</p>
-    </>
+    <div>
+        {listRecipes()}
+    </div>
   )
 }
 
