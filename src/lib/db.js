@@ -1,10 +1,7 @@
 import { db } from '@/lib/firebase'
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
 
 export const persistRecipe = async (recipe, uid) => {
-    console.log(recipe)
-    console.log(uid)
-
     try {
         await addDoc(collection(db,  `/users/${uid}/recipes` ),{
             title: recipe.title,
@@ -17,6 +14,28 @@ export const persistRecipe = async (recipe, uid) => {
     } catch (error) {
         console.log(error)
     }
+}
 
+export const getRecipes = async (uid)=> {
+
+    let recipesData = [];
+
+    try {
+        const querySnapshot = await getDocs(collection(db,`/users/${uid}/recipes`));
+        
+        querySnapshot.forEach((doc) => {
+            
+            recipesData.push(doc.data())
+        })
+
+
+    } catch (error) {
+        console.log(error)
+    }
+
+    console.log(recipesData.length)
+    
+    return recipesData
 
 }
+
