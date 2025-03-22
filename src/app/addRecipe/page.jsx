@@ -4,6 +4,7 @@ import { UserAuth } from '../context/AuthContext'
 import Button from '@/components/Button'
 import GoogleButton from 'react-google-button'
 import { persistRecipe } from '@/lib/db'
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddRecipe = () => {
     // State ==========================================
@@ -15,6 +16,7 @@ const AddRecipe = () => {
         ingredients: [],
         instructions: []
     });
+    
 
     const handleSignIn = async () => {
         try {
@@ -74,7 +76,8 @@ const AddRecipe = () => {
 
     const addIngredient = (formData) => {
         
-        if(formData.get('quantity') === '' || formData.get('name') === '' || formData.get('unit') === ''){
+        if(formData.get('quantity') === '' || formData.get('name') === ''){
+            toast.info('Please include an ingredient name and quantity.')
             return
         }
 
@@ -93,6 +96,7 @@ const AddRecipe = () => {
     const addStepToInstructions = (formData) => {
 
         if(formData.get('step') === ''){
+            toast.info('An empty Step cannot be added. Please type Step text.')
             return
         }
         let newStep = formData.get('step')
@@ -121,8 +125,19 @@ const AddRecipe = () => {
     const saveToFirestore = async () => {
         try {
             persistRecipe(recipe, user.uid)
+            console.log('Recipe Added!')
+            toast.success("Recipe added to your collection!")
+            
+            setRecipe({
+                title: '',
+                ingredients: [],
+                instructions: []
+              });
+
+            setShowForm(false)
         } catch (error) {
             console.log(error)
+            toast.log(error)
         }
     }
 
@@ -130,6 +145,7 @@ const AddRecipe = () => {
         <>
             {user ? 
 
+                <>
                 <section 
                     className="
                     flex justify-center items-center flex-col w-full 
@@ -146,6 +162,7 @@ const AddRecipe = () => {
                         md:flex-col md:w-11/12 md:m-4 md:p-4                                  
                         sm:flex-col sm:w-11/12 sm:m-4 sm:p-4'
                         >
+                        
                     <h1 className='
                         text-lg border-b-2 mb-4
                         sm:text-lg 
@@ -287,7 +304,23 @@ const AddRecipe = () => {
                         </section>
                     </section>
                     }
+                    
                 </section>  
+                <div className='m-12'>
+                <ToastContainer 
+                    position="bottom-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    // theme="light"
+                />
+                </div>
+
+                </>
             : 
             <section className="flex flex-col justify-center items-center h-screen">
                 <div className='flex flex-col justify-center items-center gap-2'>

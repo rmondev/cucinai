@@ -12,7 +12,7 @@ export const persistRecipe = async (recipe, uid) => {
 
         console.log('Recipe persisted to Firestore DB!')
     } catch (error) {
-        console.log(error)
+        console.error('Error persisting Recipe to db:', error)
     }
 }
 
@@ -27,7 +27,7 @@ export const getRecipes = async (uid)=> {
         return recipesData
 
     } catch (error) {
-        console.log(error)
+        console.error('Error fetching user Recipes from db: ', error)
         return [];
     }
 }
