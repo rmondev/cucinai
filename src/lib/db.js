@@ -17,25 +17,18 @@ export const persistRecipe = async (recipe, uid) => {
 }
 
 export const getRecipes = async (uid)=> {
-
     let recipesData = [];
-
     try {
-        const querySnapshot = await getDocs(collection(db,`/users/${uid}/recipes`));
+        const querySnapshot = await getDocs(collection(db,`users/${uid}/recipes`));
         
         querySnapshot.forEach((doc) => {
-            
-            recipesData.push(doc.data())
-        })
-
+            recipesData.push({ id: doc.id, ...doc.data() });
+        });
+        return recipesData
 
     } catch (error) {
         console.log(error)
+        return [];
     }
-
-    console.log(recipesData.length)
-    
-    return recipesData
-
 }
 
