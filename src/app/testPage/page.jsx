@@ -18,7 +18,7 @@ const TestPage = () => {
     };
 
     fetchRecipes();
-  }, []); // empty dependency array = run once on mount
+  }, []);
 
   const listRecipes = () => (
       recipes?.map((recipe) => (
