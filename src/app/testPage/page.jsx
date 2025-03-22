@@ -21,10 +21,10 @@ const TestPage = () => {
   }, []); // empty dependency array = run once on mount
 
   const listRecipes = () => (
-      recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <p>Recipe Id: {recipe.id}</p>
-          <p>Recipe Title: {recipe.title}</p>
+      recipes?.map((recipe) => (
+        <div key={recipe?.id}>
+          <p>Recipe Id: {recipe?.id ?? ''}</p>
+          <p>Recipe Title: {recipe?.title ?? ''}</p>
         </div>
       ))
   )
