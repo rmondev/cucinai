@@ -1,5 +1,5 @@
 "use client";
-import { UserAuth } from '@/app/context/AuthContext'
+import { UserAuth } from '@/context/AuthContext'
 import Image from 'next/image'
 import GoogleButton from 'react-google-button'
 

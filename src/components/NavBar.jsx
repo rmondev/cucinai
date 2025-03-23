@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { UserAuth } from '@/app/context/AuthContext'
+import { UserAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 import Button from '@/components/Button'
 import GoogleButton from 'react-google-button'

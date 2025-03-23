@@ -1,6 +1,6 @@
 
 import "@/styles/globals.css";
-import { AuthContextProvider } from '@/app/context/AuthContext'
+import { AuthContextProvider } from '@/context/AuthContext'
 import NavBar from '@/components/NavBar'
 
 export const metadata = {

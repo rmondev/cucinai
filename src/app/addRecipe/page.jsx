@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { UserAuth } from '../context/AuthContext'
+import { UserAuth } from '@/context/AuthContext'
 import Button from '@/components/Button'
 import GoogleButton from 'react-google-button'
 import { persistRecipe } from '@/lib/db'
@@ -350,13 +350,12 @@ const AddRecipe = () => {
                                         <button 
                                             className='
                                             cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
-                                            transition-colors duration-400
-                                            hover:bg-black hover:text-white
+                                            
                                             sm:text-sm 
                                             md:text-lg 
                                             lg:text-xl 
                                             xl:text-2xl
-                                            disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500'
+                                            disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300'
                                             disabled={recipe.ingredients.length === 0 || recipe.instructions.length === 0}
                                             onClick={saveToFirestore}
                                         >
