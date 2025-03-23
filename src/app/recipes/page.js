@@ -32,17 +32,79 @@ const Recipes = () => {
         await googleSignIn()
       } catch (error) {
         console.log(error)
-      }
+      } 
   };
 
+  const handleSelection = () => {
+
+  }
+
+  const recipeSelection = () => (
+
+    
+      <form className='
+        w-5/8
+        sm:w-11/12
+        md:w-11/12
+        lg:w-11/12
+        xl:w-1/2
+        
+      '
+      
+      action={handleSelection}>
+        <select 
+          className="
+          border border-black p-1 rounded w-full
+          text-xs
+          sm:text-md
+          md:text-lg
+          lg:text-xl
+          xl:text-xl
+          "
+          name="recipeSelection" 
+          defaultValue={''}
+          >
+              <option disabled placeholder='Select' value=''>
+                Select 
+                </option>
+              {recipes.map((recipe) => (
+                <option key={recipe.id} value={recipe.id} placeholder='Select Recipe'>
+                    {recipe.title}
+                </option>
+              ))}
+
+        </select>
+
+    </form>
+  
+)
 
   
   return (
     <>
-      {user ? 
-      <div className='flex flex-col justify-center items-center h-screen'>
-            Recipes
-          </div>
+      {user ?
+
+      <section className='flex flex-col w-full justify-center items-center text-center h-screen'>
+        <label className='
+        m-8
+        w-11/12
+        sm:w-11/12
+        md:w-11/12
+        lg:w-11/12
+        xl:w-11/12
+        text-sm
+        sm:text-sm
+        md:text-lg
+        lg:text-2xl
+        xl:text-2xl
+        
+
+        '>Select a Recipe from the Dropdown Below</label>
+        {recipeSelection()}
+      
+      
+
+      </section>
       : 
       <section className="flex flex-col justify-center items-center h-screen">
           <div className='flex flex-col justify-center items-center gap-2'>
