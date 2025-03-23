@@ -26,7 +26,7 @@ const NavBar = () => {
     };
   
   return (
-    <nav className='flex flex-row p-2 justify-between'>
+    <nav className='flex flex-row p-2 justify-evenly w-full bg-gradient-to-b from-blue-300 to-white h-20'>
       <Link className='cursor-pointer' href='/'>
         <h1 className='
           text-xl
