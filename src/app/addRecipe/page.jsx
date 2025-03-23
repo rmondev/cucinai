@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const AddRecipe = () => {
     // State ==========================================
 
+    const [isloading, setIsloading] = useState(false)
     const {user, googleSignIn} = UserAuth();
     const [showForm, setShowForm] = useState(false)
     const [recipe, setRecipe] = useState({
@@ -76,10 +77,17 @@ const AddRecipe = () => {
 
     const addIngredient = (formData) => {
         
-        if(formData.get('quantity') === '' || formData.get('name') === ''){
-            toast.info('Please include an ingredient name and quantity.')
+
+        console.log('Quantity: ' + formData.get('quantity'))
+        if(formData.get('name') === ''){
+            toast.error('Please include an ingredient name.')
             return
-        }
+        } 
+
+        if (isNaN(formData.get('quantity')) || formData.get('quantity') === '' || formData.get('quantity') === '0') {
+            toast.error("Please enter a valid numeric quantity.");
+            return
+        } 
 
         let newIngredient = {
             quantity: formData.get('quantity'), 
@@ -140,6 +148,8 @@ const AddRecipe = () => {
             toast.log(error)
         }
     }
+
+    
 
     return (
         <>
@@ -216,17 +226,53 @@ const AddRecipe = () => {
                                         <div className='flex flex-row gap-2 pb-4 mt-2'>
                                             
                                             <input className='border border-black p-1 rounded w-full'
-                                            placeholder='Quantity'
-                                            type='text'
-                                            name='quantity'/>
-                                            <input className='border border-black p-1 rounded w-full'
-                                            placeholder='Unit'
-                                            type='text'
-                                            name='unit'/>
-                                            <input className='border border-black p-1 rounded w-full'
-                                            placeholder='Ingredient'
+                                            placeholder='Ingredient Name'
                                             type='text'
                                             name='name'/>
+                                            <input className='border border-black p-1 rounded w-full'
+                                            placeholder='Enter a Quantity'
+                                            type='number'
+                                            name='quantity'
+                                            min='0'
+                                            step='any'
+                                            />
+
+                                            {/* <input className='border border-black p-1 rounded w-full'
+                                            placeholder='Unit Type'
+                                            type='text'
+                                            name='unit'/> */}
+
+                                            <select 
+                                                className="border border-black p-1 rounded w-full"
+                                                name="unit" 
+                                                defaultValue={''}
+                                                >
+                                            <option value="" disabled>
+                                                Select a Measurement Unit...
+                                            </option>
+                                            <optgroup label="Metric - Volume">
+                                                <option value="ml">Milliliter (ml)</option>
+                                                <option value="l">Liter (l)</option>
+                                            </optgroup>
+                                            <optgroup label="Metric - Weight">
+                                                <option value="g">Gram (g)</option>
+                                                <option value="kg">Kilogram (kg)</option>
+                                            </optgroup>
+                                            <optgroup label="Imperial - Volume">
+                                                <option value="tsp">Teaspoon (tsp)</option>
+                                                <option value="tbsp">Tablespoon (tbsp)</option>
+                                                <option value="fl oz">Fluid Ounce (fl oz)</option>
+                                                <option value="cup">Cup</option>
+                                                <option value="pt">Pint (pt)</option>
+                                                <option value="qt">Quart (qt)</option>
+                                                <option value="gal">Gallon (gal)</option>
+                                            </optgroup>
+                                            <optgroup label="Imperial - Weight">
+                                                <option value="oz">Ounce (oz)</option>
+                                                <option value="lb">Pound (lb)</option>
+                                            </optgroup>
+                                            </select>
+                                                                                        
                                         </div>
                                     
                                         <div className="flex flex-row gap-2">
@@ -237,9 +283,9 @@ const AddRecipe = () => {
                                 </form>
 
                                 {/* Add Steps Section */}
-                                <form className='lg:pt-4 border-2 border-black rounded-lg p-2 mt-2'action={addStepToInstructions}>
+                                <form className='border-2 border-black rounded-lg p-2 mt-2'action={addStepToInstructions}>
                                 <label className='
-                                    text-lg  w-fit
+                                    text-lg w-fit
                                     sm:text-lg 
                                     md:text-xl 
                                     lg:text-2xl 
@@ -249,6 +295,7 @@ const AddRecipe = () => {
                                     </label>
                                     <div className='flex flex-row'>
                                         <textarea className='border border-black p-1 w-full rounded'
+                                        placeholder="Add a Step Here..."
                                         type='text'
                                         name='step'/>
                                     </div>
@@ -267,9 +314,24 @@ const AddRecipe = () => {
                                         lg:justify-end lg:w-full lg:mt-4
                                         xl:justify-end xl:w-full xl:mt-4'
                                         >
-                                        { recipe.ingredients.length > 0 && recipe.instructions.length > 0 &&
-                                        <Button title='Add Recipe' onClick={saveToFirestore}/>
-                                        }
+                                    
+                                        {/* Custom Button for Save To Firestore */}
+                                        <button 
+                                            className='
+                                            cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
+                                            transition-colors duration-400
+                                            hover:bg-black hover:text-white
+                                            sm:text-sm 
+                                            md:text-lg 
+                                            lg:text-xl 
+                                            xl:text-2xl
+                                            disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500'
+                                            disabled={recipe.ingredients.length === 0 || recipe.instructions.length === 0}
+                                            onClick={saveToFirestore}
+                                        >
+                                            Save Recipe
+                                        </button>
+                                  
                                     </div>
                                 
                             </section>
