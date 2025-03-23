@@ -70,10 +70,12 @@ const AddRecipe = () => {
     }
 
     const handleRecipeTitleChange = (event) => {
-        setRecipe(prevRecipe => ({...prevRecipe,
-            title: event.target.value || 'No Title'
-        }))
-    }
+        setRecipe(prevRecipe => ({
+          ...prevRecipe,
+          title: event.target.value
+        }));
+      };
+      
 
     const addIngredient = (formData) => {
         
@@ -132,22 +134,32 @@ const AddRecipe = () => {
 
     const saveToFirestore = async () => {
         try {
-            persistRecipe(recipe, user.uid)
-            console.log('Recipe Added!')
-            toast.success("Recipe added to your collection!")
-            
-            setRecipe({
-                title: '',
-                ingredients: [],
-                instructions: []
-              });
-
-            setShowForm(false)
+          const safeTitle = recipe.title.trim() === '' ? 'No Title' : recipe.title;
+      
+          await persistRecipe(
+            {
+              ...recipe,
+              title: safeTitle
+            },
+            user.uid
+          );
+      
+          console.log('Recipe Added!');
+          toast.success("Recipe added to your collection!");
+      
+          setRecipe({
+            title: '',
+            ingredients: [],
+            instructions: []
+          });
+      
+          setShowForm(false);
         } catch (error) {
-            console.log(error)
-            toast.log(error)
+          console.log(error);
+          toast.error("Error saving recipe");
         }
-    }
+      };
+      
 
     
 
@@ -225,30 +237,49 @@ const AddRecipe = () => {
                                         
                                         <div className='flex flex-row gap-2 pb-4 mt-2'>
                                             
-                                            <input className='border border-black p-1 rounded w-full'
-                                            placeholder='Ingredient Name'
+                                            <input 
+                                            className='
+                                            border border-black p-1 rounded w-full
+                                            text-xs
+                                            sm:text-md
+                                            md:text-lg
+                                            lg:text-xl
+                                            xl:text-xl
+                                            '
+                                            placeholder='Ingredient'
                                             type='text'
                                             name='name'/>
-                                            <input className='border border-black p-1 rounded w-full'
-                                            placeholder='Enter a Quantity'
+
+                                            <input 
+                                            className='
+                                            border border-black p-1 rounded w-full
+                                            text-xs
+                                            sm:text-md
+                                            md:text-lg
+                                            lg:text-xl
+                                            xl:text-xl
+                                            '
+                                            placeholder='Quantity'
                                             type='number'
                                             name='quantity'
                                             min='0'
                                             step='any'
                                             />
 
-                                            {/* <input className='border border-black p-1 rounded w-full'
-                                            placeholder='Unit Type'
-                                            type='text'
-                                            name='unit'/> */}
-
                                             <select 
-                                                className="border border-black p-1 rounded w-full"
+                                                className="
+                                                border border-black p-1 rounded w-full
+                                                text-xs
+                                                sm:text-md
+                                                md:text-lg
+                                                lg:text-xl
+                                                xl:text-xl
+                                                "
                                                 name="unit" 
                                                 defaultValue={''}
                                                 >
-                                            <option value="" disabled>
-                                                Select a Measurement Unit...
+                                            <option value="" disabled placeholder='Unit'>
+                                                Unit
                                             </option>
                                             <optgroup label="Metric - Volume">
                                                 <option value="ml">Milliliter (ml)</option>
