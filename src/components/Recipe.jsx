@@ -44,7 +44,7 @@ const Recipe = (props) => {
                     
                         w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
                         sm:w-3/4 sm:mt-2 sm:h-fit 
-                        md:w-3/4 md:h-fit
+                        md:w-5/8 md:h-fit
                         lg:w-5/8 lg:m-4 lg:h-fit
                         xl:w-5/8 xl:m-4 xl:p-4 xl:h-fit"
 

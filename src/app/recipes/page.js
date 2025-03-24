@@ -65,7 +65,7 @@ const Recipes = () => {
           
           
           sm:w-3/4
-          md:w-3/4
+          md:w-5/8
           lg:w-5/8
           xl:w-5/8
           
@@ -117,9 +117,45 @@ const Recipes = () => {
         }
         {recipeSelection()}
         
-        {selectedRecipe &&
-        <Recipe recipe={selectedRecipe}/>
-        }
+
+        <section className='
+          flex flex-col
+          sm:flex-col 
+          md:flex-row
+          lg:flex-row
+          xl:flex-row justify-between
+          '>
+          
+          {selectedRecipe ?
+          <div className='
+          border border-r-2 border-t-2 border-b-2 rounded-r-2xl rounded-t-2xl rounded-b-2xl rounded-l-none rounded-bl-none rounded-tl-none
+            xl:h-120 xl:w-30 xl:mt-5
+          lg:h-120 lg:w-30 lg:mt-5
+          md:h-120 md:w-30 md:mt-3
+          '
+            >Text Here
+            </div>
+          : null
+          }
+
+          {selectedRecipe ?
+          <Recipe recipe={selectedRecipe}/>
+          : null
+          }
+
+          {selectedRecipe ?
+          <div className='
+            border border-l-2 border-t-2 border-b-2 rounded-l-2xl rounded-t-2xl rounded-b-2xl rounded-r-none rounded-br-none rounded-tl-2xl
+          xl:h-120 xl:w-30 xl:mt-5
+          lg:h-120 lg:w-30 lg:mt-5
+          md:h-120 md:w-30 md:mt-3
+          
+          '>
+            Text Here</div>
+          : null
+          }
+
+        </section>
       
 
 
