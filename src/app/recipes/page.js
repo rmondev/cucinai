@@ -129,12 +129,21 @@ const Recipes = () => {
           {selectedRecipe ?
           <div className='
           border border-r-2 border-t-2 border-b-2 rounded-r-2xl rounded-t-2xl rounded-b-2xl rounded-l-none rounded-bl-none rounded-tl-none
-            xl:h-120 xl:w-30 xl:mt-5
-          lg:h-120 lg:w-30 lg:mt-5
-          md:h-120 md:w-30 md:mt-3
+          xl:h-120 xl:w-40 xl:mt-5
+          lg:h-120 lg:w-40 lg:mt-5
+          md:h-120 md:w-40 md:mt-3
           '
-            >Text Here
-            </div>
+            >Similar Options
+            <ul className='
+              flex flex-col justify-evenly items-center h-full
+              '>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+
+            </ul>
+          </div>
           : null
           }
 
@@ -146,12 +155,21 @@ const Recipes = () => {
           {selectedRecipe ?
           <div className='
             border border-l-2 border-t-2 border-b-2 rounded-l-2xl rounded-t-2xl rounded-b-2xl rounded-r-none rounded-br-none rounded-tl-2xl
-          xl:h-120 xl:w-30 xl:mt-5
-          lg:h-120 lg:w-30 lg:mt-5
-          md:h-120 md:w-30 md:mt-3
+          xl:h-120 xl:w-40 xl:mt-5
+          lg:h-120 lg:w-40 lg:mt-5
+          md:h-120 md:w-40 md:mt-3
           
-          '>
-            Text Here</div>
+          '>Enhanced Options
+          <ul className='
+            flex flex-col justify-evenly items-center h-full
+            '>
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+              <li>Item 4</li>
+
+          </ul>
+          </div>
           : null
           }
 
