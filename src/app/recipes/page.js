@@ -21,8 +21,6 @@ const Recipes = () => {
     }
   }, [recipes, selectedRecipeId]);
   
-
-  
   useEffect(() => {
     if (!user?.uid) return;
 
@@ -31,7 +29,6 @@ const Recipes = () => {
     return () => unsubscribe(); // Clean up on unmount
   }, [user?.uid]);
 
-  
   const handleSignIn = async () => {
       try {
         await googleSignIn()
@@ -59,19 +56,14 @@ const Recipes = () => {
     }
   };
   
-
   const recipeSelection = () => (
-
-    
       <form className='
         w-full
         sm:w-full
         md:w-full
         lg:w-full
-        xl:w-full
-        
+        xl:w-full 
       '
-      
       >
         <select 
           className="
@@ -81,28 +73,23 @@ const Recipes = () => {
           md:text-lg
           lg:text-xl
           xl:text-xl
-          
-          
           sm:w-3/4
           md:w-5/8
           lg:w-5/8
           xl:w-5/8
-          
-          
           "
           name="recipeSelection" 
           defaultValue={''}
           onChange={handleRecipeSelect}
           >
-              <option disabled placeholder='Select' value=''>
-                Select 
-                </option>
-              {recipes.map((recipe) => (
-                <option key={recipe.id} value={recipe.id} placeholder='Select Recipe'>
-                    {recipe.title}
-                </option>
-              ))}
-
+            <option disabled value=''>
+              Select a Recipe...
+              </option>
+            {recipes.map((recipe) => (
+              <option key={recipe.id} value={recipe.id} placeholder='Select Recipe'>
+                  {recipe.title}
+              </option>
+            ))}
         </select>
 
     </form>
@@ -112,114 +99,70 @@ const Recipes = () => {
   return (
     <>
       {user ?
+        <main className='
+          flex flex-col w-full justify-center items-center text-center'>
 
-      <section className='
-        flex flex-col w-full justify-center items-center text-center mt-20'>
-
-        {!selectedRecipe &&
-          <label className='
-          m-8
-          w-11/12
-          sm:w-5/8
-          md:w-5/8
-          lg:w-5/8
-          xl:w-5/8
-
-          text-lg
-          sm:text-xl
-          md:text-2xl
-          lg:text-2xl
-          xl:text-2xl
-          '>
-            Select a Recipe from the Dropdown Below
-          </label>
-        }
-        {recipeSelection()}
-        
-
-        <section className='
-          flex flex-row justify-between
-          sm:flex-row 
-          md:flex-row
-          lg:flex-row 
-          xl:flex-row
-          '>
+            <section className="mt-10 mb-4 ">
+              <h1 className="
+                font-bold
+                text-3xl
+                sm:text-3xl
+                md:text-3xl
+                lg:text-4xl
+                xl:text-4xl
+                "
+                >
+                  Recipes</h1>
+            </section>  
+            
+            {recipeSelection()}
           
-          {selectedRecipe ?
-          <div className='
-          border border-r-2 border-t-2 border-b-2 
-          rounded-r-2xl rounded-t-2xl rounded-b-2xl rounded-l-none rounded-bl-none rounded-tl-none
-          p-2 mr-2
-          xl:h-120 xl:w-40 xl:mt-5
-          lg:h-120 lg:w-40 lg:mt-5
-          md:h-120 md:w-40 md:mt-3
-          '
-            >
-              <label className='border-b-2 pb-2'>Similar Options</label>
-            <ul className='
-              flex flex-col justify-evenly items-center h-full
+
+            <section className='
+              flex flex-row justify-center items-center w-full
+              sm:flex-row sm:w-full
+              md:flex-row md:w-full
+              lg:flex-row lg:w-full
+              xl:flex-row xl:w-full
               '>
-                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 1</li>
-                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 2</li>
-                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 3</li>
-                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 4</li>
+                {selectedRecipe ? (
+                  <Recipe 
+                    recipe={selectedRecipe} 
+                    handleDelete={() => handleRecipeDelete(selectedRecipeId)} 
+                  />
+                  ) : (
+                  <label className='
+                    m-8
+                    w-11/12
+                    sm:w-5/8
+                    md:w-5/8
+                    lg:w-5/8
+                    xl:w-5/8
 
-            </ul>
-          </div>
-          : null
-          }
-
-          {selectedRecipe ? (
-            <Recipe 
-              recipe={selectedRecipe} 
-              handleDelete={() => handleRecipeDelete(selectedRecipeId)} 
+                    text-lg
+                    sm:text-xl
+                    md:text-2xl
+                    lg:text-2xl
+                    xl:text-2xl
+                    '>
+                      Select a Recipe to View Its Details
+                    </label>
+                )}
+            </section>
+        
+            <ToastContainer 
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              // theme="light"
             />
-          ) : (
-            <p className="text-gray-500">Select a recipe to view details</p>
-          )}
 
-          {selectedRecipe ?
-          <div className='
-          border border-l-2 border-t-2 border-b-2 
-          rounded-l-2xl rounded-t-2xl rounded-b-2xl rounded-r-none rounded-br-none rounded-tl-2xl
-          pt-2 ml-2
-          xl:h-120 xl:w-40 xl:mt-5
-          lg:h-120 lg:w-40 lg:mt-5
-          md:h-120 md:w-40 md:mt-3
-          
-          '>
-            <label className='border-b-2 pb-2'>Enhance Options</label>
-          <ul className='
-            flex flex-col justify-evenly items-center h-full
-            '>
-              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 1</li>
-              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 2</li>
-              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 3</li>
-              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 4</li>
-
-          </ul>
-          </div>
-          : null
-          }
-
-        </section>
-      
-          <ToastContainer 
-            position="bottom-center"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            // theme="light"
-          />
-
-      </section>
-
-
-
+        </main>
       : 
       <section className="flex flex-col justify-center items-center h-screen">
           <div className='flex flex-col justify-center items-center gap-2'>

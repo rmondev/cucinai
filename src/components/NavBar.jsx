@@ -42,17 +42,28 @@ const NavBar = () => {
 
       {user && 
         <>
-          <section className='flex flex-row justify-between gap-2'>
+          <ul className='flex flex-row justify-between gap-2'>
       
-            <Link href='/recipes'>
-              {/* <button className='cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Recipes</button>  */}
-              <Button title='Recipes'/>
-            </Link>
-            <Link href='/addRecipe'>
-              {/* <button className='ml-4 cursor-pointer md:text-lg lg:text-xl w-fit border-2 border-black p-1'>Add Recipe</button>  */}
-              <Button title='Add Recipe'/>
-            </Link>
-          </section>
+            <li>
+              <Link href='/recipes'>
+                <Button title='Recipes'/>
+              </Link>
+            </li>
+           
+            <li>
+              <Link href='/addRecipe'>
+                <Button title='Add Recipe'/>
+              </Link>
+            </li>
+
+            <li>
+              <Link href='/aichef'>
+                <Button title='AI Chef'/>
+              </Link>
+            </li>
+            
+
+          </ul>
         </>
         }
 
