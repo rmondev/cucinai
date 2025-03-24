@@ -26,10 +26,6 @@ const Recipes = () => {
     }, [user]);
 
   
-    // if (recipes.length > 0){
-    //   console.log(recipes)
-    // }
-  
   const handleSignIn = async () => {
       try {
         await googleSignIn()
@@ -49,23 +45,31 @@ const Recipes = () => {
 
     
       <form className='
-        w-5/8
-        sm:w-11/12
-        md:w-11/12
-        lg:w-11/12
-        xl:w-1/2
+        w-full
+        sm:w-full
+        md:w-full
+        lg:w-full
+        xl:w-full
         
       '
       
       >
         <select 
           className="
-          border border-black p-1 rounded w-full
+          border border-black p-1 rounded w-11/12
           text-xs
           sm:text-md
           md:text-lg
           lg:text-xl
           xl:text-xl
+          
+          
+          sm:w-3/4
+          md:w-3/4
+          lg:w-5/8
+          xl:w-5/8
+          
+          
           "
           name="recipeSelection" 
           defaultValue={''}
@@ -90,22 +94,29 @@ const Recipes = () => {
     <>
       {user ?
 
-      <section className='flex flex-col w-full justify-center items-center text-center mt-20'>
-        <label className='
-        m-8
-        w-11/12
-        sm:w-11/12
-        md:w-11/12
-        lg:w-11/12
-        xl:w-11/12
-        text-sm
-        sm:text-sm
-        md:text-lg
-        lg:text-2xl
-        xl:text-2xl
-        '>Select a Recipe from the Dropdown Below</label>
+      <section className='
+        flex flex-col w-full justify-center items-center text-center mt-20'>
+
+        {!selectedRecipe &&
+          <label className='
+          m-8
+          w-11/12
+          sm:w-5/8
+          md:w-5/8
+          lg:w-5/8
+          xl:w-5/8
+
+          text-lg
+          sm:text-xl
+          md:text-2xl
+          lg:text-2xl
+          xl:text-2xl
+          '>
+            Select a Recipe from the Dropdown Below
+          </label>
+        }
         {recipeSelection()}
-      
+        
         {selectedRecipe &&
         <Recipe recipe={selectedRecipe}/>
         }
