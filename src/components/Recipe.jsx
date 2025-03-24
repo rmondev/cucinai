@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Recipe = (props) => {
 
+
+
+const Recipe = (props) => {
 
     const ingredientsList = () => (
         props.recipe.ingredients.map((ingredient, index) => (
@@ -53,7 +55,22 @@ const Recipe = (props) => {
 
                         >
                         <section className="">
-                            <h1 className='text-2xl border-b-2 w-fit mb-4'>{props.recipe.title}</h1>
+                            <div className='flex flex-row justify-between'>
+                                <h1 className='text-2xl border-b-2 w-fit mb-4'>{props.recipe.title}</h1>
+                                <button className='
+                                cursor-pointer
+                                transition-colors duration-400
+                                 hover:bg-red-600 hover:text-white
+                                text-red-600
+                                p-2 border-2 rounded-2xl
+                                xl:text-xl
+
+                                '
+                                onClick={props.handleDelete}
+                                >
+                                    Delete
+                                </button>
+                            </div>
 
                             {props.recipe.ingredients.length > 0 ?
                             <div className='flex flex-col items-start'>

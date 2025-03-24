@@ -2,28 +2,34 @@
 import React, {useEffect, useState} from 'react'
 import {UserAuth, googleSignIn} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
-import { getRecipes } from '@/lib/db'
+import { getRecipes, listenToRecipes, deleteRecipe } from '@/lib/db'
 import Recipe from '@/components/Recipe'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Recipes = () => {
 
   const { user, googleSignIn } = UserAuth()
   const [recipes, setRecipes] = useState([])
-  const [selectedRecipe, setSelectedRecipe] = useState(null)
+  const [selectedRecipeId, setSelectedRecipeId] = useState(null)
+
+  const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
+
+  useEffect(() => {
+    if (!recipes.find((r) => r.id === selectedRecipeId)) {
+      setSelectedRecipeId(null);
+    }
+  }, [recipes, selectedRecipeId]);
+  
+
   
   useEffect(() => {
-      const fetchRecipes = async () => {
-        try {
-          if (!user) return; // wait until user is available
-          const recipesData = await getRecipes(user.uid);
-          setRecipes(recipesData);
-        } catch (error) {
-          console.error("Error fetching recipes:", error);
-        }
-      };
-  
-      fetchRecipes();
-    }, [user]);
+    if (!user?.uid) return;
+
+    const unsubscribe = listenToRecipes(user.uid, setRecipes);
+
+    return () => unsubscribe(); // Clean up on unmount
+  }, [user?.uid]);
 
   
   const handleSignIn = async () => {
@@ -34,12 +40,25 @@ const Recipes = () => {
       } 
   };
 
-
   const handleRecipeSelect = (e) => {
-    setSelectedRecipe(recipes[e.target.value])
-  }
+    setSelectedRecipeId(e.target.value);
+  };
 
- 
+  const handleRecipeDelete = async (recipeId) => {
+    try {
+      await deleteRecipe(user.uid, recipeId);
+      toast.success("Recipe deleted from your collection!");
+  
+      // Clear selectedRecipeId if the deleted recipe is the one selected
+      if (selectedRecipeId === recipeId) {
+        setSelectedRecipeId(null);
+      }
+    } catch (error) {
+      console.error("Error deleting recipe:", error);
+      toast.error("Error deleting recipe from your collection.");
+    }
+  };
+  
 
   const recipeSelection = () => (
 
@@ -78,8 +97,8 @@ const Recipes = () => {
               <option disabled placeholder='Select' value=''>
                 Select 
                 </option>
-              {recipes.map((recipe, index) => (
-                <option key={index} value={index} placeholder='Select Recipe'>
+              {recipes.map((recipe) => (
+                <option key={recipe.id} value={recipe.id} placeholder='Select Recipe'>
                     {recipe.title}
                 </option>
               ))}
@@ -119,54 +138,64 @@ const Recipes = () => {
         
 
         <section className='
-          flex flex-col
-          sm:flex-col 
+          flex flex-row justify-between
+          sm:flex-row 
           md:flex-row
-          lg:flex-row
-          xl:flex-row justify-between
+          lg:flex-row 
+          xl:flex-row
           '>
           
           {selectedRecipe ?
           <div className='
-          border border-r-2 border-t-2 border-b-2 rounded-r-2xl rounded-t-2xl rounded-b-2xl rounded-l-none rounded-bl-none rounded-tl-none
+          border border-r-2 border-t-2 border-b-2 
+          rounded-r-2xl rounded-t-2xl rounded-b-2xl rounded-l-none rounded-bl-none rounded-tl-none
+          p-2 mr-2
           xl:h-120 xl:w-40 xl:mt-5
           lg:h-120 lg:w-40 lg:mt-5
           md:h-120 md:w-40 md:mt-3
           '
-            >Similar Options
+            >
+              <label className='border-b-2 pb-2'>Similar Options</label>
             <ul className='
               flex flex-col justify-evenly items-center h-full
               '>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-                <li>Item 4</li>
+                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 1</li>
+                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 2</li>
+                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 3</li>
+                <li className='p-4 w-30 border-black border-2 rounded-full'>Item 4</li>
 
             </ul>
           </div>
           : null
           }
 
-          {selectedRecipe ?
-          <Recipe recipe={selectedRecipe}/>
-          : null
-          }
+          {selectedRecipe ? (
+            <Recipe 
+              recipe={selectedRecipe} 
+              handleDelete={() => handleRecipeDelete(selectedRecipeId)} 
+            />
+          ) : (
+            <p className="text-gray-500">Select a recipe to view details</p>
+          )}
 
           {selectedRecipe ?
           <div className='
-            border border-l-2 border-t-2 border-b-2 rounded-l-2xl rounded-t-2xl rounded-b-2xl rounded-r-none rounded-br-none rounded-tl-2xl
+          border border-l-2 border-t-2 border-b-2 
+          rounded-l-2xl rounded-t-2xl rounded-b-2xl rounded-r-none rounded-br-none rounded-tl-2xl
+          pt-2 ml-2
           xl:h-120 xl:w-40 xl:mt-5
           lg:h-120 lg:w-40 lg:mt-5
           md:h-120 md:w-40 md:mt-3
           
-          '>Enhanced Options
+          '>
+            <label className='border-b-2 pb-2'>Enhance Options</label>
           <ul className='
             flex flex-col justify-evenly items-center h-full
             '>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-              <li>Item 4</li>
+              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 1</li>
+              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 2</li>
+              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 3</li>
+              <li className='p-4 w-30 border-black border-2 rounded-full'>Item 4</li>
 
           </ul>
           </div>
@@ -175,7 +204,17 @@ const Recipes = () => {
 
         </section>
       
-
+          <ToastContainer 
+            position="bottom-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            // theme="light"
+          />
 
       </section>
 
