@@ -14,25 +14,24 @@ You are an assistant that receives a recipe including a title, ingredients and i
 // for HF_ACCESS_TOKEN
 const hf = new HfInference(process.env.NEXT_PUBLIC_MINSTREL_AI_API_KEY)
 
-export async function getSillyRecipeFromMistral(recipe) {
-
-    if (!recipe) {
-        console.error("No recipe object was passed to getSillyRecipeFromMistral.");
+export async function getAIrecipe(recipe, options) {
+    if (!recipe ) {
+        console.error("No Recipe Object was passed to 'getAIrecipe'.");
         return;
     }
+    
+    if (!options) {
+        console.error(`No Options were received by 'getRecipe'.`)
+    }
+
 
     console.log("Minstrel API Key: " + process.env.NEXT_PUBLIC_MINSTREL_AI_API_KEY);
 
     let recipeTitle = recipe.title
     let ingredientsArr = recipe.ingredients
     let instructionsArr = recipe.instructions
-
-
-
-
-
-    // Need to destructure the recipe.ingredients array of objects [{name: 'Apples', quantity: 1, unit: 'Cup'}, {name: 'Cake Flour', quantity: 2, unit: 'Cup'}] and join them together in a string ie. "1 Cup Apples, 2 Cup Cake Flour" 
     
+    // Need to destructure the recipe.ingredients array of objects [{name: 'Apples', quantity: 1, unit: 'Cup'}, {name: 'Cake Flour', quantity: 2, unit: 'Cup'}] and join them together in a string ie. "1 Cup Apples, 2 Cup Cake Flour" 
     const ingredientsString = ingredientsArr
     .map(({ quantity, unit, name }) => `${quantity} ${unit} ${name}`)
     .join(', ')
