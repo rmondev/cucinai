@@ -3,13 +3,15 @@ import React, {useState, useEffect} from 'react'
 import { listenToRecipes } from '@/lib/db'
 import {UserAuth, googleSignIn} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
-import {getRecipeFromMistral} from '@/lib/ai'
+import {getSillyRecipeFromMistral} from '@/lib/ai'
+import ReactMarkdown from 'react-markdown'
 
 const AIChef = () => {
 
     const { user, googleSignIn } = UserAuth()
     const [recipes, setRecipes] = useState([])
     const [selectedRecipeId, setSelectedRecipeId] = useState(null)
+    const [recipe, setRecipe] = useState(null)
     
     const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
     
@@ -40,8 +42,15 @@ const AIChef = () => {
         setSelectedRecipeId(e.target.value);
     };
 
-    const testMinstrel = () => {
-      
+    const testMinstrel = async () => {
+      if (!selectedRecipe) return;
+    
+      try {
+        const result = await getSillyRecipeFromMistral(selectedRecipe);
+        setRecipe(result); // ✅ now a string, not a Promise
+      } catch (err) {
+        console.error("Error generating silly recipe:", err);
+      }
     }
 
     const recipeSelection = () => (
@@ -107,7 +116,66 @@ const AIChef = () => {
             
             {recipeSelection()}
 
-            <button onClick={testMinstrel}></button>
+            <section className='
+              flex flex-row justify-between
+              text-xs
+              sm:text-md
+              md:text-lg
+              lg:text-xl
+              xl:text-xl
+              sm:w-3/4
+              md:w-5/8
+              lg:w-5/8
+              xl:w-5/8
+              m-4
+              '
+              >
+              <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
+              text-sm 
+              transition-colors duration-400
+              hover:bg-blue-700 hover:text-white
+              sm:text-sm 
+              md:text-lg 
+              lg:text-xl 
+              xl:text-2xl
+              ' 
+              onClick={testMinstrel}>Generate AI Recipe TEST</button>
+              
+              <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
+              text-sm 
+              transition-colors duration-400
+              hover:bg-green-700 hover:text-white
+              sm:text-sm 
+              md:text-lg 
+              lg:text-xl 
+              xl:text-2xl
+              ' 
+              onClick={testMinstrel}>Generate AI Recipe TEST</button>
+              
+              <button className='cursor-pointer border-2 rounded-xl p-2 border-red-700 text-red-700
+              text-sm 
+              transition-colors duration-400
+              hover:bg-red-700 hover:text-white
+              sm:text-sm 
+              md:text-lg 
+              lg:text-xl 
+              xl:text-2xl
+              ' 
+              onClick={testMinstrel}>Generate AI Recipe TEST</button>
+            </section>
+
+
+              <div className='w-1/2'>
+                {recipe && 
+                  <div className='text-start border-2 rounded-xl p-4
+                  '>
+                
+                    <ReactMarkdown>{recipe}</ReactMarkdown> 
+                  
+                  </div>
+                }
+              </div>
+
         </main>
 
         :
