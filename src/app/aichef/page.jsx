@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { listenToRecipes } from '@/lib/db'
 import {UserAuth, googleSignIn} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
+import {getRecipeFromMistral} from '@/lib/ai'
 
 const AIChef = () => {
 
@@ -38,6 +39,10 @@ const AIChef = () => {
         console.log(e.target.value)
         setSelectedRecipeId(e.target.value);
     };
+
+    const testMinstrel = () => {
+      
+    }
 
     const recipeSelection = () => (
         <form className='
@@ -101,9 +106,13 @@ const AIChef = () => {
             </section>  
             
             {recipeSelection()}
+
+            <button onClick={testMinstrel}></button>
         </main>
 
         :
+
+        
 
         <section className="flex flex-col justify-center items-center h-screen">
           <div className='flex flex-col justify-center items-center gap-2'>
