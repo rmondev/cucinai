@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
 
 
 const Recipe = (props) => {
+
+    const [isModalShown, setIsModalShown] = useState(false)
 
     const ingredientsList = () => (
         props.recipe.ingredients.map((ingredient, index) => (
@@ -37,6 +39,9 @@ const Recipe = (props) => {
     );
 
 
+    
+
+
   return (
     <>
          { props.recipe.ingredients.length > 0 &&
@@ -66,7 +71,7 @@ const Recipe = (props) => {
                                 xl:text-xl
 
                                 '
-                                onClick={props.handleDelete}
+                                onClick={()=>setIsModalShown(true)}
                                 >
                                     Delete
                                 </button>
@@ -92,6 +97,54 @@ const Recipe = (props) => {
                                 </div>
                             : null}
                         </section>
+
+                        <dialog
+                            open={isModalShown}
+                            className="
+                            fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                            z-50 border border-stone-700 bg-white rounded
+                            "
+                        > 
+                            <div className='text-start pl-[8px] pt-[4px] h-[30px] bg-gradient-to-b from-red-500 to-white'>
+                            <h1 className='text-sm text-stone-700'>Delete Recipe</h1>
+                            </div>
+
+                            <div className='p-4'>
+                            <p className='text-xs text-stone-700'>Are you sure you want to Delete this Recipe?</p>
+                            <form method="dialog">
+                                
+                            </form>
+                            </div>
+
+                            <div className='flex flex-row justify-center h-[30px] p-[2px] gap-4 '>
+                            <button className='
+                                cursor-pointer
+                                border border-stone-700 
+                                rounded ml-4 w-full text-xs 
+                                transition-colors duration-200
+                                hover:bg-gradient-to-t hover:from-white hover:to-red-500
+                                text-stone-700 bg-gradient-to-t from-red-500 to-white'
+                                onClick={() => setIsModalShown(false)}
+                                >
+                                    Cancel
+                                </button>
+
+
+                                <div className='w-[1px] h-22px] border border-stone-700'></div>
+                            <button className='
+                                cursor-pointer
+                                border border-stone-700 
+                                rounded mr-4 w-full text-xs 
+                                transition-colors duration-400
+                                hover:bg-gradient-to-t hover:from-white hover:to-red-500
+                                text-stone-700 bg-gradient-to-t from-red-500 to-white'
+                                onClick={props.handleDelete}
+                                >
+                                    Delete
+                                </button>
+                                
+                            </div>
+                        </dialog>
                     </section>
         }
     </>
