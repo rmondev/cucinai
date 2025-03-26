@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { listenToRecipes } from '@/lib/db'
 import {UserAuth, googleSignIn} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
-import {getSillyRecipeFromMistral} from '@/lib/ai'
+import {getAIrecipe} from '@/lib/ai'
 import ReactMarkdown from 'react-markdown'
 
 const AIChef = () => {
@@ -42,14 +42,14 @@ const AIChef = () => {
         setSelectedRecipeId(e.target.value);
     };
 
-    const testMinstrel = async () => {
+    const fetchSimilarRecipe = async () => {
       if (!selectedRecipe) return;
     
       try {
-        const result = await getSillyRecipeFromMistral(selectedRecipe);
+        const result = await getAIrecipe(selectedRecipe, true, ['Make it really rich']);
         setRecipe(result); // ✅ now a string, not a Promise
       } catch (err) {
-        console.error("Error generating silly recipe:", err);
+        console.error("Error generating recipe:", err);
       }
     }
 
@@ -117,7 +117,7 @@ const AIChef = () => {
             {recipeSelection()}
 
             <section className='
-              flex flex-row justify-between
+              flex flex-col justify-center items-center
               text-xs
               sm:text-md
               md:text-lg
@@ -130,38 +130,73 @@ const AIChef = () => {
               m-4
               '
               >
-              <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
-              text-sm 
-              transition-colors duration-400
-              hover:bg-blue-700 hover:text-white
-              sm:text-sm 
-              md:text-lg 
-              lg:text-xl 
-              xl:text-2xl
-              ' 
-              onClick={testMinstrel}>Generate AI Recipe TEST</button>
+              <section className='flex flex-col border-2 border-black'>
+                <form className='p-4 justify-start items-start'>
+                  
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <label>Healthier</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <label>High-Protein</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <label>Lower-Carb</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <label>Vegan or Veg</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <label>Gluten-Free</label>
+                  </div>
+
+                   
+
+
+
+
+
+                </form>
+                {/* <div className='flex flex-col justify-between items-center gap-10'>
+                  <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
+                    text-sm 
+                    transition-colors duration-400
+                    hover:bg-blue-700 hover:text-white
+                    sm:text-sm 
+                    md:text-lg 
+                    lg:text-xl 
+                    xl:text-2xl
+                    ' 
+                    onClick={fetchSimilarRecipe}
+                      >
+                        Generate Similar Recipe
+                  </button>
+                  
+                  <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
+                    text-sm 
+                    transition-colors duration-400
+                    hover:bg-green-700 hover:text-white
+                    sm:text-sm 
+                    md:text-lg 
+                    lg:text-xl 
+                    xl:text-2xl
+                    ' 
+                    onClick={fetchSimilarRecipe}
+                      >
+                        Generate AI Recipe TEST
+                  </button>
+                </div> */}
+
+              </section>
               
-              <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
-              text-sm 
-              transition-colors duration-400
-              hover:bg-green-700 hover:text-white
-              sm:text-sm 
-              md:text-lg 
-              lg:text-xl 
-              xl:text-2xl
-              ' 
-              onClick={testMinstrel}>Generate AI Recipe TEST</button>
-              
-              <button className='cursor-pointer border-2 rounded-xl p-2 border-red-700 text-red-700
-              text-sm 
-              transition-colors duration-400
-              hover:bg-red-700 hover:text-white
-              sm:text-sm 
-              md:text-lg 
-              lg:text-xl 
-              xl:text-2xl
-              ' 
-              onClick={testMinstrel}>Generate AI Recipe TEST</button>
             </section>
 
 

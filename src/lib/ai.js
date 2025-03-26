@@ -37,9 +37,12 @@ import { HfInference } from '@huggingface/inference'
 
 // Make sure you set an environment variable in env.local 
 // for HF_ACCESS_TOKEN
+
 const hf = new HfInference(process.env.NEXT_PUBLIC_MINSTREL_AI_API_KEY)
 
 export async function getAIrecipe(recipe, hasOptions = false, options=[]) {
+
+    console.log('Entered getAIRecipe function')
     if (!recipe ) {
         console.error("No Recipe Object was passed to 'getAIrecipe'.");
         return;
@@ -61,10 +64,10 @@ export async function getAIrecipe(recipe, hasOptions = false, options=[]) {
     // No Options
     
     if (!hasOptions && !options) {
-        var msgUserContent = `I have a recipe titled "${recipeTitle}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}. Please give me a similar recipe based on the original ingredients and preparation instructions. Just include the new recipe, title and instruction steps.`
+        var msgUserContent = `I have a recipe titled "${recipeTitle}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}. Please give me a similar recipe based on the original ingredients and preparation instructions. Just include the new recipe, title and instruction steps. Make sure the response is purely formatted strictly in Markdown.`
 
         var SYSTEM_PROMPT = `
-        You are an assistant that receives a recipe including a title, ingredients and instructions from the user. You suggest a new recipe, that is similar to the original recipe in either ingredients or instructions for preparation. The new recipe can be made with some or all of the ingredients of the original recipe. You don't need to use every ingredient from the users original recipe. The new recipe can include additional ingredients the user didn't mention, but try not to include too many extra ingredients. Format your response in markdown with appropriate headings for recipe title, ingredients and instruction steps, to make it easier to render to a web page.
+        You are an assistant that receives a recipe including a title, ingredients and instructions from the user. You suggest a new recipe, that is similar to the original recipe in either ingredients or instructions for preparation. The new recipe can be made with some or all of the ingredients of the original recipe. You don't need to use every ingredient from the users original recipe. The new recipe can include additional ingredients the user didn't mention, but try not to include too many extra ingredients. Format your response in strictly in Markdown with appropriate large, bold headings for recipe title (Recipe Title:), ingredients (Ingredients:) and instruction (Instructions: Step 1...Step2... etc) steps, to make it easier to render to a web page.
         `
 
     // With Options (Enhancements)
@@ -74,11 +77,13 @@ export async function getAIrecipe(recipe, hasOptions = false, options=[]) {
             .map((option)=> `${option}`)
             .join(', ') 
 
-        var msgUserContent = `I have a recipe titled "${recipeTitle}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}. The new recipe modifying criteria are ${optionsString}. Please give me a recipe that is derived from the original recipe, modified with the criteria I provided you. Just include the new recipe, title and instruction steps.`
-
         var SYSTEM_PROMPT = `
-        You are an assistant that receives a recipe including a title, ingredients and instructions from the user. You also receive a list of modifying criteria. You suggest a new recipe, based on certain modifying criteria the user gives you. The new recipe can be made with some or all of the ingredients of the original recipe as long as they don't contradict the criteria provided. You don't need to use every ingredient from the users original recipe. The recipe can include additional ingredients the user didn't mention, but try not to include too many extra ingredients. Format your response in markdown with appropriate headings for recipe title, ingredients and instruction steps, to make it easier to render to a web page.
+        You are an assistant that receives a recipe including a title, ingredients and instructions from the user. You also receive a list of modifying criteria. You suggest a new recipe, based on certain modifying criteria the user gives you. The new recipe can be made with some or all of the ingredients of the original recipe as long as they don't contradict the criteria provided. You don't need to use every ingredient from the users original recipe. The recipe can include additional ingredients the user didn't mention, but try not to include too many extra ingredients. Format your response strictly in Markdown with appropriate large-bold headings for recipe title (Recipe Title:), ingredients (Ingredients:) and instruction (Instructions: Step 1...Step2... etc) steps, to make it easier to render to a web page.
         `
+
+        var msgUserContent = `I have a recipe titled "${recipeTitle}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}. The new recipe modifying criteria are: ${optionsString}. Please give me a recipe that is derived from the original recipe, modified with the criteria I provided you. Just include the new recipe, title and instruction steps. Make sure the response is purely formatted in strictly in Markdown with spacing between recipe title, ingredients and instructions sections and separate the instructions into numbered steps.`
+
+       
         
     }
 
@@ -92,6 +97,8 @@ export async function getAIrecipe(recipe, hasOptions = false, options=[]) {
             ],
             max_tokens: 1024,
         })
+
+        console.log(response.choices[0].message.content)
         return response.choices[0].message.content
     } catch (err) {
         console.error(err.message)
