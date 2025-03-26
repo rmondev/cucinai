@@ -12,6 +12,7 @@ const AIChef = () => {
     const [recipes, setRecipes] = useState([])
     const [selectedRecipeId, setSelectedRecipeId] = useState(null)
     const [recipe, setRecipe] = useState(null)
+    const [recipeEnhancementOpts, setRecipeEnhancementOpts] = useState([])
     
     const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
     
@@ -43,10 +44,11 @@ const AIChef = () => {
     };
 
     const fetchSimilarRecipe = async () => {
+      
       if (!selectedRecipe) return;
     
       try {
-        const result = await getAIrecipe(selectedRecipe, true, ['Make it really rich']);
+        const result = await getAIrecipe(selectedRecipe);
         setRecipe(result); // ✅ now a string, not a Promise
       } catch (err) {
         console.error("Error generating recipe:", err);
@@ -93,6 +95,33 @@ const AIChef = () => {
     
   )
 
+  useEffect(() => {
+    console.log('Enhancement Options (updated):', recipeEnhancementOpts);
+  }, [recipeEnhancementOpts]);
+
+  const handleCheckboxChange= (e) => {
+    const { value, checked } = e.target
+
+    setRecipeEnhancementOpts((prevOpts) => {
+      if(checked){
+        return [...prevOpts, value]
+      } else {
+        return prevOpts.filter((option) => option !== value)
+      }
+    })
+  }
+
+  const fetchEnhancedRecipe = async (e) => {
+    e.preventDefault()
+    if (!selectedRecipe || recipeEnhancementOpts.length === 0) return;
+
+    try {
+      const result = await getAIrecipe(selectedRecipe, true, recipeEnhancementOpts);
+      setRecipe(result); // ✅ now a string, not a Promise
+    } catch (err) {
+      console.error("Error generating recipe:", err);
+    }
+  } 
 
   return (
     <>
@@ -130,34 +159,69 @@ const AIChef = () => {
               m-4
               '
               >
-              <section className='flex flex-col border-2 border-black'>
-                <form className='p-4 justify-start items-start'>
+              <section className='flex flex-col border-2 border-black p-4 gap-2'>
+
+                <div className='flex flex-row justify-between items-center gap-10'>
+                  <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
+                    text-sm 
+                    transition-colors duration-400
+                    hover:bg-blue-700 hover:text-white
+                    sm:text-sm 
+                    md:text-lg 
+                    lg:text-xl 
+                    xl:text-2xl
+                    ' 
+                    onClick={fetchSimilarRecipe}
+                      >
+                        Generate Similar Recipe
+                  </button>
+
+                  <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
+                      text-sm 
+                      transition-colors duration-400
+                      hover:bg-green-700 hover:text-white
+                      sm:text-sm 
+                      md:text-lg 
+                      lg:text-xl 
+                      xl:text-2xl
+                      ' 
+                      onClick={fetchEnhancedRecipe}
+                        >
+                          Generate an Enhanced Recipe
+                  </button>
+                </div>
+                <label>For Generating an Enhanced recipe, select the options below: </label>
+                <form className=' flex flex-row p-4 justify-start items-start'>
+                  
                   
                   <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Healthier'></input>
                     <label>Healthier</label>
                   </div>
 
                   <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='High Protein'></input>
                     <label>High-Protein</label>
                   </div>
 
                   <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Lower-Carb'></input>
                     <label>Lower-Carb</label>
                   </div>
 
                   <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' type="checkbox"></input>
-                    <label>Vegan or Veg</label>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Vegan'></input>
+                    <label>Vegan</label>
                   </div>
 
                   <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' type="checkbox"></input>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Gluten-Free'></input>
                     <label>Gluten-Free</label>
                   </div>
 
+                  {/* <div>
+                    <button onClick={fetchEnhancedRecipe}>Submit</button>
+                  </div> */}
                    
 
 
