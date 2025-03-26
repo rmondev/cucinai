@@ -46,13 +46,23 @@ const AIChef = () => {
     const fetchSimilarRecipe = async () => {
       
       if (!selectedRecipe) return;
-    
-      try {
-        const result = await getAIrecipe(selectedRecipe);
-        setRecipe(result); // ✅ now a string, not a Promise
-      } catch (err) {
-        console.error("Error generating recipe:", err);
-      }
+  
+    try {
+      const res = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          recipe: selectedRecipe,
+        })
+      });
+  
+      const data = await res.json();
+      setRecipe(data.result);
+    } catch (err) {
+      console.error('Error fetching AI recipe:', err);
+    }
     }
 
     const recipeSelection = () => (
@@ -111,17 +121,28 @@ const AIChef = () => {
     })
   }
 
-  const fetchEnhancedRecipe = async (e) => {
-    e.preventDefault()
+  const fetchEnhancedRecipe = async () => {
     if (!selectedRecipe || recipeEnhancementOpts.length === 0) return;
-
+  
     try {
-      const result = await getAIrecipe(selectedRecipe, true, recipeEnhancementOpts);
-      setRecipe(result); // ✅ now a string, not a Promise
+      const res = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          recipe: selectedRecipe,
+          hasOptions: true,
+          options: recipeEnhancementOpts
+        })
+      });
+  
+      const data = await res.json();
+      setRecipe(data.result);
     } catch (err) {
-      console.error("Error generating recipe:", err);
+      console.error('Error fetching AI recipe:', err);
     }
-  } 
+  };
 
   return (
     <>
