@@ -158,7 +158,7 @@ const AddRecipe = () => {
           console.log(error);
           toast.error("Error saving recipe");
         }
-      };
+    };
       
 
     
@@ -399,7 +399,7 @@ const AddRecipe = () => {
                     
                 </section>  
                 <div className='m-12'>
-                <ToastContainer 
+                {/* <ToastContainer 
                     position="bottom-center"
                     autoClose={3000}
                     hideProgressBar={false}
@@ -409,7 +409,7 @@ const AddRecipe = () => {
                     draggable
                     pauseOnHover
                     // theme="light"
-                />
+                /> */}
                 </div>
 
                 </>

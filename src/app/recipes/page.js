@@ -150,7 +150,7 @@ const Recipes = () => {
                 )}
             </section>
         
-            <ToastContainer 
+            {/* <ToastContainer 
               position="bottom-center"
               autoClose={3000}
               hideProgressBar={false}
@@ -160,7 +160,7 @@ const Recipes = () => {
               draggable
               pauseOnHover
               // theme="light"
-            />
+            /> */}
 
         </main>
       : 

@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
-
+import { ToastContainer, toast } from 'react-toastify';
+import { persistRecipe } from '@/lib/db';
+import { UserAuth } from '@/context/AuthContext';
 
 
 
 const Recipe = (props) => {
+
+    const {user} = UserAuth();
 
     const [isModalShown, setIsModalShown] = useState(false)
 
@@ -18,9 +22,9 @@ const Recipe = (props) => {
                             <th className="w-40"></th>
                         </tr>
                         <tr>
-                            <td className='text-start'>{ingredient.quantity}</td>
-                            <td className='text-start'>{ingredient.unit}</td>
-                            <td className='text-start'>{ingredient.name}</td>
+                            <td className='text-start'>{ingredient.quantity ? ingredient.quantity : ''}</td>
+                            <td className='text-start'>{ingredient.unit ? ingredient.unit : ''}</td>
+                            <td className='text-start'>{ingredient.name ? ingredient.name : ''}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -39,6 +43,33 @@ const Recipe = (props) => {
     );
 
 
+    const saveToFirestore = async () => {
+            try {
+              const safeTitle = props.recipe.title.trim() === '' ? 'No Title' : props.recipe.title;
+          
+              await persistRecipe(
+                {
+                  ...props.recipe,
+                  title: safeTitle
+                },
+                user.uid
+              );
+          
+              console.log('Recipe Added!');
+              toast.success("Recipe added to your collection!");
+          
+            //   setRecipe({
+            //     title: '',
+            //     ingredients: [],
+            //     instructions: []
+            //   });
+          
+            //   setShowForm(false);
+            } catch (error) {
+              console.log(error);
+              toast.error("Error saving recipe");
+            }
+        };
     
 
 
@@ -62,6 +93,8 @@ const Recipe = (props) => {
                         <section className="">
                             <div className='flex flex-row justify-between'>
                                 <h1 className='text-2xl border-b-2 w-fit mb-4'>{props.recipe.title}</h1>
+
+                                {props.handleDelete &&
                                 <button className='
                                 cursor-pointer
                                 transition-colors duration-400
@@ -75,6 +108,25 @@ const Recipe = (props) => {
                                 >
                                     Delete
                                 </button>
+                                }
+
+                                {props.isAi && 
+                                <button className='
+                                cursor-pointer
+                                transition-colors duration-400
+                                 hover:bg-red-600 hover:text-white
+                                text-red-600
+                                p-2 border-2 rounded-2xl
+                                xl:text-xl
+
+                                '
+                                onClick={saveToFirestore}
+                                >
+                                    Save
+                                </button>
+                                }
+                                
+                                
                             </div>
 
                             {props.recipe.ingredients.length > 0 ?

@@ -5,6 +5,7 @@ import {UserAuth, googleSignIn} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
 import {getAIrecipe} from '@/lib/ai'
 import ReactMarkdown from 'react-markdown'
+import Recipe from '@/components/Recipe'
 
 const AIChef = () => {
 
@@ -60,9 +61,11 @@ const AIChef = () => {
       });
   
       const data = await res.json();
-      // setRecipe(data.result);
 
       console.log(data)
+      setRecipe(data);
+
+      
     } catch (err) {
       console.error('Error fetching AI recipe:', err);
     }
@@ -145,8 +148,7 @@ const AIChef = () => {
       const data = await res.json();
 
       console.log(data)
-
-      // setRecipe(data.result);
+      setRecipe(data);
 
 
     } catch (err) {
@@ -224,10 +226,10 @@ const AIChef = () => {
                   </button>
                 </div>
                 <label>For Generating an Enhanced recipe, select the options below: </label>
-                <form className=' flex flex-row p-4 justify-start items-start'>
+                <form className=' flex flex-row p-4 justify-start items-start w-full'>
                   
                   
-                  <div className='flex justify-start items-start'>
+                  <div className='flex justify-start items-start w-full'>
                     <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Healthier'></input>
                     <label>Healthier</label>
                   </div>
@@ -251,6 +253,59 @@ const AIChef = () => {
                     <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Gluten-Free'></input>
                     <label>Gluten-Free</label>
                   </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Dessert-Like'></input>
+                    <label>Dessert-Like</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Dairy-Free'></input>
+                    <label>Dairy-Free</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Nut-Free'></input>
+                    <label>Nut-Free</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Give it an Italian Twist'></input>
+                    <label>Give it an Italian Twist</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Asian-Inspired'></input>
+                    <label>Make it Asian-Inspired'Twist</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Add a Mexican Flair'></input>
+                    <label>Add a Mexican Flair</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Simplify the Recipe'></input>
+                    <label>Simplify the Recipe</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Faster to Prepare'></input>
+                    <label>Make it Faster to Prepare</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Kid-Friendly'></input>
+                    <label>Make it Kid-Friendly</label>
+                  </div>
+
+                  <div className='flex justify-start items-start'>
+                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Fancy/Gourmet'></input>
+                    <label>Make it Fancy/Gourmet</label>
+                  </div>
+
+
+
 
                   {/* <div>
                     <button onClick={fetchEnhancedRecipe}>Submit</button>
@@ -297,22 +352,13 @@ const AIChef = () => {
             </section>
 
 
-              <div className='w-1/2'>
-                {recipe && 
-                
-                
-                <>
-                </>
-
-
-
-                  // <div className='text-start border-2 rounded-xl p-4
-                  // '>
-                
-                  //   <ReactMarkdown>{recipe}</ReactMarkdown> 
-                  
-                  // </div>
-                }
+              <div className='flex flex-row justify-center items-center w-full
+              sm:flex-row sm:w-full
+              md:flex-row md:w-full
+              lg:flex-row lg:w-full
+              xl:flex-row xl:w-full
+              '>
+                { recipe != null ? <Recipe recipe={recipe} isAi /> : <h1>No Recipe</h1>}
               </div>
               
             

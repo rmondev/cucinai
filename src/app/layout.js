@@ -2,6 +2,7 @@
 import "@/styles/globals.css";
 import { AuthContextProvider } from '@/context/AuthContext'
 import NavBar from '@/components/NavBar'
+import { ToastContainer, toast } from 'react-toastify';
 
 export const metadata = {
   title: "Cucinai",
@@ -16,6 +17,17 @@ export default function RootLayout({ children }) {
           <body className="bg-background text-foreground dark:bg-darkBackground dark:text-darkForeground transition-colors duration-300">
           <NavBar/>
             {children}
+            <ToastContainer 
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              // theme="light"
+            />
           </body>
       
       </AuthContextProvider>
