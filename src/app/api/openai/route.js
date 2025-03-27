@@ -65,15 +65,12 @@ const openai = new OpenAI({
         systemPrompt = `
           You are an assistant that receives a recipe including a title, ingredients, and instructions.
           You suggest a new recipe that is similar to the original one. It can reuse some or all original ingredients, and optionally introduce a few new ones.
-          Format your response strictly in Markdown with **bold section headers** like:
-          - Recipe Title:
-          - Ingredients:
-          - Instructions: (Step 1, Step 2, etc.)
+         
         `;
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          Please give me a similar recipe based on the original ingredients and preparation instructions.
+          Please return me a similar recipe based on the original ingredients and preparation instructions.
         `;
       } else {
         const optionsString = options.join(', ');
@@ -81,34 +78,91 @@ const openai = new OpenAI({
         systemPrompt = `
           You are an assistant that receives a recipe and enhancement criteria. 
           Based on the criteria, suggest a modified recipe. 
-          Format your response strictly in Markdown with **bold section headers** like:
-          - Recipe Title:
-          - Ingredients:
-          - Instructions: (Step 1, Step 2, etc.)
         `;
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          The enhancement criteria are: ${optionsString}.
-          Please return a modified recipe based on these criteria.
+          The enhancement criteria are: ${optionsString}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided.
         `;
       }
-  
+
+
+      //OpenAI function calling, returning a structured object
+
       const chatResponse = await openai.chat.completions.create({
-        model: 'gpt-4', // or 'gpt-3.5-turbo' for lower cost
+        model: 'gpt-4',
         messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userMessage },
+          {role: 'system', content: systemPrompt},
+          {role: 'user', content: userMessage}
         ],
-        temperature: 0.8,
-        max_tokens: 1024,
-      });
+        tools: [
+          {
+            type: 'function',
+            function: {
+              name: 'return_enhanced_recipe',
+              description: 'Returns a recipe in structured format',
+              parameters: {
+                type: 'object',
+                properties: {
+                  title: { type: 'string' },
+                  ingredients: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      properties: {
+                        quantity: { type: 'number' },
+                        unit: { type: 'string' },
+                        name: { type: 'string' }
+                      },
+                      required: ['quantity', 'unit', 'name']
+                    }
+                  },
+                  instructions: {
+                    type: 'array',
+                    items: { type: 'string' }
+                  }
+                },
+                required: ['title', 'ingredients', 'instructions']
+              }
+            }
+          }
+        ],
+        tool_choice: {type: 'function', function:{name: 'return_enhanced_recipe'}},
+        temperature: 0.7,
+        max_tokens: 2048
+
+      })
+
+      const toolCall = chatResponse.choices[0]?.message?.tool_calls?.[0]
+        if (!toolCall || !toolCall.function?.arguments) {
+          return NextResponse.json({ error: 'No structured data returned' }, { status: 500 })
+        }
+
+        const parsed = JSON.parse(toolCall.function.arguments)
+        return NextResponse.json(parsed)
+
+      } catch (error) {
+        console.error('Error in OpenAI API route:', error)
+        return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
+      }
+
+
   
-      const responseText = chatResponse.choices[0].message.content;
-      return NextResponse.json({ result: responseText });
-    } catch (err) {
-      console.error('OpenAI Route Error:', err);
-      return NextResponse.json({ error: err.message }, { status: 500 });
-    }
+    //   const chatResponse = await openai.chat.completions.create({
+    //     model: 'gpt-4', // or 'gpt-3.5-turbo' for lower cost
+    //     messages: [
+    //       { role: 'system', content: systemPrompt },
+    //       { role: 'user', content: userMessage },
+    //     ],
+    //     temperature: 0.8,
+    //     max_tokens: 1024,
+    //   });
+  
+    //   const responseText = chatResponse.choices[0].message.content;
+    //   return NextResponse.json({ result: responseText });
+    // } catch (err) {
+    //   console.error('OpenAI Route Error:', err);
+    //   return NextResponse.json({ error: err.message }, { status: 500 });
+    // }
   }
   

@@ -55,11 +55,14 @@ const AIChef = () => {
         },
         body: JSON.stringify({
           recipe: selectedRecipe,
+          hasOptions: false
         })
       });
   
       const data = await res.json();
-      setRecipe(data.result);
+      // setRecipe(data.result);
+
+      console.log(data)
     } catch (err) {
       console.error('Error fetching AI recipe:', err);
     }
@@ -123,6 +126,8 @@ const AIChef = () => {
 
   const fetchEnhancedRecipe = async () => {
     if (!selectedRecipe || recipeEnhancementOpts.length === 0) return;
+
+  
   
     try {
       const res = await fetch('/api/openai', {
@@ -138,10 +143,17 @@ const AIChef = () => {
       });
   
       const data = await res.json();
-      setRecipe(data.result);
+
+      console.log(data)
+
+      // setRecipe(data.result);
+
+
     } catch (err) {
       console.error('Error fetching AI recipe:', err);
     }
+
+    
   };
 
   return (
@@ -287,12 +299,19 @@ const AIChef = () => {
 
               <div className='w-1/2'>
                 {recipe && 
-                  <div className='text-start border-2 rounded-xl p-4
-                  '>
                 
-                    <ReactMarkdown>{recipe}</ReactMarkdown> 
+                
+                <>
+                </>
+
+
+
+                  // <div className='text-start border-2 rounded-xl p-4
+                  // '>
+                
+                  //   <ReactMarkdown>{recipe}</ReactMarkdown> 
                   
-                  </div>
+                  // </div>
                 }
               </div>
               
