@@ -101,8 +101,7 @@ const Recipes = () => {
       {user ?
         <main className='
           flex flex-col w-full justify-center items-center text-center'>
-
-            <section className="mt-10 mb-4 ">
+            <section className="mt-10 mb-10 ">
               <h1 className="
                 font-bold
                 text-3xl
@@ -115,6 +114,7 @@ const Recipes = () => {
                   Recipes</h1>
             </section>  
             
+            {/* Recipe selection dropdown */}
             {recipeSelection()}
           
 
@@ -125,6 +125,7 @@ const Recipes = () => {
               lg:flex-row lg:w-full
               xl:flex-row xl:w-full
               '>
+                {/* Render Recipe component if a recipe has been selected */}
                 {selectedRecipe ? (
                   <Recipe 
                     recipe={selectedRecipe} 
@@ -132,6 +133,7 @@ const Recipes = () => {
                   />
                   ) : (
                   <label className='
+                    
                     m-8
                     w-11/12
                     sm:w-5/8
@@ -149,21 +151,9 @@ const Recipes = () => {
                     </label>
                 )}
             </section>
-        
-            {/* <ToastContainer 
-              position="bottom-center"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              // theme="light"
-            /> */}
-
         </main>
       : 
+      // No User, render Google login button
       <section className="flex flex-col justify-center items-center h-screen">
           <div className='flex flex-col justify-center items-center gap-2'>
               <p className="text-xl">Please Sign In</p>
