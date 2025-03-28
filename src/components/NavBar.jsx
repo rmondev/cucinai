@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import CucinaiLogo from '@/assets/cucinai_logo.png'
+import { motion } from 'motion'
+
 
 const NavBar = () => {
 
@@ -27,11 +29,39 @@ const NavBar = () => {
     };
   
   return (
-    <nav className='flex justify-evenly w-full bg-gradient-to-b from-blue-300 to-white h-20'>
+    <nav className='flex justify-evenly w-full bg-gradient-to-b from-[#9965f4] to-white 
+          h-15
+          sm:h-15
+          md:h-20
+          lg:h-20
+          xl:h-20
+          
+          '>
       {/* App Logo */}
       <Link className='cursor-pointer' href='/'>
         <div className='flex items-center justify-center'>  
-          <div className='relative w-[30px] h-[80px] sm:w-[40px] sm:h-[80px] md:w-[70px] md:h-[80px] lg:w-[70px] lg:h-[80px] xl:w-[70px] xl:h-[80px]'>
+        <h1 className='
+            font-serif
+              text-xl
+              sm:text-2xl
+              md:text-3xl
+              lg:text-3xl
+              xl:text-4xl
+              '
+              >
+                CucinAI
+          </h1>
+          <motion.div className='
+                relative 
+                w-[30px] h-[60px] 
+                sm:w-[40px] sm:h-[60px] 
+                md:w-[70px] md:h-[80px] 
+                lg:w-[70px] lg:h-[80px] 
+                xl:w-[70px] xl:h-[80px]'
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                >
+                
               <Image
                 src={CucinaiLogo}
                 fill
@@ -44,17 +74,8 @@ const NavBar = () => {
                 alt={'Cucinai Logo'}
                 className='object-contain'
               />
-            </div>
-          <h1 className='
-              text-xl
-              sm:text-2xl
-              md:text-3xl
-              lg:text-3xl
-              xl:text-4xl
-              '
-              >
-                CucinAI
-          </h1>
+            </motion.div>
+          
 
         </div>
       </Link>

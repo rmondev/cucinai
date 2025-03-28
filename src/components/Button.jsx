@@ -5,9 +5,12 @@ const Button = (props) => {
 
   return (
    <button className='
-    cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
+    cursor-pointer w-fit border-2 border-black pb-[4px] pr-[4px] pl-[4px] rounded-lg 
     transition-colors duration-400
-    hover:bg-black hover:text-white
+    hover:bg-[#a200e0] hover:text-[#d4bff9]
+    font-sans
+    font-semibold
+    text-sm 
     sm:text-sm 
     md:text-lg 
     lg:text-xl 

@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { AuthContextProvider } from '@/context/AuthContext'
 import NavBar from '@/components/NavBar'
 import { ToastContainer, toast } from 'react-toastify';
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Cucinai",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
               pauseOnHover
               // theme="light"
             />
+            <Footer/>
           </body>
       
       </AuthContextProvider>

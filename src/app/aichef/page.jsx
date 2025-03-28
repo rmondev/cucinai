@@ -82,12 +82,13 @@ const AIChef = () => {
         >
           <select 
             className="
-            border border-black p-1 rounded w-11/12
+            border border-black p-1 rounded
             text-xs
             sm:text-md
             md:text-lg
             lg:text-xl
             xl:text-xl
+            w-full
             sm:w-3/4
             md:w-5/8
             lg:w-5/8
@@ -158,27 +159,90 @@ const AIChef = () => {
     
   };
 
+  const enhancementArr = ['Healthier', 
+                          'High Protein', 
+                          'Lower-Carb', 
+                          'Vegan', 
+                          'Gluten-Free', 
+                          'Dessert-Like', 
+                          'Dairy-Free', 
+                          'Nut-Free', 
+                          'Give it an Italian Twist', 
+                          'Make it Asian-Inspired', 
+                          'Add a Mexican Flair', 
+                          'Simplify the Recipe', 
+                          'Make it Faster to Prepare', 
+                          'Make it Kid-Friendly', 
+                          'Make it Fancy/Gourmet' 
+                        ]
+
+
+  const enhancementSelectionForm = () => (
+    <form className='grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-[1px] w-full p-4'>
+      {enhancementArr.map((criteria, index)=>
+        <div key={index} 
+              className='flex items-start text-start
+                w-11/12
+                sm:w-3/4
+                md:w-5/8
+                lg:w-5/8
+                xl:w-5/8
+            '>
+          <input className='m-[0.6rem]'
+                 onChange={handleCheckboxChange}
+                 type="checkbox" 
+                 name='enhancements' 
+                 value={criteria}
+            />
+          <label>{criteria}</label>
+        </div>
+      )}
+    </form>
+  )
   return (
     <>
     {user ?
-        <main className='
-          flex flex-col w-full justify-center items-center text-center'>
+        <main className='flex flex-col w-full justify-center items-center text-center'>
 
-            <section className="mt-10 mb-4 ">
-              <h1 className="
+          <header className='flex flex-row justify-start items-start text-start
+            w-11/12
+            sm:w-3/4
+            md:w-5/8
+            lg:w-5/8
+            xl:w-5/8
+            mt-10
+            mb-10
+            '
+            >
+            <h1 className="
+              font-bold
+              text-3xl
+              sm:text-4xl
+              md:text-4xl
+              lg:text-5xl
+              xl:text-6xl
+              "
+              >
+                CucinAI Recipes</h1>
+          </header>
+
+            <section className="mt-10 mb-4">
+              <p className="
                 font-bold
-                text-3xl
-                sm:text-3xl
-                md:text-3xl
-                lg:text-4xl
-                xl:text-4xl
+                text-lg
+                sm:text-xl
+                md:text-xl
+                lg:text-2xl
+                xl:text-2xl
                 "
                 >
-                  AI Chef Recipes
-                </h1>
+                  Choose a Recipe from Your Recipe Collection Below
+                </p>
             </section>  
             
             {recipeSelection()}
+
+
 
             <section className='
               flex flex-col justify-center items-center
@@ -194,7 +258,7 @@ const AIChef = () => {
               m-4
               '
               >
-              <section className='flex flex-col border-2 border-black p-4 gap-2'>
+              <section className='flex flex-col border-2 border-black p-4 gap-2 w-full'>
 
                 <div className='flex flex-row justify-between items-center gap-10'>
                   <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
@@ -226,129 +290,8 @@ const AIChef = () => {
                   </button>
                 </div>
                 <label>For Generating an Enhanced recipe, select the options below: </label>
-                <form className=' flex flex-row p-4 justify-start items-start w-full'>
-                  
-                  
-                  <div className='flex justify-start items-start w-full'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Healthier'></input>
-                    <label>Healthier</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='High Protein'></input>
-                    <label>High-Protein</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Lower-Carb'></input>
-                    <label>Lower-Carb</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Vegan'></input>
-                    <label>Vegan</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Gluten-Free'></input>
-                    <label>Gluten-Free</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Dessert-Like'></input>
-                    <label>Dessert-Like</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Dairy-Free'></input>
-                    <label>Dairy-Free</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Nut-Free'></input>
-                    <label>Nut-Free</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Give it an Italian Twist'></input>
-                    <label>Give it an Italian Twist</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Asian-Inspired'></input>
-                    <label>Make it Asian-Inspired'Twist</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Add a Mexican Flair'></input>
-                    <label>Add a Mexican Flair</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Simplify the Recipe'></input>
-                    <label>Simplify the Recipe</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Faster to Prepare'></input>
-                    <label>Make it Faster to Prepare</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Kid-Friendly'></input>
-                    <label>Make it Kid-Friendly</label>
-                  </div>
-
-                  <div className='flex justify-start items-start'>
-                    <input className='m-[0.4rem]' onChange={handleCheckboxChange}type="checkbox" name='enhancements' value='Make it Fancy/Gourmet'></input>
-                    <label>Make it Fancy/Gourmet</label>
-                  </div>
-
-
-
-
-                  {/* <div>
-                    <button onClick={fetchEnhancedRecipe}>Submit</button>
-                  </div> */}
-                   
-
-
-
-
-
-                </form>
-                {/* <div className='flex flex-col justify-between items-center gap-10'>
-                  <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
-                    text-sm 
-                    transition-colors duration-400
-                    hover:bg-blue-700 hover:text-white
-                    sm:text-sm 
-                    md:text-lg 
-                    lg:text-xl 
-                    xl:text-2xl
-                    ' 
-                    onClick={fetchSimilarRecipe}
-                      >
-                        Generate Similar Recipe
-                  </button>
-                  
-                  <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
-                    text-sm 
-                    transition-colors duration-400
-                    hover:bg-green-700 hover:text-white
-                    sm:text-sm 
-                    md:text-lg 
-                    lg:text-xl 
-                    xl:text-2xl
-                    ' 
-                    onClick={fetchSimilarRecipe}
-                      >
-                        Generate AI Recipe TEST
-                  </button>
-                </div> */}
-
+                {enhancementSelectionForm()}
               </section>
-              
             </section>
 
 
