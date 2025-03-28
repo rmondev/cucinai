@@ -99,20 +99,29 @@ const Recipes = () => {
   return (
     <>
       {user ?
-        <main className='
-          flex flex-col w-full justify-center items-center text-center'>
-            <section className="mt-10 mb-10 ">
-              <h1 className="
-                font-bold
-                text-3xl
-                sm:text-3xl
-                md:text-3xl
-                lg:text-4xl
-                xl:text-4xl
-                "
-                >
-                  Recipes</h1>
-            </section>  
+        <main className='flex flex-col w-full justify-center items-center text-center '>
+          <header className='flex flex-row justify-start items-start text-start
+            w-11/12
+            sm:w-3/4
+            md:w-5/8
+            lg:w-5/8
+            xl:w-5/8
+            mt-10
+            mb-10
+            '
+            >
+            <h1 className="
+              font-bold
+              text-3xl
+              sm:text-4xl
+              md:text-4xl
+              lg:text-5xl
+              xl:text-6xl
+              "
+              >
+                My Recipes</h1>
+          </header>
+           
             
             {/* Recipe selection dropdown */}
             {recipeSelection()}
