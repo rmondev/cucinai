@@ -27,11 +27,11 @@ const NavBar = () => {
     };
   
   return (
-    <nav className='flex flex-row p-2 justify-evenly w-full bg-gradient-to-b from-blue-300 to-white h-20'>
+    <nav className='flex justify-evenly w-full bg-gradient-to-b from-blue-300 to-white h-20'>
       {/* App Logo */}
       <Link className='cursor-pointer' href='/'>
-        <div className='flex flex-row items-center'>  
-          <div className='relative w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px]'>
+        <div className='flex items-center justify-center'>  
+          <div className='relative w-[30px] h-[80px] sm:w-[40px] sm:h-[80px] md:w-[70px] md:h-[80px] lg:w-[70px] lg:h-[80px] xl:w-[70px] xl:h-[80px]'>
               <Image
                 src={CucinaiLogo}
                 fill
@@ -41,8 +41,8 @@ const NavBar = () => {
                       (max-width: 1280px) 60px,
                       (max-width: 1536px) 70px,
                       60px"
-                      alt={'Cucinai Logo'}
-                      className='object-contain'
+                alt={'Cucinai Logo'}
+                className='object-contain'
               />
             </div>
           <h1 className='
@@ -59,31 +59,34 @@ const NavBar = () => {
         </div>
       </Link>
 
-      {/* Navigation Buttons */}
+      
       {user && 
         <>
-          <ul className='flex flex-row justify-between gap-2'>
-            <li>
-              <Link href='/recipes'>
-                <Button title='Recipes'/>
-              </Link>
-            </li>
-           
-            <li>
-              <Link href='/addRecipe'>
-                <Button title='Add Recipe'/>
-              </Link>
-            </li>
+          {/* Navigation Buttons */}
+          <section className='flex items-center justify-center'>
+            <ul className='flex flex-row justify-between gap-[3.5px] sm:gap-[15px] md:gap-[25px] lg:gap-[35px] xl:gap-[50px]'>
+              <li>
+                <Link href='/recipes'>
+                  <Button title='Recipes'/>
+                </Link>
+              </li>
+            
+              <li>
+                <Link href='/addRecipe'>
+                  <Button title='Add Recipe'/>
+                </Link>
+              </li>
 
-            <li>
-              <Link href='/aichef'>
-                <Button title='AI Chef'/>
-              </Link>
-            </li>
-          </ul>
+              <li>
+                <Link href='/aichef'>
+                  <Button title='AI Chef'/>
+                </Link>
+              </li>
+            </ul>
+          </section>
         </>
         }
-        <div>
+        <div className='flex items-center justify-center'>
           <Button 
             title={!user ? 'Sign In' : 'Log Out'}
             onClick={!user ? handleSignIn : handleSignOut}>

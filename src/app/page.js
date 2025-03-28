@@ -18,10 +18,10 @@ export default function Home() {
   };
   
   return (
-    <main className='flex flex-col justify-center items-center content-center h-screen'>
-  
+    // If user is logged in, welcome message is rendered with users name and Google profile photo
+    // Else, the Google sign in button is rendered.
+      <main className='flex flex-col justify-center items-center content-center h-screen'>
         <h1 className="text-3xl font-bold mb-8">Welcome to CucinAI! 🚀</h1>
-       
         {user ? 
         <>
           <h1>Signed In</h1>
@@ -32,7 +32,6 @@ export default function Home() {
           
           </section>
         </>
-      
         :
         <>
           <GoogleButton
@@ -41,9 +40,7 @@ export default function Home() {
           />
         </>
         }
-        
- 
-    </main>
+      </main>
   );
 }
 
