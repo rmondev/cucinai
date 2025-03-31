@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import CucinaiLogo from '@/assets/cucinai_logo.png'
-import { motion } from 'motion'
+import { motion } from 'framer-motion'
 
 
 const NavBar = () => {
@@ -59,7 +59,10 @@ const NavBar = () => {
                 lg:w-[70px] lg:h-[80px] 
                 xl:w-[70px] xl:h-[80px]'
                 animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                // whileHover={{scale: 1.1}}
+                whileHover={{scale: 1.2}}
+                
                 >
                 
               <Image

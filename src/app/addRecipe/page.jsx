@@ -165,15 +165,13 @@ const AddRecipe = () => {
 
     return (
         <main>
-            <section className="flex flex-col w-full justify-center items-center text-center">
+            <section className="flex flex-col w-full justify-center items-center text-center h-fit">
                 <header className='flex flex-row justify-start items-start text-start
                 w-11/12
                 sm:w-3/4
                 md:w-5/8
                 lg:w-5/8
                 xl:w-5/8
-                mt-10
-                mb-10
                 '
                 >
                 <h1 className="

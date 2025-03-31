@@ -99,7 +99,7 @@ const Recipes = () => {
   return (
     <>
       {user ?
-        <main className='flex flex-col w-full justify-center items-center text-center '>
+        <main className='flex flex-col w-full justify-center items-center text-center h-screen'>
           <header className='flex flex-row justify-start items-start text-start
             w-11/12
             sm:w-3/4
