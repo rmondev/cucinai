@@ -160,34 +160,9 @@ const AddRecipe = () => {
         }
     };
       
-
-    
-
     return (
         <>
-            {/* <section className="flex flex-col w-full justify-center items-center text-center h-screen">
-                <header className='flex flex-row justify-start items-start text-start
-                w-11/12
-                sm:w-3/4
-                md:w-5/8
-                lg:w-5/8
-                xl:w-5/8
-                '
-                >
-                <h1 className="
-                font-bold
-                text-3xl
-                sm:text-4xl
-                md:text-4xl
-                lg:text-5xl
-                xl:text-6xl
-                "
-                >
-                    My Recipes</h1>
-            </header>
-          </section> */}
             {user ? 
-                
                 <section 
                     className="
                     flex flex-col justify-center items-center w-full mt-10
@@ -197,11 +172,9 @@ const AddRecipe = () => {
                     sm:justify-start sm:flex-col sm:items-center sm:mt-10 sm:w-full
                     "
                     >
-
-                    
                     <div 
                         className='
-                        flex flex-col w-11/12 p-4 border-2 border-black rounded-lg      
+                        flex flex-col w-11/12 p-4 border-2 border-[#7249b8] rounded-lg      
                         xl:flex-col xl:w-1/2 xl:m-4 xl:p-4                            
                         lg:flex-col lg:w-1/2 lg:m-4 lg:p-4                       
                         md:flex-col md:w-11/12 md:m-4 md:p-4                                  
@@ -209,7 +182,7 @@ const AddRecipe = () => {
                         >
                         
                     <h1 className='
-                        text-lg border-b-2 mb-4
+                        text-lg border-b-2 mb-4 border-[#7249b8]
                         sm:text-lg 
                         md:text-xl 
                         lg:text-2xl 
@@ -373,7 +346,6 @@ const AddRecipe = () => {
                                         <button 
                                             className='
                                             cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
-                                            
                                             sm:text-sm 
                                             md:text-lg 
                                             lg:text-xl 
@@ -384,9 +356,7 @@ const AddRecipe = () => {
                                         >
                                             Save Recipe
                                         </button>
-                                  
                                     </div>
-                                
                             </section>
                         }
                     </div>
@@ -394,14 +364,14 @@ const AddRecipe = () => {
                     {/* Ingredient List Section */}
                     { recipe.ingredients.length > 0 &&
                     <section className="
-                        w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
+                        w-11/12 mt-2 h-fit border-2 border-[#7249b8] rounded-lg p-4 mb-4
                         sm:w-11/12 sm:mt-2 sm:h-fit 
                         md:w-11/12 md:m-4 md:h-fit
                         lg:w-1/2 lg:m-4 lg:h-fit
                         xl:w-1/2 xl:m-4 xl:p-4 xl:h-fit"
                         >
                         <section className="">
-                            <h1 className='text-2xl border-b-2 w-fit mb-4'>{recipe.title}</h1>
+                            <h1 className='text-2xl border-b-2 border-[#7249b8] w-fit mb-4'>{recipe.title}</h1>
 
                             {recipe.ingredients.length > 0 ?
                             <div>
@@ -419,9 +389,7 @@ const AddRecipe = () => {
                         </section>
                     </section>
                     }
-                    
                 </section> 
-                
             : 
             <section className="flex flex-col justify-center items-center h-screen">
                 <div className='flex flex-col justify-center items-center gap-2'>
