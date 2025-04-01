@@ -70,7 +70,7 @@ const openai = new OpenAI({
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          Please return me a similar recipe based on the original ingredients and preparation instructions.
+          Please return me a similar recipe based on the original ingredients and preparation instructions. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
       } else {
         const optionsString = options.join(', ');
@@ -82,7 +82,7 @@ const openai = new OpenAI({
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          The enhancement criteria are: ${optionsString}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided.
+          The enhancement criteria are: ${optionsString}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
       }
 
@@ -138,8 +138,18 @@ const openai = new OpenAI({
           return NextResponse.json({ error: 'No structured data returned' }, { status: 500 })
         }
 
-        const parsed = JSON.parse(toolCall.function.arguments)
-        return NextResponse.json(parsed)
+
+      const parsed = JSON.parse(toolCall.function.arguments);
+
+      // 🛠️ Sanitize units so they’re not null
+      parsed.ingredients = parsed.ingredients.map((ingredient) => ({
+        ...ingredient,
+        unit: ingredient.unit ?? '',
+        quantity:ingredient.quantity ?? '',
+        name: ingredient.name ?? ''
+      }));
+
+      return NextResponse.json(parsed);
 
       } catch (error) {
         console.error('Error in OpenAI API route:', error)

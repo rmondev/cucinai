@@ -1,11 +1,13 @@
 'use client'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useSyncExternalStore} from 'react'
 import { listenToRecipes } from '@/lib/db'
 import {UserAuth, googleSignIn} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
 import {getAIrecipe} from '@/lib/ai'
 import ReactMarkdown from 'react-markdown'
 import Recipe from '@/components/Recipe'
+import AILoadingDialog from '@/components/AILoadingDialog'
+import {toast} from 'react-toastify'
 
 const AIChef = () => {
 
@@ -14,6 +16,7 @@ const AIChef = () => {
     const [selectedRecipeId, setSelectedRecipeId] = useState(null)
     const [recipe, setRecipe] = useState(null)
     const [recipeEnhancementOpts, setRecipeEnhancementOpts] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     
     const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
     
@@ -40,36 +43,82 @@ const AIChef = () => {
     };
 
     const handleRecipeSelect = (e) => {
-        console.log(e.target.value)
-        setSelectedRecipeId(e.target.value);
+      const selectedId = e.target.value
+      console.log(selectedId)
+      setSelectedRecipeId(selectedId)
+    
+      // ✅ Clear enhancement options and current AI recipe
+      setRecipeEnhancementOpts([])
+      setRecipe(null)
     };
 
     const fetchSimilarRecipe = async () => {
       
-      if (!selectedRecipe) return;
-  
-    try {
-      const res = await fetch('/api/openai', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          recipe: selectedRecipe,
-          hasOptions: false
-        })
-      });
-  
-      const data = await res.json();
+    if (!selectedRecipe) return;
+    setIsLoading(true)
+    
+      try {
+        const res = await fetch('/api/openai', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            recipe: selectedRecipe,
+            hasOptions: false
+          })
+        });
+    
+        const data = await res.json();
 
-      console.log(data)
-      setRecipe(data);
+        console.log(data)
+        setRecipe(data);
 
+        
+      } catch (err) {
+        console.error('Error fetching AI recipe:', err);
+        toast.error("There was an Error Generating AI Recipe. Please try again.");
+      } finally {
+        setIsLoading(false)
+        toast.success("Success! AI Recipe Generated. Scroll Down to View!");
+      }
+    }
+
+    const fetchEnhancedRecipe = async () => {
+      if (!selectedRecipe || recipeEnhancementOpts.length === 0) return;
+      setIsLoading(true)
+  
+    
+    
+      try {
+        const res = await fetch('/api/openai', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            recipe: selectedRecipe,
+            hasOptions: true,
+            options: recipeEnhancementOpts
+          })
+        });
+    
+        const data = await res.json();
+  
+        console.log(data)
+        setRecipe(data);
+  
+  
+      } catch (err) {
+        console.error('Error fetching AI recipe:', err);
+        toast.error("There was an Error Generating AI Recipe. Please try again.");
+      } finally {
+        setIsLoading(false)
+        toast.success("Success! AI Recipe Generated. Scroll Down to View!");
+      }
+  
       
-    } catch (err) {
-      console.error('Error fetching AI recipe:', err);
-    }
-    }
+    };
 
     const recipeSelection = () => (
         <form className='
@@ -128,36 +177,7 @@ const AIChef = () => {
     })
   }
 
-  const fetchEnhancedRecipe = async () => {
-    if (!selectedRecipe || recipeEnhancementOpts.length === 0) return;
-
-  
-  
-    try {
-      const res = await fetch('/api/openai', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          recipe: selectedRecipe,
-          hasOptions: true,
-          options: recipeEnhancementOpts
-        })
-      });
-  
-      const data = await res.json();
-
-      console.log(data)
-      setRecipe(data);
-
-
-    } catch (err) {
-      console.error('Error fetching AI recipe:', err);
-    }
-
-    
-  };
+ 
 
   const enhancementArr = ['Healthier', 
                           'High Protein', 
@@ -167,13 +187,13 @@ const AIChef = () => {
                           'Dessert-Like', 
                           'Dairy-Free', 
                           'Nut-Free', 
-                          'Give it an Italian Twist', 
-                          'Make it Asian-Inspired', 
-                          'Add a Mexican Flair', 
-                          'Simplify the Recipe', 
-                          'Make it Faster to Prepare', 
-                          'Make it Kid-Friendly', 
-                          'Make it Fancy/Gourmet' 
+                          'Italian Twist', 
+                          'Asian-Inspired', 
+                          'Mexican Flair', 
+                          'Simplify', 
+                          'Faster to Prepare', 
+                          'Kid-Friendly', 
+                          'Fancy/Gourmet' 
                         ]
 
 
@@ -193,6 +213,7 @@ const AIChef = () => {
                  type="checkbox" 
                  name='enhancements' 
                  value={criteria}
+                 checked={recipeEnhancementOpts.includes(criteria)}
             />
           <label>{criteria}</label>
         </div>
@@ -301,7 +322,16 @@ const AIChef = () => {
               lg:flex-row lg:w-full
               xl:flex-row xl:w-full
               '>
-                { recipe != null ? <Recipe recipe={recipe} isAi /> : <h1>No Recipe</h1>}
+                {isLoading ? (
+                  <AILoadingDialog/>
+                  ) : recipe ? (
+                  <Recipe recipe={recipe} recipeSetter={()=> setRecipe()} isAi />
+                  ): (<h1>No Recipe</h1>)
+                  
+                  }
+
+
+                {/* { recipe != null ? <Recipe recipe={recipe} recipeSetter={()=> setRecipe()} isAi /> : <h1>No Recipe</h1>} */}
               </div>
               
             

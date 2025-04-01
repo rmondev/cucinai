@@ -22,9 +22,9 @@ const Recipe = (props) => {
                             <th className="w-40"></th>
                         </tr>
                         <tr>
-                            <td className='text-start'>{ingredient.quantity ? ingredient.quantity : ''}</td>
-                            <td className='text-start'>{ingredient.unit ? ingredient.unit : ''}</td>
-                            <td className='text-start'>{ingredient.name ? ingredient.name : ''}</td>
+                            <td className='text-start'>{ingredient.quantity ?? ''}</td>
+                            <td className='text-start'>{ingredient.unit ?? ''}</td>
+                            <td className='text-start'>{ingredient.name ?? ''}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -56,6 +56,7 @@ const Recipe = (props) => {
               );
               console.log('Recipe Added!');
               toast.success("Recipe added to your collection!");
+              props.recipeSetter(null)
             } catch (error) {
               console.log(error);
               toast.error("Error saving recipe");

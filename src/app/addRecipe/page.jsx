@@ -4,7 +4,7 @@ import { UserAuth } from '@/context/AuthContext'
 import Button from '@/components/Button'
 import GoogleButton from 'react-google-button'
 import { persistRecipe } from '@/lib/db'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const AddRecipe = () => {
     // State ==========================================
