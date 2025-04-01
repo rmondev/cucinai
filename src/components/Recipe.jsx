@@ -85,10 +85,6 @@ const Recipe = (props) => {
                         md:w-5/8 md:h-fit
                         lg:w-5/8 lg:m-4 lg:h-fit
                         xl:w-5/8 xl:m-4 xl:p-4 xl:h-fit"
-
-
-
-
                         >
                         <section className="">
                             <div className='flex flex-row justify-between text-start'>
@@ -101,10 +97,6 @@ const Recipe = (props) => {
                                     md:mb-6
                                     sm:mb-6
                                     mb-4
-
-
-                                    
-                                   
                                     '
                                 >
                                     {props.recipe.title}
