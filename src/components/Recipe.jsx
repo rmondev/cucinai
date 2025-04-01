@@ -54,32 +54,18 @@ const Recipe = (props) => {
                 },
                 user.uid
               );
-          
               console.log('Recipe Added!');
               toast.success("Recipe added to your collection!");
-          
-            //   setRecipe({
-            //     title: '',
-            //     ingredients: [],
-            //     instructions: []
-            //   });
-          
-            //   setShowForm(false);
             } catch (error) {
               console.log(error);
               toast.error("Error saving recipe");
             }
         };
     
-
-
   return (
     <>
          { props.recipe.ingredients.length > 0 &&
                     <section className="
-                       
-                    
-                    
                         w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
                         sm:w-3/4 sm:mt-2 sm:h-fit 
                         md:w-5/8 md:h-fit
@@ -142,29 +128,23 @@ const Recipe = (props) => {
                                     Save
                                 </button>
                                 }
-                                
-                                
                             </div>
 
                             {props.recipe.ingredients.length > 0 ?
                             <div className='flex flex-col items-start'>
                                 <h2 className='text-xl border-b-2 w-fit mb-4'>Ingredients</h2>
-                                
-
-
                                 {ingredientsList()}
-                                
-
-
                             </div>
+                            : null
+                            }
                             
-                            : null}
                             {props.recipe.instructions.length > 0 ?
                                 <div className='mt-4 flex flex-col justify-start items-start'>
                                     <h2 className='text-xl border-b-2 w-fit mb-4'>Instructions</h2>
                                     {instructionsList()}
                                 </div>
-                            : null}
+                            : null
+                            }
                         </section>
 
                         <dialog
