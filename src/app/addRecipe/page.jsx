@@ -193,7 +193,7 @@ const AddRecipe = () => {
                     flex flex-col justify-center items-center w-full mt-10
                     xl:justify-evenly xl:flex-row xl:items-start xl:mt-20              
                     lg:justify-evenly lg:flex-row lg:items-start lg:mt-20        
-                    md:justify-center md:flex-row md:items-center md:mt-20 md:w-full        
+                    md:justify-evenly md:flex-row md:items-start md:mt-20 md:w-full        
                     sm:justify-start sm:flex-col sm:items-center sm:mt-10 sm:w-full
                     "
                     >
@@ -396,7 +396,7 @@ const AddRecipe = () => {
                     <section className="
                         w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
                         sm:w-11/12 sm:mt-2 sm:h-fit 
-                        md:w-11/12 md:h-fit
+                        md:w-11/12 md:m-4 md:h-fit
                         lg:w-1/2 lg:m-4 lg:h-fit
                         xl:w-1/2 xl:m-4 xl:p-4 xl:h-fit"
                         >

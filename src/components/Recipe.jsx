@@ -91,23 +91,48 @@ const Recipe = (props) => {
 
                         >
                         <section className="">
-                            <div className='flex flex-row justify-between'>
-                                <h1 className='text-2xl border-b-2 w-fit mb-4'>{props.recipe.title}</h1>
+                            <div className='flex flex-row justify-between text-start'>
+                                <h1 className='
+                                    text-start
+                                    text-xl 
+                                    border-b-2
+                                    xl:mb-8
+                                    lg:mb-8
+                                    md:mb-6
+                                    sm:mb-6
+                                    mb-4
+
+
+                                    
+                                   
+                                    '
+                                >
+                                    {props.recipe.title}
+                                </h1>
 
                                 {props.handleDelete &&
-                                <button className='
-                                cursor-pointer
-                                transition-colors duration-400
-                                 hover:bg-red-600 hover:text-white
-                                text-red-600
-                                p-2 border-2 rounded-2xl
-                                xl:text-xl
-
-                                '
-                                onClick={()=>setIsModalShown(true)}
-                                >
-                                    Delete
-                                </button>
+                                    <button className='
+                                        cursor-pointer
+                                        transition-colors duration-400
+                                        hover:bg-red-600 hover:text-white
+                                        text-red-600
+                                        border-2 rounded-2xl
+                                        xl:text-xl
+                                        lg:text-xl
+                                        md:text-lg
+                                        sm:text-lg
+                                        text-xs
+                                        
+                                        xl:h-20 xl:p-4
+                                        lg:h-20 lg:p-4
+                                        md:h-15 md:p-4
+                                        sm:h-15 sm:p-4
+                                        h-15 p-4
+                                        '
+                                    onClick={()=>setIsModalShown(true)}
+                                    >
+                                        Delete
+                                    </button>
                                 }
 
                                 {props.isAi && 
