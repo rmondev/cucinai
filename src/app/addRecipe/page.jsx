@@ -190,11 +190,11 @@ const AddRecipe = () => {
                 
                 <section 
                     className="
-                    flex flex-col justify-center items-center w-full
-                    xl:justify-evenly xl:flex-row xl:items-start xl:h-screen                
-                    lg:justify-evenly lg:flex-row lg:items-start         
-                    md:justify-center md:flex-row md:items-center md:w-full        
-                    sm:justify-start sm:flex-col sm:items-center sm:w-full
+                    flex flex-col justify-center items-center w-full mt-10
+                    xl:justify-evenly xl:flex-row xl:items-start xl:mt-20              
+                    lg:justify-evenly lg:flex-row lg:items-start lg:mt-20        
+                    md:justify-center md:flex-row md:items-center md:mt-20 md:w-full        
+                    sm:justify-start sm:flex-col sm:items-center sm:mt-10 sm:w-full
                     "
                     >
 
