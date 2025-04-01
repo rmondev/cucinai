@@ -15,9 +15,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AuthContextProvider>
         
-          <body className="bg-background text-foreground dark:bg-darkBackground dark:text-darkForeground transition-colors duration-300">
+      <body className="min-h-screen flex flex-col bg-background text-foreground dark:bg-darkBackground dark:text-darkForeground transition-colors duration-300">
           <NavBar/>
+          <main className="flex-grow">
             {children}
+          </main>
             <ToastContainer 
               position="bottom-center"
               autoClose={3000}

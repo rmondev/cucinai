@@ -164,8 +164,8 @@ const AddRecipe = () => {
     
 
     return (
-        <main>
-            <section className="flex flex-col w-full justify-center items-center text-center h-fit">
+        <>
+            {/* <section className="flex flex-col w-full justify-center items-center text-center h-screen">
                 <header className='flex flex-row justify-start items-start text-start
                 w-11/12
                 sm:w-3/4
@@ -185,16 +185,17 @@ const AddRecipe = () => {
                 >
                     My Recipes</h1>
             </header>
-          </section>
+          </section> */}
             {user ? 
-                <>
+                
                 <section 
                     className="
-                    flex justify-center items-center flex-col w-full 
-                    xl:justify-evenly xl:flex-row xl:items-start                  
-                    lg:justify-evenly lg:flex-row lg:items-start             
-                    md:justify-center md:flex-col md:items-center md:w-full             
-                    sm:justify-center sm:flex-col sm:items-center sm:w-full"
+                    flex flex-col justify-center items-center w-full
+                    xl:justify-evenly xl:flex-row xl:items-start xl:h-screen                
+                    lg:justify-evenly lg:flex-row lg:items-start         
+                    md:justify-center md:flex-row md:items-center md:w-full        
+                    sm:justify-start sm:flex-col sm:items-center sm:w-full
+                    "
                     >
 
                     
@@ -419,22 +420,8 @@ const AddRecipe = () => {
                     </section>
                     }
                     
-                </section>  
-                <div className='m-12'>
-                {/* <ToastContainer 
-                    position="bottom-center"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    // theme="light"
-                /> */}
-                </div>
-
-                </>
+                </section> 
+                
             : 
             <section className="flex flex-col justify-center items-center h-screen">
                 <div className='flex flex-col justify-center items-center gap-2'>
@@ -446,7 +433,7 @@ const AddRecipe = () => {
                 </div>
             </section>
             }
-        </main>
+        </>
     );
 };
 
