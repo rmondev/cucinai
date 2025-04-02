@@ -137,11 +137,13 @@ const AIChef = () => {
             md:text-lg
             lg:text-xl
             xl:text-xl
-            w-full
+
+            w-11/12
             sm:w-3/4
-            md:w-5/8
-            lg:w-5/8
-            xl:w-5/8
+            md:w-3/4
+            lg:w-3/4
+            xl:w-3/4
+
             "
             name="recipeSelection" 
             defaultValue={''}
@@ -198,27 +200,44 @@ const AIChef = () => {
 
 
   const enhancementSelectionForm = () => (
-    <form className='grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-[1px] w-full p-4'>
-      {enhancementArr.map((criteria, index)=>
-        <div key={index} 
-              className='flex items-start text-start
-                w-11/12
-                sm:w-3/4
-                md:w-5/8
-                lg:w-5/8
-                xl:w-5/8
-            '>
-          <input className='m-[0.6rem]'
-                 onChange={handleCheckboxChange}
-                 type="checkbox" 
-                 name='enhancements' 
-                 value={criteria}
-                 checked={recipeEnhancementOpts.includes(criteria)}
-            />
-          <label>{criteria}</label>
-        </div>
-      )}
-    </form>
+ 
+      <form className='
+      grid grid-cols-3 
+      sm:grid-cols-3
+      md:grid-cols-4
+      lg:grid-cols-5
+      xl:grid-cold-5
+      gap-x-2
+      gap-y-[1px] 
+      w-full 
+      p-4 
+      text-start'>
+        {enhancementArr.map((criteria, index)=>
+          <div key={index} 
+                className='
+                  w-full
+                  text-sm
+                  sm:text-sm
+                  md:text-sm
+                  lg:text-lg
+                  xl:text-xl
+                  text-nowrap
+              '>
+            <input className='
+              m-[0.6rem]
+              
+              '
+                  onChange={handleCheckboxChange}
+                  type="checkbox" 
+                  name='enhancements' 
+                  value={criteria}
+                  checked={recipeEnhancementOpts.includes(criteria)}
+              />
+            <label>{criteria}</label>
+          </div>
+        )}
+      </form>
+
   )
   return (
     <>
@@ -228,9 +247,9 @@ const AIChef = () => {
           <header className='flex flex-row justify-start items-start text-start
             w-11/12
             sm:w-3/4
-            md:w-5/8
-            lg:w-5/8
-            xl:w-5/8
+            md:w-3/4
+            lg:w-3/4
+            xl:w-3/4
             mt-10
             mb-10
             '
@@ -244,7 +263,7 @@ const AIChef = () => {
               xl:text-6xl
               "
               >
-                CucinAI Recipes</h1>
+                Generate AI Recipe</h1>
           </header>
 
             <section className="mt-10 mb-4">
@@ -257,13 +276,27 @@ const AIChef = () => {
                 xl:text-2xl
                 "
                 >
-                  Choose a Recipe from Your Recipe Collection Below
+                 1. Choose a Recipe from Your Recipe Collection Below
                 </p>
             </section>  
             
             {recipeSelection()}
 
-
+            <section className="mt-10 mb-4">
+              <p className="
+                font-bold
+                text-lg
+                sm:text-xl
+                md:text-xl
+                lg:text-2xl
+                xl:text-2xl
+                "
+                >
+                 2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe<br />
+                    OR <br />
+                    Choose criteria below to have CucinAI 'Generate an Enhanced Recipe' based on your criteria.
+                </p>
+            </section>  
 
             <section className='
               flex flex-col justify-center items-center
@@ -272,15 +305,28 @@ const AIChef = () => {
               md:text-lg
               lg:text-xl
               xl:text-xl
+
+              w-11/12
               sm:w-3/4
-              md:w-5/8
-              lg:w-5/8
-              xl:w-5/8
+              md:w-3/4
+              lg:w-3/4
+              xl:w-3/4
+
               m-4
               '
               >
               <section className='flex flex-col border-2 border-black p-4 gap-2 w-full'>
 
+                
+
+
+
+                <section className='flex flex-col'>
+                  <label>For Generating an Enhanced recipe, select the options below: </label>
+                  {enhancementSelectionForm()}
+                </section>
+
+                {/* Button Container */}
                 <div className='flex flex-row justify-between items-center gap-10'>
                   <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
                     text-sm 
@@ -310,8 +356,7 @@ const AIChef = () => {
                           Generate an Enhanced Recipe
                   </button>
                 </div>
-                <label>For Generating an Enhanced recipe, select the options below: </label>
-                {enhancementSelectionForm()}
+
               </section>
             </section>
 
