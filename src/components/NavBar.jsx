@@ -53,7 +53,7 @@ const NavBar = () => {
           justify-between 
           w-full 
           bg-[#d5c4f1]
-          dark:bg-[#2f2648]
+          dark:bg-midnightPlum
           h-15
           sm:h-15
           md:h-25
