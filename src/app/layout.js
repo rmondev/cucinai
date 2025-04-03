@@ -2,7 +2,6 @@
 import "@/styles/globals.css";
 import { AuthContextProvider } from '@/context/AuthContext'
 import NavBar from '@/components/NavBar'
-import BSNavBar from "@/components/BSNavBar";
 import { ToastContainer, toast } from 'react-toastify';
 import Footer from "@/components/Footer";
 
@@ -18,10 +17,6 @@ export default function RootLayout({ children }) {
         
       <body className="min-h-screen flex flex-col bg-background text-foreground dark:bg-darkBackground dark:text-darkForeground transition-colors duration-300">
           <NavBar/>
-          
-          
-            {/* <BSNavBar/> */}
-        
           <main className="flex-grow">
             {children}
           </main>

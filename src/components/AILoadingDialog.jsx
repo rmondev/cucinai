@@ -2,7 +2,8 @@ import React from 'react'
 import BeatLoader from "react-spinners/BeatLoader";
 import {motion} from 'framer-motion'
 import Image from 'next/image'
-import CucinaiLogo from '@/assets/cucinai_logo.png'
+import CucinaiLogoLight from '@/assets/cucinai_logo_light.png'
+import CucinaiLogoDark from '@/assets/cucinai_logo_dark.png'
 
 const AILoadingDialog = () => {
   return (
@@ -22,7 +23,7 @@ const AILoadingDialog = () => {
          whileHover={{scale: 1.2}}
         >
             <Image
-                src={CucinaiLogo}
+                src={CucinaiLogoDark}
                 width={40}
                 height={40}
                 alt={'Cucinai Logo'}

@@ -1,10 +1,11 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { UserAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 import NavButton from '@/components/NavButton'
 import Image from 'next/image'
-import CucinaiLogo from '@/assets/cucinai_logo.png'
+import CucinaiLogoLight from '@/assets/cucinai_logo_light.png'
+import CucinaiLogoDark from '@/assets/cucinai_logo_dark.png'
 import { motion } from 'framer-motion'
 
 
@@ -13,6 +14,18 @@ const NavBar = () => {
 
   const {user, googleSignIn, logOut} = UserAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setIsDarkMode(mediaQuery.matches)
+
+    const handler = (e) => setIsDarkMode(e.matches)
+    mediaQuery.addEventListener('change', handler)
+
+    return () => mediaQuery.removeEventListener('change', handler)
+  }, [])
+
 
 
   const handleSignIn = async () => {
@@ -39,19 +52,26 @@ const NavBar = () => {
           flex 
           justify-between 
           w-full 
-          bg-[#9965f4]
-          dark:bg-[#7b64bc]
-          h-10
+          bg-[#d5c4f1]
+          dark:bg-[#2f2648]
+          h-15
           sm:h-15
-          md:h-20
-          lg:h-20
-          xl:h-20
+          md:h-25
+          lg:h-25
+          xl:h-25
           
           '>
       
       <section className='flex flex-row justify-between w-full items-center'>
         {/* App Logo/Brand */}
-        <div className="flex items-center">
+        <div className="
+          flex items-center border-2 border-[#2f2648] dark:border-[#d5c4f1] rounded-xl
+          ml-[8px]
+          xl:ml-[16px]
+          lg:ml-[16px]
+          md:ml-[16px]
+          sm:ml-[16px]
+        ">
           <Link className='cursor-pointer' href='/'>
             <div className='
               flex 
@@ -72,6 +92,8 @@ const NavBar = () => {
             <h1 className='
                   font-semibold
                   text-xl
+                  text-[#2f2648]
+                  dark:text-[#d5c4f1]
                   sm:text-2xl
                   md:text-3xl
                   lg:text-3xl
@@ -88,12 +110,12 @@ const NavBar = () => {
                     lg:w-[60px] lg:h-[70px] 
                     xl:w-[70px] xl:h-[80px]'
                     animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                     // whileHover={{scale: 1.1}}
-                    whileHover={{scale: 1.2}}
+                    // whileHover={{scale: 1.2}}
                     >
                   <Image
-                    src={CucinaiLogo}
+                    src={isDarkMode ? CucinaiLogoDark : CucinaiLogoLight}
                     fill
                     sizes="(max-width: 640px) 30px,
                           (max-width: 768px) 40px,
