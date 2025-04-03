@@ -11,11 +11,6 @@ module.exports = {
         // or create a custom name like:
         body: ['Inter', 'sans-serif'],
       },
-      colors: {
-        midnightPlum: '#2f2648',
-        lilacMist: '#d5c4f1',
-
-      }
     },
   },
   plugins: [],

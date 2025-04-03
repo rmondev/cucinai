@@ -53,9 +53,9 @@ const NavBar = () => {
           justify-between 
           w-full 
           bg-[#d5c4f1]
-          dark:bg-midnightPlum
-          h-15
-          sm:h-15
+          dark:bg-[#2f2648]
+          h-20
+          sm:h-20
           md:h-25
           lg:h-25
           xl:h-25
@@ -71,6 +71,13 @@ const NavBar = () => {
           lg:ml-[16px]
           md:ml-[16px]
           sm:ml-[16px]
+
+          
+          mt-[-2px]
+          xl:mt-[-2px]
+          lg:mt-[2px]
+          md:mt-[0px]
+          sm:mt-[-2px]
         ">
           <Link className='cursor-pointer' href='/'>
             <div className='
