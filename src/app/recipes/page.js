@@ -99,7 +99,7 @@ const Recipes = () => {
   return (
     <>
       {user ?
-        <main className='flex flex-col w-full justify-center items-center text-center h-fit'>
+        <section className='flex flex-col w-full justify-center items-center text-center h-fit bg-[#b49ff3] dark:bg-[#d5c4f1]'>
           <header className='flex flex-row justify-start items-start text-start
             w-11/12
             sm:w-3/4
@@ -160,7 +160,7 @@ const Recipes = () => {
                     </label>
                 )}
             </section>
-        </main>
+        </section>
       : 
       // No User, render Google login button
       <section className="flex flex-col justify-center items-center h-screen">
