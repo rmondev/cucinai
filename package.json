@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0",
-    "@huggingface/inference": "^3.6.1",
     "firebase": "^11.4.0",
     "framer-motion": "^12.6.2",
     "next": "15.2.2",
