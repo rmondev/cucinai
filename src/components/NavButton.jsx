@@ -17,7 +17,9 @@ const NavButton = (props) => {
     text-[#2f2648]
     font-sans
     font-semibold
-    text-sm 
+    text-sm
+    pt-1
+    sm:pt-1
     sm:text-sm 
     md:text-lg 
     lg:text-xl 

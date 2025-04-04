@@ -7,6 +7,7 @@ import Image from 'next/image'
 import CucinaiLogoLight from '@/assets/cucinai_logo_light.png'
 import CucinaiLogoDark from '@/assets/cucinai_logo_dark.png'
 import { motion } from 'framer-motion'
+import { LiaHamburgerSolid } from "react-icons/lia";
 
 
 
@@ -121,25 +122,19 @@ const NavBar = () => {
         </div>
 
         {/* Mobile Menu Toggle (only on small screens) */}
-        <div className="sm:hidden flex items-center mr-4">
+        <div className="sm:hidden flex items-center mr-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-black focus:outline-none"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+             <a
+              >
+           
+           
+              <LiaHamburgerSolid className="w-12 h-12 text-[#2f2648] dark:text-[#b49ff3]"/>
+            
+              
+              </a>
           </button>
         </div>
 
@@ -181,24 +176,53 @@ const NavBar = () => {
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-20 left-0 w-full bg-white shadow-md sm:hidden z-50">
-          <ul className="flex flex-col items-start p-4 gap-2">
-            <li>
+        <div className="absolute top-20 w-1/2 right-0 shadow-md sm:hidden z-50 
+          bg-[#d5c4f1]
+          dark:bg-[#2f2648]
+          border-l-2
+          border-b-2
+          dark:border-l-[#d5c4f1]
+          border-l-[#2f2648]
+          dark:border-b-[#d5c4f1]
+          border-b-[#2f2648]
+          rounded-lb-xl
+          rounded-bl-xl
+          ">
+          <ul className="flex flex-col items-end text-[#2f2648] dark:text-[#b49ff3]">
+
+            <li className='p-4 w-full text-left border-b-2'>
+              <span className='flex flex-row justify-between items-center gap-x-2'>
+             
+                <span className='font-semibold'>Welcome, {user.displayName.split(' ')[0]}</span>
+                <Image
+                  src={user.photoURL}
+                  alt='user-image'
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                
+              </span>
+            </li>
+
+            
+
+            <li className='p-4 w-full text-right'>
               <Link href="/recipes" onClick={() => setMobileMenuOpen(false)}>
-                <NavButton title="Recipes" />
+                <button className='cursor-pointer font-semibold'>Recipes</button>
               </Link>
             </li>
-            <li>
+            <li className='p-4 w-full text-right'>
               <Link href="/addRecipe" onClick={() => setMobileMenuOpen(false)}>
-                <NavButton title="Add Recipe" />
+              <button className='cursor-pointer font-semibold'>Add Recipe</button>
               </Link>
             </li>
-            <li>
+            <li className='p-4 w-full text-right'>
               <Link href="/aichef" onClick={() => setMobileMenuOpen(false)}>
-                <NavButton title="AI Chef" />
+                <button className='cursor-pointer font-semibold'>AI Chef</button>
               </Link>
             </li>
-            <li>
+            <li className='p-4 w-full text-right border-t-2 dark:border-t-[#d5c4f1] border-t-[#2f2648]'>
               <NavButton
                 title={!user ? 'Sign In' : 'Log Out'}
                 onClick={() => {

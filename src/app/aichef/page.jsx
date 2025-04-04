@@ -205,10 +205,15 @@ const AIChef = () => {
       md:grid-cols-4
       lg:grid-cols-5
       xl:grid-cold-5
-      gap-x-2
+      gap-x-4
       gap-y-[1px] 
       w-full 
-      p-4 
+      p-2
+      ml-[-10px] 
+      sm:p-2
+      md:p-4
+      lg:p-4
+      xl:p-4
       text-start'>
         {enhancementArr.map((criteria, index)=>
           <div key={index} 
@@ -279,7 +284,7 @@ const AIChef = () => {
             
             {recipeSelection()}
 
-            <section className="mt-10 mb-4">
+            <section className="mt-6 mb-2">
               <p className="
                 font-bold
                 text-lg
@@ -336,7 +341,12 @@ const AIChef = () => {
               >
 
               {/* Enhancement Selection Section */}
-              <section className='flex flex-col  p-4 gap-2 w-full'>
+              <section className='
+                flex 
+                flex-col 
+                gap-2
+                
+                w-full'>
 
                 
 
