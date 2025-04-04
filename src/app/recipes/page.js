@@ -99,8 +99,8 @@ const Recipes = () => {
   return (
     <>
       {user ?
-        <section className='flex flex-col w-full justify-center items-center text-center h-fit bg-[#b49ff3] dark:bg-[#d5c4f1]'>
-          <header className='flex flex-row justify-start items-start text-start
+        <section className='flex flex-col w-full justify-center items-center text-center bg-[#b49ff3] dark:bg-[#d5c4f1]'>
+          <header className='flex flex-row justify-start text-start
             w-11/12
             sm:w-3/4
             md:w-5/8
@@ -128,7 +128,7 @@ const Recipes = () => {
           
 
             <section className='
-              flex flex-row justify-center items-center w-full
+              flex flex-row justify-center w-full
               sm:flex-row sm:w-full
               md:flex-row md:w-full
               lg:flex-row lg:w-full

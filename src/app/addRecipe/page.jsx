@@ -163,233 +163,236 @@ const AddRecipe = () => {
     return (
         <>
             {user ? 
-                <section 
-                    className="
-                    flex flex-col justify-center items-center w-full mt-10
-                    xl:justify-evenly xl:flex-row xl:items-start xl:mt-20              
-                    lg:justify-evenly lg:flex-row lg:items-start lg:mt-20        
-                    md:justify-evenly md:flex-row md:items-start md:mt-20 md:w-full        
-                    sm:justify-start sm:flex-col sm:items-center sm:mt-10 sm:w-full
-                    "
-                    >
-                    <div 
-                        className='
-                        flex flex-col w-11/12 p-4 border-2 border-[#7249b8] rounded-lg      
-                        xl:flex-col xl:w-1/2 xl:m-4 xl:p-4                            
-                        lg:flex-col lg:w-1/2 lg:m-4 lg:p-4                       
-                        md:flex-col md:w-11/12 md:m-4 md:p-4                                  
-                        sm:flex-col sm:w-11/12 sm:m-4 sm:p-4'
+
+              
+                    <section 
+                        className="
+                        flex flex-col justify-center items-center w-full mt-10
+                        xl:justify-evenly xl:flex-row xl:items-start xl:mt-20              
+                        lg:justify-evenly lg:flex-row lg:items-start lg:mt-20        
+                        md:justify-evenly md:flex-row md:items-start md:mt-20 md:w-full        
+                        sm:justify-start sm:flex-col sm:items-center sm:mt-10 sm:w-full
+                        "
                         >
+                        <div 
+                            className='
+                            flex flex-col w-11/12 p-4 border-2 border-[#7249b8] rounded-lg      
+                            xl:flex-col xl:w-1/2 xl:m-4 xl:p-4                            
+                            lg:flex-col lg:w-1/2 lg:m-4 lg:p-4                       
+                            md:flex-col md:w-11/12 md:m-4 md:p-4                                  
+                            sm:flex-col sm:w-11/12 sm:m-4 sm:p-4'
+                            >
+                            
+                        <h1 className='
+                            text-lg border-b-2 mb-4 border-[#7249b8]
+                            sm:text-lg 
+                            md:text-xl 
+                            lg:text-2xl 
+                            xl:text-2xl'
+                            >
+                                Add a Recipe
+                                </h1>
                         
-                    <h1 className='
-                        text-lg border-b-2 mb-4 border-[#7249b8]
-                        sm:text-lg 
-                        md:text-xl 
-                        lg:text-2xl 
-                        xl:text-2xl'
-                        >
-                            Add a Recipe
-                            </h1>
-                    
-                        { !showForm ?
-                            <Button title='New Recipe' onClick={handleClickNewRecipe}/>
-                            :
-                            <section className='pb-4'>
-                                <form className='flex flex-col ' action={addIngredient}>
-                                    
-                                    {/* Recipe Title Section */}
-                                    <section className="border-2 border-black rounded-lg p-2">
-
-                                        <label className='
-                                            text-lg w-fit 
-                                            sm:text-lg 
-                                            md:text-xl 
-                                            lg:text-2xl 
-                                            xl:text-2xl'
-                                            >
-                                                Recipe Title
-                                            </label>
-
-                                        <input className='border border-black p-1 rounded w-full mb-2'
-                                            placeholder='Title'
-                                            type='text'
-                                            name='title'
-                                            value={recipe.title}
-                                            onChange={handleRecipeTitleChange}/>
-                                    </section>
-
-                                    {/* Add Ingredient Section */}
-                                    <section className='border-2 border-black rounded-lg p-2 mt-2'>
-
-                                        <label className='
-                                            text-lg w-fit
-                                            sm:text-lg 
-                                            md:text-xl 
-                                            lg:text-2xl 
-                                            xl:text-2xl'
-                                            >
-                                                Add Ingredient
-                                            </label>
+                            { !showForm ?
+                                <Button title='New Recipe' onClick={handleClickNewRecipe}/>
+                                :
+                                <section className='pb-4'>
+                                    <form className='flex flex-col ' action={addIngredient}>
                                         
-                                        <div className='flex flex-row gap-2 pb-4 mt-2'>
+                                        {/* Recipe Title Section */}
+                                        <section className="border-2 border-black rounded-lg p-2">
+
+                                            <label className='
+                                                text-lg w-fit 
+                                                sm:text-lg 
+                                                md:text-xl 
+                                                lg:text-2xl 
+                                                xl:text-2xl'
+                                                >
+                                                    Recipe Title
+                                                </label>
+
+                                            <input className='border border-black p-1 rounded w-full mb-2'
+                                                placeholder='Title'
+                                                type='text'
+                                                name='title'
+                                                value={recipe.title}
+                                                onChange={handleRecipeTitleChange}/>
+                                        </section>
+
+                                        {/* Add Ingredient Section */}
+                                        <section className='border-2 border-black rounded-lg p-2 mt-2'>
+
+                                            <label className='
+                                                text-lg w-fit
+                                                sm:text-lg 
+                                                md:text-xl 
+                                                lg:text-2xl 
+                                                xl:text-2xl'
+                                                >
+                                                    Add Ingredient
+                                                </label>
                                             
-                                            <input 
-                                            className='
-                                            border border-black p-1 rounded w-full
-                                            text-xs
-                                            sm:text-md
-                                            md:text-lg
-                                            lg:text-xl
-                                            xl:text-xl
-                                            '
-                                            placeholder='Ingredient'
-                                            type='text'
-                                            name='name'/>
-
-                                            <input 
-                                            className='
-                                            border border-black p-1 rounded w-full
-                                            text-xs
-                                            sm:text-md
-                                            md:text-lg
-                                            lg:text-xl
-                                            xl:text-xl
-                                            '
-                                            placeholder='Quantity'
-                                            type='number'
-                                            name='quantity'
-                                            min='0'
-                                            step='any'
-                                            />
-
-                                            <select 
-                                                className="
+                                            <div className='flex flex-row gap-2 pb-4 mt-2'>
+                                                
+                                                <input 
+                                                className='
                                                 border border-black p-1 rounded w-full
                                                 text-xs
                                                 sm:text-md
                                                 md:text-lg
                                                 lg:text-xl
                                                 xl:text-xl
-                                                "
-                                                name="unit" 
-                                                defaultValue={''}
-                                                >
-                                            <option value="" disabled placeholder='Unit'>
-                                                Unit
-                                            </option>
-                                            <optgroup label="Metric - Volume">
-                                                <option value="ml">Milliliter (ml)</option>
-                                                <option value="l">Liter (l)</option>
-                                            </optgroup>
-                                            <optgroup label="Metric - Weight">
-                                                <option value="g">Gram (g)</option>
-                                                <option value="kg">Kilogram (kg)</option>
-                                            </optgroup>
-                                            <optgroup label="Imperial - Volume">
-                                                <option value="tsp">Teaspoon (tsp)</option>
-                                                <option value="tbsp">Tablespoon (tbsp)</option>
-                                                <option value="fl oz">Fluid Ounce (fl oz)</option>
-                                                <option value="cup">Cup</option>
-                                                <option value="pt">Pint (pt)</option>
-                                                <option value="qt">Quart (qt)</option>
-                                                <option value="gal">Gallon (gal)</option>
-                                            </optgroup>
-                                            <optgroup label="Imperial - Weight">
-                                                <option value="oz">Ounce (oz)</option>
-                                                <option value="lb">Pound (lb)</option>
-                                            </optgroup>
-                                            </select>
-                                                                                        
-                                        </div>
-                                    
-                                        <div className="flex flex-row gap-2">
-                                            <Button title={'Add Ingredient'}/>
-                                            <Button title={'Remove Last Ingredient'} onClick={removeLastIngredient}/>
-                                        </div>
-                                    </section>
-                                </form>
+                                                '
+                                                placeholder='Ingredient'
+                                                type='text'
+                                                name='name'/>
 
-                                {/* Add Steps Section */}
-                                <form className='border-2 border-black rounded-lg p-2 mt-2'action={addStepToInstructions}>
-                                <label className='
-                                    text-lg w-fit
-                                    sm:text-lg 
-                                    md:text-xl 
-                                    lg:text-2xl 
-                                    xl:text-2xl'
-                                    >
-                                        Add Step
-                                    </label>
-                                    <div className='flex flex-row'>
-                                        <textarea className='border border-black p-1 w-full rounded'
-                                        placeholder="Add a Step Here..."
-                                        type='text'
-                                        name='step'/>
-                                    </div>
+                                                <input 
+                                                className='
+                                                border border-black p-1 rounded w-full
+                                                text-xs
+                                                sm:text-md
+                                                md:text-lg
+                                                lg:text-xl
+                                                xl:text-xl
+                                                '
+                                                placeholder='Quantity'
+                                                type='number'
+                                                name='quantity'
+                                                min='0'
+                                                step='any'
+                                                />
 
-                                    {/* Form-Instructions Button Container */}
-                                    <div className='flex flex-row gap-2 pt-4'>
-                                        <Button title='Add Step'/>
-                                        <Button title='Remove Last Step'onClick={removeLastStep}/>
-                                    </div>
-                                </form>
-                                
-                                    <div className='
-                                        flex justify-end w-full mt-4
-                                        sm:justify-end sm:w-full sm:mt-4
-                                        md:justify-end md:w-full md:mt-4
-                                        lg:justify-end lg:w-full lg:mt-4
-                                        xl:justify-end xl:w-full xl:mt-4'
+                                                <select 
+                                                    className="
+                                                    border border-black p-1 rounded w-full
+                                                    text-xs
+                                                    sm:text-md
+                                                    md:text-lg
+                                                    lg:text-xl
+                                                    xl:text-xl
+                                                    "
+                                                    name="unit" 
+                                                    defaultValue={''}
+                                                    >
+                                                <option value="" disabled placeholder='Unit'>
+                                                    Unit
+                                                </option>
+                                                <optgroup label="Metric - Volume">
+                                                    <option value="ml">Milliliter (ml)</option>
+                                                    <option value="l">Liter (l)</option>
+                                                </optgroup>
+                                                <optgroup label="Metric - Weight">
+                                                    <option value="g">Gram (g)</option>
+                                                    <option value="kg">Kilogram (kg)</option>
+                                                </optgroup>
+                                                <optgroup label="Imperial - Volume">
+                                                    <option value="tsp">Teaspoon (tsp)</option>
+                                                    <option value="tbsp">Tablespoon (tbsp)</option>
+                                                    <option value="fl oz">Fluid Ounce (fl oz)</option>
+                                                    <option value="cup">Cup</option>
+                                                    <option value="pt">Pint (pt)</option>
+                                                    <option value="qt">Quart (qt)</option>
+                                                    <option value="gal">Gallon (gal)</option>
+                                                </optgroup>
+                                                <optgroup label="Imperial - Weight">
+                                                    <option value="oz">Ounce (oz)</option>
+                                                    <option value="lb">Pound (lb)</option>
+                                                </optgroup>
+                                                </select>
+                                                                                            
+                                            </div>
+                                        
+                                            <div className="flex flex-row gap-2">
+                                                <Button title={'Add Ingredient'}/>
+                                                <Button title={'Remove Last Ingredient'} onClick={removeLastIngredient}/>
+                                            </div>
+                                        </section>
+                                    </form>
+
+                                    {/* Add Steps Section */}
+                                    <form className='border-2 border-black rounded-lg p-2 mt-2'action={addStepToInstructions}>
+                                    <label className='
+                                        text-lg w-fit
+                                        sm:text-lg 
+                                        md:text-xl 
+                                        lg:text-2xl 
+                                        xl:text-2xl'
                                         >
+                                            Add Step
+                                        </label>
+                                        <div className='flex flex-row'>
+                                            <textarea className='border border-black p-1 w-full rounded'
+                                            placeholder="Add a Step Here..."
+                                            type='text'
+                                            name='step'/>
+                                        </div>
+
+                                        {/* Form-Instructions Button Container */}
+                                        <div className='flex flex-row gap-2 pt-4'>
+                                            <Button title='Add Step'/>
+                                            <Button title='Remove Last Step'onClick={removeLastStep}/>
+                                        </div>
+                                    </form>
                                     
-                                        {/* Custom Button for Save To Firestore */}
-                                        <button 
-                                            className='
-                                            cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
-                                            sm:text-sm 
-                                            md:text-lg 
-                                            lg:text-xl 
-                                            xl:text-2xl
-                                            disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300'
-                                            disabled={recipe.ingredients.length === 0 || recipe.instructions.length === 0}
-                                            onClick={saveToFirestore}
-                                        >
-                                            Save Recipe
-                                        </button>
-                                    </div>
-                            </section>
-                        }
-                    </div>
+                                        <div className='
+                                            flex justify-end w-full mt-4
+                                            sm:justify-end sm:w-full sm:mt-4
+                                            md:justify-end md:w-full md:mt-4
+                                            lg:justify-end lg:w-full lg:mt-4
+                                            xl:justify-end xl:w-full xl:mt-4'
+                                            >
+                                        
+                                            {/* Custom Button for Save To Firestore */}
+                                            <button 
+                                                className='
+                                                cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
+                                                sm:text-sm 
+                                                md:text-lg 
+                                                lg:text-xl 
+                                                xl:text-2xl
+                                                disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300'
+                                                disabled={recipe.ingredients.length === 0 || recipe.instructions.length === 0}
+                                                onClick={saveToFirestore}
+                                            >
+                                                Save Recipe
+                                            </button>
+                                        </div>
+                                </section>
+                            }
+                        </div>
 
-                    {/* Ingredient List Section */}
-                    { recipe.ingredients.length > 0 &&
-                    <section className="
-                        w-11/12 mt-2 h-fit border-2 border-[#7249b8] rounded-lg p-4 mb-4
-                        sm:w-11/12 sm:mt-2 sm:h-fit 
-                        md:w-11/12 md:m-4 md:h-fit
-                        lg:w-1/2 lg:m-4 lg:h-fit
-                        xl:w-1/2 xl:m-4 xl:p-4 xl:h-fit"
-                        >
-                        <section className="">
-                            <h1 className='text-2xl border-b-2 border-[#7249b8] w-fit mb-4'>{recipe.title}</h1>
+                        {/* Ingredient List Section */}
+                        { recipe.ingredients.length > 0 &&
+                        <section className="
+                            w-11/12 mt-2 h-fit border-2 border-[#7249b8] rounded-lg p-4 mb-4
+                            sm:w-11/12 sm:mt-2 sm:h-fit 
+                            md:w-11/12 md:m-4 md:h-fit
+                            lg:w-1/2 lg:m-4 lg:h-fit
+                            xl:w-1/2 xl:m-4 xl:p-4 xl:h-fit"
+                            >
+                            <section className="">
+                                <h1 className='text-2xl border-b-2 border-[#7249b8] w-fit mb-4'>{recipe.title}</h1>
 
-                            {recipe.ingredients.length > 0 ?
-                            <div>
-                                <h2 className='text-xl border-b-2 w-fit mb-4'>Ingredients</h2>
-                                {ingredientsList()}
-                            </div>
-                            
-                            : null}
-                            {recipe.instructions.length > 0 ?
-                                <div className='mt-4'>
-                                <h2 className='text-xl border-b-2 w-fit mb-4'>Instructions</h2>
-                                {instructionsList()}
+                                {recipe.ingredients.length > 0 ?
+                                <div>
+                                    <h2 className='text-xl border-b-2 w-fit mb-4'>Ingredients</h2>
+                                    {ingredientsList()}
                                 </div>
-                            : null}
+                                
+                                : null}
+                                {recipe.instructions.length > 0 ?
+                                    <div className='mt-4'>
+                                    <h2 className='text-xl border-b-2 w-fit mb-4'>Instructions</h2>
+                                    {instructionsList()}
+                                    </div>
+                                : null}
+                            </section>
                         </section>
-                    </section>
-                    }
-                </section> 
+                        }
+                    </section> 
+            
             : 
             <section className="flex flex-col justify-center items-center h-screen">
                 <div className='flex flex-col justify-center items-center gap-2'>

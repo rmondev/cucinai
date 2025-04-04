@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         
       <body className="min-h-screen flex flex-col bg-background text-foreground dark:bg-darkBackground dark:text-darkForeground transition-colors duration-300">
           <NavBar/>
-          <main className="flex-grow">
+          <main className="flex-grow bg-[#b49ff3] dark:bg-[#d5c4f1]">
             {children}
           </main>
             <ToastContainer 

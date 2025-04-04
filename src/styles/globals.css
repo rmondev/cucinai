@@ -5,10 +5,11 @@
 
 
 
-body {
+html, body {
   background: #ffffff;
   color: #171717;
   margin: 0;
+  height: 100%;
 }
 
 /* main {

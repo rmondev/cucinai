@@ -59,6 +59,7 @@ const NavBar = () => {
           md:h-25
           lg:h-25
           xl:h-25
+          border-b-4 border-b-[#2f2648] dark:border-b-[#b49ff3]
           
           '>
       
@@ -66,57 +67,43 @@ const NavBar = () => {
         {/* App Logo/Brand */}
         <div className="
           flex items-center border-2 border-[#2f2648] dark:border-[#d5c4f1] rounded-xl
-          ml-[8px]
+          p-2
+          
+          ml-[16px]
           xl:ml-[16px]
           lg:ml-[16px]
           md:ml-[16px]
           sm:ml-[16px]
-
-          
-          mt-[-2px]
-          xl:mt-[-2px]
-          lg:mt-[2px]
-          md:mt-[0px]
-          sm:mt-[-2px]
         ">
           <Link className='cursor-pointer' href='/'>
             <div className='
               flex 
               items-center 
               justify-center
-              ml-[8px]
-              xl:ml-[16px]
-              lg:ml-[16px]
-              md:ml-[16px]
-              sm:ml-[16px]
-
-              mt-[-2px]
-              xl:mt-[-2px]
-              lg:mt-[2px]
-              md:mt-[0px]
-              sm:mt-[-2px]
               '>  
             <h1 className='
                   font-semibold
                   text-xl
+                  pl-2
                   text-[#2f2648]
                   dark:text-[#d5c4f1]
                   sm:text-2xl
                   md:text-3xl
                   lg:text-3xl
-                  xl:text-4xl
+                  xl:text-3xl
                   '
                   >
                     CucinAI
               </h1>
               <motion.div className='
-                    xl:mt-2
                     relative 
-                    w-[30px] h-[60px] 
-                    sm:w-[40px] sm:h-[60px] 
-                    md:w-[60px] md:h-[70px] 
-                    lg:w-[60px] lg:h-[70px] 
-                    xl:w-[70px] xl:h-[80px]'
+                    w-[40px] h-[30px] 
+                    sm:w-[40px] sm:h-[30px] 
+                    md:w-[60px] md:h-[50px] 
+                    lg:w-[60px] lg:h-[50px] 
+                    xl:w-[60px] xl:h-[50px]
+                    justify-center
+                    items-center'
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                     // whileHover={{scale: 1.1}}
@@ -125,12 +112,6 @@ const NavBar = () => {
                   <Image
                     src={isDarkMode ? CucinaiLogoDark : CucinaiLogoLight}
                     fill
-                    sizes="(max-width: 640px) 30px,
-                          (max-width: 768px) 40px,
-                          (max-width: 1024px) 50px,
-                          (max-width: 1280px) 60px,
-                          (max-width: 1536px) 70px,
-                          60px"
                     alt={'Cucinai Logo'}
                     className='object-contain'
                   />
