@@ -191,7 +191,7 @@ const AIChef = () => {
                           'Asian-Inspired', 
                           'Mexican Flair', 
                           'Simplify', 
-                          'Faster to Prepare', 
+                          'Prepare Faster', 
                           'Kid-Friendly', 
                           'Fancy/Gourmet' 
                         ]
@@ -248,8 +248,7 @@ const AIChef = () => {
             md:w-3/4
             lg:w-3/4
             xl:w-3/4
-            mt-10
-            mb-10
+            mt-4
             '
             >
             <h1 className="
@@ -288,11 +287,33 @@ const AIChef = () => {
                 md:text-xl
                 lg:text-2xl
                 xl:text-2xl
+                m-4
                 "
                 >
-                 2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe<br />
-                    OR <br />
-                    Choose criteria below to have CucinAI 'Generate an Enhanced Recipe' based on your criteria.
+                 2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe
+                    <br />
+                    <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
+                    text-sm 
+                    transition-colors duration-400
+                    hover:bg-blue-700 hover:text-white
+                    sm:text-sm 
+                    md:text-lg 
+                    lg:text-xl 
+                    xl:text-2xl
+                    m-4
+                    ' 
+                    onClick={fetchSimilarRecipe}
+                      >
+                        Generate Similar Recipe
+                    </button>
+                    
+                    <br />
+                    OR 
+                    <br />
+                    (More Fun!)
+                    <br />
+                    <br />
+                    Choose criteria below to have CucinAI 'Generate an Enhanced Recipe' based on your criteria:
                 </p>
             </section>  
 
@@ -313,7 +334,9 @@ const AIChef = () => {
               m-4
               '
               >
-              <section className='flex flex-col border-2 border-black p-4 gap-2 w-full'>
+
+              {/* Enhancement Selection Section */}
+              <section className='flex flex-col  p-4 gap-2 w-full'>
 
                 
 
@@ -325,20 +348,8 @@ const AIChef = () => {
                 </section>
 
                 {/* Button Container */}
-                <div className='flex flex-row justify-between items-center gap-10'>
-                  <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
-                    text-sm 
-                    transition-colors duration-400
-                    hover:bg-blue-700 hover:text-white
-                    sm:text-sm 
-                    md:text-lg 
-                    lg:text-xl 
-                    xl:text-2xl
-                    ' 
-                    onClick={fetchSimilarRecipe}
-                      >
-                        Generate Similar Recipe
-                  </button>
+                <div className='flex flex-row justify-center items-center gap-10'>
+                  
 
                   <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
                       text-sm 
@@ -369,7 +380,7 @@ const AIChef = () => {
                   <AILoadingDialog/>
                   ) : recipe ? (
                   <Recipe recipe={recipe} recipeSetter={()=> setRecipe()} isAi />
-                  ): (<h1>No Recipe</h1>)
+                  ): (<h1>No Recipe Generated</h1>)
                   
                   }
 

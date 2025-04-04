@@ -69,11 +69,11 @@ const NavBar = () => {
           flex items-center border-2 border-[#2f2648] dark:border-[#d5c4f1] rounded-xl
           p-2
           
-          ml-[16px]
-          xl:ml-[16px]
-          lg:ml-[16px]
-          md:ml-[16px]
-          sm:ml-[16px]
+          m-[16px]
+          xl:m-[16px]
+          lg:m-[16px]
+          md:m-[16px]
+          sm:m-[16px]
         ">
           <Link className='cursor-pointer' href='/'>
             <div className='
