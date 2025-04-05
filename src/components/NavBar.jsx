@@ -6,15 +6,16 @@ import NavButton from '@/components/NavButton'
 import Image from 'next/image'
 import CucinaiLogoLight from '@/assets/cucinai_logo_light.png'
 import CucinaiLogoDark from '@/assets/cucinai_logo_dark.png'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { LiaHamburgerSolid } from "react-icons/lia";
+
 
 
 
 const NavBar = () => {
 
   const {user, googleSignIn, logOut} = UserAuth()
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
@@ -28,6 +29,24 @@ const NavBar = () => {
   }, [])
 
 
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeIn',
+      }
+    },
+    visible: {
+      opacity: 1,
+      height: 'auto',
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      }
+    }
+  }
 
   const handleSignIn = async () => {
     try {
@@ -175,8 +194,21 @@ const NavBar = () => {
       </section>
 
       {/* Mobile Dropdown Menu */}
+      <AnimatePresence>
       {mobileMenuOpen && (
-        <div className="absolute top-20 w-1/2 right-0 shadow-md sm:hidden z-50 
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={dropdownVariants}
+          className="
+          absolute 
+          top-20 
+          w-1/2 
+          right-0 
+          shadow-md 
+          sm:hidden 
+          z-50 
           bg-[#d5c4f1]
           dark:bg-[#2f2648]
           border-l-2
@@ -232,9 +264,10 @@ const NavBar = () => {
               />
             </li>
           </ul>
-        </div>
+        </motion.div>
+        
       )}
-
+    </AnimatePresence>
     </nav>
   )
 }
