@@ -5,12 +5,13 @@ import Button from '@/components/Button'
 import GoogleButton from 'react-google-button'
 import { persistRecipe } from '@/lib/db'
 import { toast } from 'react-toastify';
+import PageLoadAnimation from '@/components/PageLoadAnimation'
 
 const AddRecipe = () => {
     // State ==========================================
 
-    const [isloading, setIsloading] = useState(false)
-    const {user, googleSignIn} = UserAuth();
+    
+    const {user, googleSignIn, loading} = UserAuth();
     const [showForm, setShowForm] = useState(false)
     const [recipe, setRecipe] = useState({
         title: '',
@@ -162,16 +163,43 @@ const AddRecipe = () => {
       
     return (
         <>
-            {user ? 
+            {!loading ? (
+                user ? (
+                <>  
+                    <section className='flex flex-col justify-center items-center'>
+                        <div className='flex flex-row justify-center items-center
+                            xl:m-10
+                            lg:m-10
+                            md:m-10
+                            sm:m-5
+                            m-5
 
-              
+                            xl:w-1/2                       
+                            lg:w-1/2                   
+                            md:w-11/12                              
+                            sm:w-11/12
+                            '
+                            >
+                                <h1 className="
+                                    font-bold
+                                    text-3xl
+                                    sm:text-4xl
+                                    md:text-4xl
+                                    lg:text-5xl
+                                    xl:text-6xl
+                                    text-[#2f2648]
+                                    "
+                                    >
+                                        Add Recipe
+                                </h1>
+                        </div>
                     <section 
                         className="
-                        flex flex-col justify-center items-center w-full mt-10
-                        xl:justify-evenly xl:flex-row xl:items-start xl:mt-20              
-                        lg:justify-evenly lg:flex-row lg:items-start lg:mt-20        
-                        md:justify-evenly md:flex-row md:items-start md:mt-20 md:w-full        
-                        sm:justify-start sm:flex-col sm:items-center sm:mt-10 sm:w-full
+                        flex flex-col justify-center items-center w-full 
+                        xl:justify-evenly xl:flex-row xl:items-start           
+                        lg:justify-evenly lg:flex-row lg:items-start       
+                        md:justify-evenly md:flex-row md:items-start md:w-full        
+                        sm:justify-start sm:flex-col sm:items-center sm:w-full
                         "
                         >
                         <div 
@@ -182,16 +210,6 @@ const AddRecipe = () => {
                             md:flex-col md:w-11/12 md:m-4 md:p-4                                  
                             sm:flex-col sm:w-11/12 sm:m-4 sm:p-4'
                             >
-                            
-                        <h1 className='
-                            text-lg border-b-2 mb-4 border-[#7249b8]
-                            sm:text-lg 
-                            md:text-xl 
-                            lg:text-2xl 
-                            xl:text-2xl'
-                            >
-                                Add a Recipe
-                                </h1>
                         
                             { !showForm ?
                                 <Button title='New Recipe' onClick={handleClickNewRecipe}/>
@@ -347,12 +365,25 @@ const AddRecipe = () => {
                                             {/* Custom Button for Save To Firestore */}
                                             <button 
                                                 className='
-                                                cursor-pointer w-fit border-2 border-black p-1 rounded-lg text-sm 
+                                                cursor-pointer w-fit border-2 p-2 rounded-lg text-sm 
+                                                border-[#2f2648]
+                                                
+                                                dark:text-[#2f2648]
+
+                                                dark:hover:bg-[#2f2648]
+                                                dark:hover:text-[#d5c4f1]
+
+                                                transition-colors duration-400
+                                                hover:bg-[#d5c4f1]
+                                                hover:text-[#2f2648]
+                                                text-[#2f2648]
+
+                                                font-bold
                                                 sm:text-sm 
                                                 md:text-lg 
                                                 lg:text-xl 
                                                 xl:text-2xl
-                                                disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300'
+                                                disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500 disabled:font-semibold'
                                                 disabled={recipe.ingredients.length === 0 || recipe.instructions.length === 0}
                                                 onClick={saveToFirestore}
                                             >
@@ -392,18 +423,24 @@ const AddRecipe = () => {
                         </section>
                         }
                     </section> 
-            
-            : 
-            <section className="flex flex-col justify-center items-center h-screen">
-                <div className='flex flex-col justify-center items-center gap-2'>
-                    <p className="text-xl">Please Sign In</p>
-                    <GoogleButton
-                        label={user? 'Log Out' : 'Sign in with Google'}
-                        onClick={handleSignIn}
-                    />
-                </div>
-            </section>
-            }
+                    </section>
+                </>
+                ) : ( 
+                <section className="flex flex-col justify-center items-center h-screen">
+                    <div className='flex flex-col justify-center items-center gap-2'>
+                        <p className="text-xl">Please Sign In</p>
+                        <GoogleButton
+                            label={user? 'Log Out' : 'Sign in with Google'}
+                            onClick={handleSignIn}
+                        />
+                    </div>
+                </section>
+                )
+            ) : (
+                <main className='flex justify-center items-center h-screen bg-[#b49ff3] dark:bg-[#d5c4f1]'>
+                    <PageLoadAnimation/>
+                </main>
+            )}
         </>
     );
 };

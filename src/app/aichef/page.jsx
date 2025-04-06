@@ -1,15 +1,16 @@
 'use client'
 import React, {useState, useEffect, useSyncExternalStore} from 'react'
 import { listenToRecipes } from '@/lib/db'
-import {UserAuth, googleSignIn} from '@/context/AuthContext'
+import {UserAuth} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
 import Recipe from '@/components/Recipe'
 import AILoadingDialog from '@/components/AILoadingDialog'
 import {toast} from 'react-toastify'
+import PageLoadAnimation from '@/components/PageLoadAnimation'
 
 const AIChef = () => {
 
-    const { user, googleSignIn } = UserAuth()
+    const { user, googleSignIn, loading } = UserAuth()
     const [recipes, setRecipes] = useState([])
     const [selectedRecipeId, setSelectedRecipeId] = useState(null)
     const [recipe, setRecipe] = useState(null)
@@ -244,180 +245,165 @@ const AIChef = () => {
   )
   return (
     <>
-    {user ?
-        <main className='flex flex-col w-full justify-center items-center text-center'>
-
-          <header className='flex flex-row justify-start items-start text-start
-            w-11/12
-            sm:w-3/4
-            md:w-3/4
-            lg:w-3/4
-            xl:w-3/4
-            mt-4
-            '
-            >
-            <h1 className="
-              font-bold
-              text-3xl
-              sm:text-4xl
-              md:text-4xl
-              lg:text-5xl
-              xl:text-6xl
-              "
-              >
-                Generate AI Recipe</h1>
-          </header>
-
-            <section className="mt-10 mb-4">
-              <p className="
-                font-bold
-                text-lg
-                sm:text-xl
-                md:text-xl
-                lg:text-2xl
-                xl:text-2xl
-                "
+     {!loading ? (
+        user ? (
+            <main className='flex flex-col w-full justify-center items-center text-center'>
+              <header className='flex flex-row justify-start items-start text-start
+                w-11/12
+                sm:w-3/4
+                md:w-3/4
+                lg:w-3/4
+                xl:w-3/4
+                mt-4
+                '
                 >
-                 1. Choose a Recipe from Your Recipe Collection Below
-                </p>
-            </section>  
-            
-            {recipeSelection()}
+                <h1 className="
+                  font-bold
+                  text-3xl
+                  sm:text-4xl
+                  md:text-4xl
+                  lg:text-5xl
+                  xl:text-6xl
+                  "
+                  >
+                    Generate AI Recipe</h1>
+              </header>
+                <section className="mt-10 mb-4">
+                  <p className="
+                    font-bold
+                    text-lg
+                    sm:text-xl
+                    md:text-xl
+                    lg:text-2xl
+                    xl:text-2xl
+                    "
+                    >
+                    1. Choose a Recipe from Your Recipe Collection Below
+                    </p>
+                </section>  
+                
+                  {recipeSelection()}
 
-            <section className="mt-6 mb-2">
-              <p className="
-                font-bold
-                text-lg
-                sm:text-xl
-                md:text-xl
-                lg:text-2xl
-                xl:text-2xl
-                m-4
-                "
-                >
-                 2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe
-                    <br />
-                    <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
-                    text-sm 
-                    transition-colors duration-400
-                    hover:bg-blue-700 hover:text-white
-                    sm:text-sm 
-                    md:text-lg 
-                    lg:text-xl 
+                <section className="mt-6 mb-2">
+                  <p className="
+                    font-bold
+                    text-lg
+                    sm:text-xl
+                    md:text-xl
+                    lg:text-2xl
                     xl:text-2xl
                     m-4
-                    ' 
-                    onClick={fetchSimilarRecipe}
-                      >
-                        Generate Similar Recipe
-                    </button>
-                    
-                    <br />
-                    OR 
-                    <br />
-                    (More Fun!)
-                    <br />
-                    <br />
-                    Choose criteria below to have CucinAI 'Generate an Enhanced Recipe' based on your criteria:
-                </p>
-            </section>  
+                    "
+                    >
+                    2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe
+                        <br />
+                        <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
+                        text-sm 
+                        transition-colors duration-400
+                        hover:bg-blue-700 hover:text-white
+                        sm:text-sm 
+                        md:text-lg 
+                        lg:text-xl 
+                        xl:text-2xl
+                        m-4
+                        ' 
+                        onClick={fetchSimilarRecipe}
+                          >
+                            Generate Similar Recipe
+                        </button>
+                        
+                        <br />
+                        OR 
+                        <br />
+                        (More Fun!)
+                        <br />
+                        <br />
+                        Choose criteria below to have CucinAI 'Generate an Enhanced Recipe' based on your criteria:
+                    </p>
+                </section>  
 
-            <section className='
-              flex flex-col justify-center items-center
-              text-xs
-              sm:text-md
-              md:text-lg
-              lg:text-xl
-              xl:text-xl
+                <section className='
+                  flex flex-col justify-center items-center
+                  text-xs
+                  sm:text-md
+                  md:text-lg
+                  lg:text-xl
+                  xl:text-xl
+                  w-11/12
+                  sm:w-3/4
+                  md:w-3/4
+                  lg:w-3/4
+                  xl:w-3/4
+                  m-4
+                  '
+                  >
 
-              w-11/12
-              sm:w-3/4
-              md:w-3/4
-              lg:w-3/4
-              xl:w-3/4
+                  {/* Enhancement Selection Section */}
+                  <section className='
+                    flex 
+                    flex-col 
+                    gap-2
+                    w-full'>
+                    <section className='flex flex-col'>
+                      <label>For Generating an Enhanced recipe, select the options below: </label>
+                      {enhancementSelectionForm()}
+                    </section>
 
-              m-4
-              '
-              >
+                    {/* Button Container */}
+                    <div className='flex flex-row justify-center items-center gap-10'>
+                      
 
-              {/* Enhancement Selection Section */}
-              <section className='
-                flex 
-                flex-col 
-                gap-2
-                
-                w-full'>
-
-                
-
-
-
-                <section className='flex flex-col'>
-                  <label>For Generating an Enhanced recipe, select the options below: </label>
-                  {enhancementSelectionForm()}
+                      <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
+                          text-sm 
+                          transition-colors duration-400
+                          hover:bg-green-700 hover:text-white
+                          sm:text-sm 
+                          md:text-lg 
+                          lg:text-xl 
+                          xl:text-2xl
+                          ' 
+                          onClick={fetchEnhancedRecipe}
+                            >
+                              Generate an Enhanced Recipe
+                      </button>
+                    </div>
+                  </section>
                 </section>
 
-                {/* Button Container */}
-                <div className='flex flex-row justify-center items-center gap-10'>
-                  
 
-                  <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
-                      text-sm 
-                      transition-colors duration-400
-                      hover:bg-green-700 hover:text-white
-                      sm:text-sm 
-                      md:text-lg 
-                      lg:text-xl 
-                      xl:text-2xl
-                      ' 
-                      onClick={fetchEnhancedRecipe}
-                        >
-                          Generate an Enhanced Recipe
-                  </button>
-                </div>
+                  <div className='flex flex-row justify-center items-center w-full
+                  sm:flex-row sm:w-full
+                  md:flex-row md:w-full
+                  lg:flex-row lg:w-full
+                  xl:flex-row xl:w-full
+                  '>
+                    {isLoading ? (
+                      <AILoadingDialog/>
+                      ) : recipe ? (
+                      <Recipe recipe={recipe} recipeSetter={()=> setRecipe()} isAi />
+                      ) : (
+                        <h1>No Recipe Generated</h1>
+                      )
+                      }
+                  </div>
 
-              </section>
-            </section>
-
-
-              <div className='flex flex-row justify-center items-center w-full
-              sm:flex-row sm:w-full
-              md:flex-row md:w-full
-              lg:flex-row lg:w-full
-              xl:flex-row xl:w-full
-              '>
-                {isLoading ? (
-                  <AILoadingDialog/>
-                  ) : recipe ? (
-                  <Recipe recipe={recipe} recipeSetter={()=> setRecipe()} isAi />
-                  ): (<h1>No Recipe Generated</h1>)
-                  
-                  }
-
-
-                {/* { recipe != null ? <Recipe recipe={recipe} recipeSetter={()=> setRecipe()} isAi /> : <h1>No Recipe</h1>} */}
+            </main>
+        ):(
+            <section className="flex flex-col justify-center items-center h-screen">
+              <div className='flex flex-col justify-center items-center gap-2'>
+                  <p className="text-xl">Please Sign In</p>
+                  <GoogleButton
+                      label={user? 'Log Out' : 'Sign in with Google'}
+                      onClick={handleSignIn}
+                  />
               </div>
-              
-            
-
-
-
-        </main>
-
-        :
-
-        
-
-        <section className="flex flex-col justify-center items-center h-screen">
-          <div className='flex flex-col justify-center items-center gap-2'>
-              <p className="text-xl">Please Sign In</p>
-              <GoogleButton
-                  label={user? 'Log Out' : 'Sign in with Google'}
-                  onClick={handleSignIn}
-              />
-          </div>
-      </section>
-    }
+          </section>
+        )
+          ) : ( 
+          <main className='flex justify-center items-center h-screen bg-[#b49ff3] dark:bg-[#d5c4f1]'>
+            <PageLoadAnimation/>
+          </main>
+      )}
     </>
   )
 }
