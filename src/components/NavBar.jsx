@@ -115,7 +115,7 @@ const NavBar = () => {
                   >
                     CucinAI
               </h1>
-              <motion.div className='
+                <motion.div className='
                     relative 
                     w-[40px] h-[30px] 
                     sm:w-[40px] sm:h-[30px] 

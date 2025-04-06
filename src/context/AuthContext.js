@@ -8,7 +8,10 @@ const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
 
+    // User State
     const [user, setUser] = useState(null)
+    // Loading State
+    const [loading, setLoading] = useState(true); 
 
     const googleSignIn =  async () =>{
         const provider = new GoogleAuthProvider()
@@ -32,13 +35,14 @@ export const AuthContextProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             // currentUser ? console.log(currentUser) : console.log('No User Logged In!')
             setUser(currentUser)
+            setLoading(false)
         })
 
         return () => unsubscribe()
     }, [])
 
     return (
-        <AuthContext.Provider value={{user, googleSignIn, logOut}}>
+        <AuthContext.Provider value={{user, googleSignIn, logOut, loading}}>
             {children}
          </AuthContext.Provider>
     )
