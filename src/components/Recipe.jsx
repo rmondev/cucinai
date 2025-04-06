@@ -65,138 +65,139 @@ const Recipe = (props) => {
     
   return (
     <>
-         { props.recipe.ingredients.length > 0 &&
-                    <section className="
-                        w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
-                        sm:w-3/4 sm:mt-2 sm:h-fit 
-                        md:w-5/8 md:h-fit
-                        lg:w-5/8 lg:m-4 lg:h-fit
-                        xl:w-5/8 xl:m-4 xl:p-4 xl:h-fit"
-                        >
-                        <section className="">
-                            <div className='flex flex-row justify-between text-start'>
-                                <h1 className='
-                                    text-start
-                                    text-xl 
-                                    border-b-2
-                                    xl:mb-8
-                                    lg:mb-8
-                                    md:mb-6
-                                    sm:mb-6
-                                    mb-4
-                                    '
-                                >
-                                    {props.recipe.title}
-                                </h1>
+        { props.recipe.ingredients.length > 0 &&
+        <section className="
+            w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
+            sm:w-3/4 sm:mt-2 sm:h-fit 
+            md:w-5/8 md:h-fit
+            lg:w-5/8 lg:m-4 lg:h-fit
+            xl:w-5/8 xl:m-4 xl:p-4 xl:h-fit"
+            >
+            <section className="">
+                <div className='flex flex-row justify-between text-start'>
+                    <h1 className='
+                        text-start
+                        text-xl 
+                        border-b-2
+                        xl:mb-8
+                        lg:mb-8
+                        md:mb-6
+                        sm:mb-6
+                        mb-4
+                        '
+                    >
+                        {props.recipe.title}
+                    </h1>
 
-                                {props.handleDelete &&
-                                    <button className='
-                                        cursor-pointer
-                                        transition-colors duration-400
-                                        hover:bg-red-600 hover:text-white
-                                        text-red-600
-                                        border-2 rounded-2xl
-                                        xl:text-xl
-                                        lg:text-xl
-                                        md:text-lg
-                                        sm:text-lg
-                                        text-xs
-                                        
-                                        xl:h-20 xl:p-4
-                                        lg:h-20 lg:p-4
-                                        md:h-15 md:p-4
-                                        sm:h-15 sm:p-4
-                                        h-15 p-4
-                                        '
-                                    onClick={()=>setIsModalShown(true)}
-                                    >
-                                        Delete
-                                    </button>
-                                }
-
-                                {props.isAi && 
-                                <button className='
-                                cursor-pointer
-                                transition-colors duration-400
-                                 hover:bg-red-600 hover:text-white
-                                text-red-600
-                                p-2 border-2 rounded-2xl
-                                xl:text-xl
-
-                                '
-                                onClick={saveToFirestore}
-                                >
-                                    Save
-                                </button>
-                                }
-                            </div>
-
-                            {props.recipe.ingredients.length > 0 ?
-                            <div className='flex flex-col items-start'>
-                                <h2 className='text-xl border-b-2 w-fit mb-4'>Ingredients</h2>
-                                {ingredientsList()}
-                            </div>
-                            : null
-                            }
+                    {props.handleDelete &&
+                        <button className='
+                            cursor-pointer
+                            transition-colors duration-400
+                            hover:bg-red-600 hover:text-white
+                            text-red-600
+                            border-2 rounded-2xl
+                            xl:text-xl
+                            lg:text-xl
+                            md:text-lg
+                            sm:text-lg
+                            text-xs
                             
-                            {props.recipe.instructions.length > 0 ?
-                                <div className='mt-4 flex flex-col justify-start items-start'>
-                                    <h2 className='text-xl border-b-2 w-fit mb-4'>Instructions</h2>
-                                    {instructionsList()}
-                                </div>
-                            : null
-                            }
-                        </section>
+                            xl:h-20 xl:p-4
+                            lg:h-20 lg:p-4
+                            md:h-15 md:p-4
+                            sm:h-15 sm:p-4
+                            h-15 p-4
+                            '
+                        onClick={()=>setIsModalShown(true)}
+                        >
+                            Delete
+                        </button>
+                    }
 
-                        <dialog
-                            open={isModalShown}
-                            className="
-                            fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                            z-50 border border-stone-700 bg-white rounded
-                            "
-                        > 
-                            <div className='text-start pl-[8px] pt-[4px] h-[30px] bg-gradient-to-b from-red-500 to-white'>
-                            <h1 className='text-sm text-stone-700'>Delete Recipe</h1>
-                            </div>
+                    {props.isAi && 
+                    <button className='
+                    cursor-pointer
+                    transition-colors duration-400
+                        hover:bg-red-600 hover:text-white
+                    text-red-600
+                    p-2 border-2 rounded-2xl
+                    xl:text-xl
 
-                            <div className='p-4'>
-                            <p className='text-xs text-stone-700'>Are you sure you want to Delete this Recipe?</p>
-                            <form method="dialog">
-                                
-                            </form>
-                            </div>
+                    '
+                    onClick={saveToFirestore}
+                    >
+                        Save
+                    </button>
+                    }
+                </div>
 
-                            <div className='flex flex-row justify-center h-[30px] p-[2px] gap-4 '>
-                            <button className='
-                                cursor-pointer
-                                border border-stone-700 
-                                rounded ml-4 w-full text-xs 
-                                transition-colors duration-200
-                                hover:bg-gradient-to-t hover:from-white hover:to-red-500
-                                text-stone-700 bg-gradient-to-t from-red-500 to-white'
-                                onClick={() => setIsModalShown(false)}
-                                >
-                                    Cancel
-                                </button>
+                {props.recipe.ingredients.length > 0 ?
+                <div className='flex flex-col items-start'>
+                    <h2 className='text-xl border-b-2 w-fit mb-4'>Ingredients</h2>
+                    {ingredientsList()}
+                </div>
+                : null
+                }
+                
+                {props.recipe.instructions.length > 0 ?
+                    <div className='mt-4 flex flex-col justify-start items-start'>
+                        <h2 className='text-xl border-b-2 w-fit mb-4'>Instructions</h2>
+                        {instructionsList()}
+                    </div>
+                : null
+                }
+            </section>
+
+            <dialog
+
+            // Lilac [#d5c4f1]
+            // Purple [#2f2648]
+                open={isModalShown}
+                className="
+                fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                z-50 border border-stone-700 bg-white rounded pb-[4px]
+                "
+            > 
+                <div className='text-start pl-[8px] pt-[4px] h-[30px] bg-gradient-to-b from-[#2f2648] to-[#d5c4f1]'>
+                    <h1 className='text-sm text-white'>Delete Recipe</h1>
+                </div>
+
+                <div className='p-4'>
+                    <p className='text-xs text-stone-700'>Are you sure you want to Delete this Recipe?</p>
+                
+                </div>
+
+                <div className='flex flex-row justify-center h-[30px] p-[2px] gap-4 '>
+                <button className='
+                    cursor-pointer
+                    border border-stone-700 
+                    rounded ml-4 w-full text-xs 
+                    transition-colors duration-200
+                    hover:bg-gradient-to-t hover:from-[#d5c4f1] hover:to-[#2f2648]
+                    text-white bg-gradient-to-t from-[#2f2648] to-[#d5c4f1]'
+                    onClick={() => setIsModalShown(false)}
+                    >
+                        Cancel
+                    </button>
 
 
-                                <div className='w-[1px] h-22px] border border-stone-700'></div>
-                            <button className='
-                                cursor-pointer
-                                border border-stone-700 
-                                rounded mr-4 w-full text-xs 
-                                transition-colors duration-400
-                                hover:bg-gradient-to-t hover:from-white hover:to-red-500
-                                text-stone-700 bg-gradient-to-t from-red-500 to-white'
-                                onClick={props.handleDelete}
-                                >
-                                    Delete
-                                </button>
-                                
-                            </div>
-                        </dialog>
-                    </section>
-        }
+                    <div className='w-[1px] h-22px] border border-stone-700'></div>
+                <button className='
+                    cursor-pointer
+                    border border-stone-700 
+                    rounded mr-4 w-full text-xs 
+                    transition-colors duration-400
+                    hover:bg-gradient-to-t hover:from-red-500 hover:to-white
+                    text-stone-700 bg-gradient-to-t from-white to-red-500'
+                    onClick={props.handleDelete}
+                    >
+                        Delete
+                    </button>
+                    
+                </div>
+            </dialog>
+        </section>
+    }
     </>
   )
 }

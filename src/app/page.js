@@ -7,6 +7,8 @@ import {motion} from 'framer-motion'
 import CucinaiLogoDark from '@/assets/cucinai_logo_dark.png'
 import CucinaiLogoLight from '@/assets/cucinai_logo_light.png'
 
+import PageLoadAnimation from '@/components/PageLoadAnimation'
+
 
 
 
@@ -60,33 +62,13 @@ export default function Home() {
           />
         </>
         }
+
     </main>
+
+    
     : 
     <main className='flex justify-center items-center h-screen bg-[#b49ff3] dark:bg-[#d5c4f1]'>
-       <motion.div className='
-                    relative 
-                    w-[40px] h-[30px] 
-                    sm:w-[40px] sm:h-[30px] 
-                    md:w-[60px] md:h-[50px] 
-                    lg:w-[60px] lg:h-[50px] 
-                    xl:w-[240px] xl:h-[200px]
-                    justify-center
-                    items-center'
-                    animate={{ rotate: [0, 10, -10, 10, -10, 0] }} // More shake frames
-                    transition={{
-                      duration: 0.10,           // Faster loop
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      repeatType: "loop"
-                    }}
-                    >
-                  <Image
-                    src={isDarkMode ? CucinaiLogoDark : CucinaiLogoLight}
-                    fill
-                    alt={'Cucinai Logo'}
-                    className='object-contain'
-                  />
-                </motion.div>
+      <PageLoadAnimation/>
     </main>
     }
 

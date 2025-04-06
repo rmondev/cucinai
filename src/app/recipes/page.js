@@ -1,15 +1,16 @@
 'use client'
 import React, {useEffect, useState} from 'react'
-import {UserAuth, googleSignIn} from '@/context/AuthContext'
+import {UserAuth, googleSignIn, loading} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
-import { getRecipes, listenToRecipes, deleteRecipe } from '@/lib/db'
+import { listenToRecipes, deleteRecipe } from '@/lib/db'
 import Recipe from '@/components/Recipe'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import PageLoadAnimation from '@/components/PageLoadAnimation'
 
 
 const Recipes = () => {
 
-  const { user, googleSignIn } = UserAuth()
+  const { user, googleSignIn, loading } = UserAuth()
   const [recipes, setRecipes] = useState([])
   const [selectedRecipeId, setSelectedRecipeId] = useState(null)
 
@@ -97,8 +98,10 @@ const Recipes = () => {
 )
   
   return (
+    
     <>
-      {user ?
+      {!loading ? (
+      user ? (
         <section className='flex flex-col w-full justify-center items-center text-center bg-[#b49ff3] dark:bg-[#d5c4f1]'>
           <header className='flex flex-row justify-start text-start
             w-11/12
@@ -161,7 +164,7 @@ const Recipes = () => {
                 )}
             </section>
         </section>
-      : 
+      ) : ( 
       // No User, render Google login button
       <section className="flex flex-col justify-center items-center h-screen">
           <div className='flex flex-col justify-center items-center gap-2'>
@@ -172,7 +175,14 @@ const Recipes = () => {
               />
           </div>
       </section>
-      }
+      )
+    ) : (
+
+      <main className='flex justify-center items-center h-screen bg-[#b49ff3] dark:bg-[#d5c4f1]'>
+      <PageLoadAnimation/>
+    </main>
+
+    )}
     </>
   )
 }

@@ -132,6 +132,11 @@ const NavBar = () => {
                   <Image
                     src={isDarkMode ? CucinaiLogoDark : CucinaiLogoLight}
                     fill
+                    sizes="(max-width: 640px) 50px,
+                    (max-width: 768px) 50px,
+                    (max-width: 1024px) 50px,
+                    (max-width: 1280px) 60px,
+                    80px"
                     alt={'Cucinai Logo'}
                     className='object-contain'
                   />
@@ -163,7 +168,7 @@ const NavBar = () => {
           <div className="hidden sm:flex items-center justify-center gap-4">
             {/* Navigation Buttons */}
             <ul className='flex flex-row gap-4'>
-              <li><Link href='/recipes'><NavButton title='Recipes' /></Link></li>
+              <li><Link href='/recipes'><NavButton title='My Recipes' /></Link></li>
               <li><Link href='/addRecipe'><NavButton title='Add Recipe' /></Link></li>
               <li><Link href='/aichef'><NavButton title='AI Chef' /></Link></li>
             </ul>
@@ -241,7 +246,7 @@ const NavBar = () => {
 
             <li className='p-4 w-full text-right'>
               <Link href="/recipes" onClick={() => setMobileMenuOpen(false)}>
-                <button className='cursor-pointer font-semibold'>Recipes</button>
+                <button className='cursor-pointer font-semibold'>My Recipes</button>
               </Link>
             </li>
             <li className='p-4 w-full text-right'>

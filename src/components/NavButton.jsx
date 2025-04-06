@@ -5,9 +5,9 @@ const NavButton = (props) => {
 
   return (
    <button className='
-    cursor-pointer w-fit border-2 border-[#2f2648] dark:border-[#d5c4f1] pb-[4px] pr-[4px] pl-[4px] rounded-lg 
+    cursor-pointer border-2 border-[#2f2648] dark:border-[#d5c4f1] p-2 rounded-lg 
     dark:text-[#d5c4f1]
-    dark:hover:bg-white 
+    dark:hover:bg-[#d5c4f1]
     dark:hover:text-[#2f2648]
 
     transition-colors duration-400
@@ -16,11 +16,7 @@ const NavButton = (props) => {
    
     text-[#2f2648]
     font-sans
-    font-semibold
-    text-sm
-    pt-1
-    sm:pt-1
-    sm:text-sm 
+    font-bold
     md:text-lg 
     lg:text-xl 
     xl:text-2xl'
