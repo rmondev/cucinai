@@ -24,7 +24,7 @@ const RainingFood = () => {
       Array.from({ length: 20 }).map((_, i) => ({
         id: i,
         image: foodImages[i % foodImages.length],
-        left: Math.floor(Math.random() * 100),
+        left: i * (100 / 20) + (Math.random() * 5 - 2.5),
         width: 40 + Math.random() * 70,
         delay: Math.random() * 5,
         duration: 5 + Math.random() * 2,
