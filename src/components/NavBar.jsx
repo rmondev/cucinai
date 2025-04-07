@@ -146,21 +146,24 @@ const NavBar = () => {
         </div>
 
         {/* Mobile Menu Toggle (only on small screens) */}
-        <div className="sm:hidden flex items-center mr-2">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-black focus:outline-none"
-          >
-             <a
-              >
-           
-           
-              <LiaHamburgerSolid className="w-12 h-12 text-[#2f2648] dark:text-[#b49ff3]"/>
+
+        { user && (
+          <div className="sm:hidden flex items-center mr-2">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-black focus:outline-none"
+            >
+              <a
+                >
             
+            
+                <LiaHamburgerSolid className="w-12 h-12 text-[#2f2648] dark:text-[#b49ff3]"/>
               
-              </a>
-          </button>
-        </div>
+                
+                </a>
+            </button>
+          </div>
+        )}
 
         
         {/* Desktop Nav & Auth Controls (hidden on small screens) */}

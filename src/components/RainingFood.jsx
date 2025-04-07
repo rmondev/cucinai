@@ -25,7 +25,7 @@ const RainingFood = () => {
         id: i,
         image: foodImages[i % foodImages.length],
         left: Math.floor(Math.random() * 100),
-        width: 80 + Math.random() * 100,
+        width: 40 + Math.random() * 70,
         delay: Math.random() * 5,
         duration: 5 + Math.random() * 2,
       }))
