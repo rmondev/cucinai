@@ -15,11 +15,17 @@ export const AuthContextProvider = ({children}) => {
 
     const googleSignIn =  async () =>{
         const provider = new GoogleAuthProvider()
-        
-        try{
-             await signInWithPopup(auth,provider)
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
+        try {
+            if (isMobile) {
+            await signInWithRedirect(auth, provider)
+            } else {
+            await signInWithPopup(auth, provider)
+            }
         } catch (error) {
-            console.log(error)
+            console.error('Google Sign-In Error:', error)
         }
     }
 
