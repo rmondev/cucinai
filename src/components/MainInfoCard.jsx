@@ -90,7 +90,7 @@ const MainInfoCard = () => {
           lg:text-5xl
           md:text-4xl
           sm:text-3xl
-          text-4xl
+          text-2xl
           m-4
           font-bold
           '>
