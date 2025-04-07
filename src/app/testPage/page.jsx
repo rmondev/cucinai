@@ -1,38 +1,17 @@
 "use client"
 import React, {useEffect,useState} from 'react'
-import Button from '@/components/NavButton'
-import { getRecipes } from '@/lib/db'
-import BSNavBar from '@/components/BSNavBar'
+
+import RainingFood from '@/components/RainingFood'
+
 
 const TestPage = () => {
 
-  // const [recipes, setRecipes] = useState([])
-
-  // useEffect(() => {
-  //   const fetchRecipes = async () => {
-  //     try {
-  //       const recipesData = await getRecipes("GKHiEonZO8T0BoANtlOUrjKIWXc2");
-  //       setRecipes(recipesData);
-  //     } catch (error) {
-  //       console.error("Error fetching recipes:", error);
-  //     }
-  //   };
-
-  //   fetchRecipes();
-  // }, []);
-
-  // const listRecipes = () => (
-  //     recipes?.map((recipe) => (
-  //       <div key={recipe?.id}>
-  //         <p>Recipe Id: {recipe?.id ?? ''}</p>
-  //         <p>Recipe Title: {recipe?.title ?? ''}</p>
-  //       </div>
-  //     ))
-  // )
-
-
   return (
-    <BSNavBar/>
+    <main className="relative z-10 flex flex-col justify-center items-center h-screen bg-[#b49ff3] dark:bg-[#d5c4f1]">
+    <RainingFood /> {/* animated background */}
+    <h1 className="text-3xl font-bold mb-8 z-20 relative">Welcome to CucinAI! 🚀</h1>
+    {/* Your main content */}
+  </main>
   )
 }
 

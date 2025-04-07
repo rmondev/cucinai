@@ -39,7 +39,7 @@ import OpenAI from 'openai';
 // for HF_ACCESS_TOKEN
 
 const openai = new OpenAI({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
   });
   
   export async function POST(req) {

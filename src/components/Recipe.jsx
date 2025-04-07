@@ -67,6 +67,7 @@ const Recipe = (props) => {
     <>
         { props.recipe.ingredients.length > 0 &&
         <section className="
+            bg-white z-20 relative
             w-11/12 mt-2 h-fit border-2 border-black rounded-lg p-4 mb-4
             sm:w-3/4 sm:mt-2 sm:h-fit 
             md:w-5/8 md:h-fit

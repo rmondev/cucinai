@@ -3,9 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { UserAuth } from '@/context/AuthContext'
 import Image from 'next/image'
 import GoogleButton from 'react-google-button'
-import {motion} from 'framer-motion'
-import CucinaiLogoDark from '@/assets/cucinai_logo_dark.png'
-import CucinaiLogoLight from '@/assets/cucinai_logo_light.png'
+import MainInfoCard from '@/components/MainInfoCard';
 
 import PageLoadAnimation from '@/components/PageLoadAnimation'
 
@@ -43,16 +41,17 @@ export default function Home() {
     <>
     {!loading ? (
       <main className='flex flex-col justify-center items-center content-center h-screen bg-[#b49ff3] dark:bg-[#d5c4f1]'>
-        <h1 className="text-3xl font-bold mb-8">Welcome to CucinAI! 🚀</h1>
+        {/* <h1 className="text-3xl font-bold mb-8">Welcome to CucinAI! 🚀</h1> */}
         {user ? (
           <>
-            <h1>Signed In</h1>
+            {/* <h1>Signed In</h1>
             <section className='flex flex-col items-center gap-8'>
               
               <h2>Welcome {user.displayName}</h2>
               <Image src={user.photoURL} alt='user-image' width={40} height={40}/>
             
-            </section>
+            </section> */}
+            <MainInfoCard/>
           </>
         ) : (
           <>

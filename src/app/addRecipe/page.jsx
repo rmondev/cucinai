@@ -204,7 +204,8 @@ const AddRecipe = () => {
                         >
                         <div 
                             className='
-                            flex flex-col w-11/12 p-4 border-2 border-[#7249b8] rounded-lg      
+                            relative z-20
+                            flex flex-col w-11/12 p-4 border-2 border-[#7249b8] rounded-lg bg-white     
                             xl:flex-col xl:w-1/2 xl:m-4 xl:p-4                            
                             lg:flex-col lg:w-1/2 lg:m-4 lg:p-4                       
                             md:flex-col md:w-11/12 md:m-4 md:p-4                                  
@@ -218,19 +219,20 @@ const AddRecipe = () => {
                                     <form className='flex flex-col ' action={addIngredient}>
                                         
                                         {/* Recipe Title Section */}
-                                        <section className="border-2 border-black rounded-lg p-2">
+                                        <section className="border-2 border-[#2f2648] rounded-lg p-2">
 
                                             <label className='
                                                 text-lg w-fit 
                                                 sm:text-lg 
                                                 md:text-xl 
                                                 lg:text-2xl 
-                                                xl:text-2xl'
+                                                xl:text-2xl
+                                                text-[#2f2648]'
                                                 >
                                                     Recipe Title
                                                 </label>
 
-                                            <input className='border border-black p-1 rounded w-full mb-2'
+                                            <input className='border border-[#2f2648] p-1 rounded w-full mb-2'
                                                 placeholder='Title'
                                                 type='text'
                                                 name='title'
@@ -239,14 +241,16 @@ const AddRecipe = () => {
                                         </section>
 
                                         {/* Add Ingredient Section */}
-                                        <section className='border-2 border-black rounded-lg p-2 mt-2'>
+                                        <section className='border-2 border-[#2f2648] rounded-lg p-2 mt-2'>
 
                                             <label className='
                                                 text-lg w-fit
                                                 sm:text-lg 
                                                 md:text-xl 
                                                 lg:text-2xl 
-                                                xl:text-2xl'
+                                                xl:text-2xl
+                                                text-[#2f2648]
+                                                '
                                                 >
                                                     Add Ingredient
                                                 </label>
@@ -261,6 +265,7 @@ const AddRecipe = () => {
                                                 md:text-lg
                                                 lg:text-xl
                                                 xl:text-xl
+                                                text-[#2f2648]
                                                 '
                                                 placeholder='Ingredient'
                                                 type='text'
@@ -274,6 +279,7 @@ const AddRecipe = () => {
                                                 md:text-lg
                                                 lg:text-xl
                                                 xl:text-xl
+                                                text-[#2f2648]
                                                 '
                                                 placeholder='Quantity'
                                                 type='number'
@@ -330,18 +336,20 @@ const AddRecipe = () => {
                                     </form>
 
                                     {/* Add Steps Section */}
-                                    <form className='border-2 border-black rounded-lg p-2 mt-2'action={addStepToInstructions}>
+                                    <form className='border-2 border-[#2f2648] rounded-lg p-2 mt-2'action={addStepToInstructions}>
                                     <label className='
                                         text-lg w-fit
                                         sm:text-lg 
                                         md:text-xl 
                                         lg:text-2xl 
-                                        xl:text-2xl'
+                                        xl:text-2xl
+                                        text-[#2f2648]
+                                        '
                                         >
                                             Add Step
                                         </label>
                                         <div className='flex flex-row'>
-                                            <textarea className='border border-black p-1 w-full rounded'
+                                            <textarea className='border border-[#2f2648] p-1 w-full rounded text-[#2f2648]'
                                             placeholder="Add a Step Here..."
                                             type='text'
                                             name='step'/>
@@ -397,7 +405,7 @@ const AddRecipe = () => {
                         {/* Ingredient List Section */}
                         { recipe.ingredients.length > 0 &&
                         <section className="
-                            w-11/12 mt-2 h-fit border-2 border-[#7249b8] rounded-lg p-4 mb-4
+                            relative z-20 w-11/12 mt-2 h-fit border-2 border-[#7249b8] rounded-lg p-4 mb-4 bg-white
                             sm:w-11/12 sm:mt-2 sm:h-fit 
                             md:w-11/12 md:m-4 md:h-fit
                             lg:w-1/2 lg:m-4 lg:h-fit

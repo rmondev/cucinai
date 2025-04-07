@@ -11,7 +11,17 @@ module.exports = {
         // or create a custom name like:
         body: ['Inter', 'sans-serif'],
       },
+      keyframes: {
+        fall: {
+          '0%': { transform: 'translateY(-100px)' },      // 🚫 no opacity here
+          '100%': { transform: 'translateY(110vh)' }      // 🚫 no opacity here
+        },
+      },
+      animation: {
+        fall: 'fall linear infinite',
+      },
     },
+
   },
   plugins: [],
 };

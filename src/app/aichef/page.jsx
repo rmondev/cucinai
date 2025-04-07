@@ -247,7 +247,7 @@ const AIChef = () => {
     <>
      {!loading ? (
         user ? (
-            <main className='flex flex-col w-full justify-center items-center text-center'>
+            <main className='relative z-20 flex flex-col w-full justify-center items-center text-center'>
               <header className='flex flex-row justify-start items-start text-start
                 w-11/12
                 sm:w-3/4
@@ -297,7 +297,7 @@ const AIChef = () => {
                     >
                     2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe
                         <br />
-                        <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700
+                        <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700 bg-white
                         text-sm 
                         transition-colors duration-400
                         hover:bg-blue-700 hover:text-white
@@ -353,7 +353,7 @@ const AIChef = () => {
                     <div className='flex flex-row justify-center items-center gap-10'>
                       
 
-                      <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700
+                      <button className='cursor-pointer border-2 rounded-xl p-2 border-green-700 text-green-700 bg-white
                           text-sm 
                           transition-colors duration-400
                           hover:bg-green-700 hover:text-white
