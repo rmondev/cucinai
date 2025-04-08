@@ -43,21 +43,21 @@ const openai = new OpenAI({
   });
   
   const enhancementDetails = {
-    'Healthier': 'Healthier – Include more organic ingredients and reduce refined ingredients and unhealthy fats.',
-    'High Protein': 'High Protein – Increase protein content using a variety of high protein sources.',
-    'Lower-Carb': 'Lower-Carb – Reduce carbohydrates by using alternatives to high carbohydrate ingredients.',
-    'Vegan': 'Vegan – Replace all meat and dairy ingredients with plant-based alternatives.',
-    'Gluten-Free': 'Gluten-Free – Use gluten-free grains and avoid wheat-based products.',
-    'Dessert-Like': 'Dessert-Like – Transform or sweeten the dish to resemble a dessert.',
-    'Dairy-Free': 'Dairy-Free – Remove all dairy ingredients and use non-dairy substitutes such as oat and nut milks, and coconut oil instead of butter.',
-    'Nut-Free': 'Nut-Free – Remove nuts and replace with seeds or safe alternatives.',
-    'Italian Twist': 'Italian Twist – Replace or incorporate some ingredients with Italian alternatives.',
-    'Asian-Inspired': 'Asian-Inspired – Replace or incorporate some ingredients with Oriental/Asian alternatives.',
-    'Mexican Flair': 'Mexican Flair – Replace or incorporate some ingredients with Oriental/Asian alternatives.',
-    'Simplify': 'Simplify – Reduce cooking steps and streamline ingredients.',
-    'Prepare Faster': 'Prepare Faster – Convert the recipe to take 15–30 minutes using quick techniques.',
-    'Kid-Friendly': 'Kid-Friendly – Use familiar flavors and mild seasoning. Make the dish fun and easy to eat.',
-    'Fancy/Gourmet': 'Fancy/Gourmet – Refine ingredients and presentation for a gourmet experience.'
+    'Healthier': '(Healthier) Include more organic ingredients and reduce refined ingredients and unhealthy fats',
+    'High Protein': '(High Protein) Increase protein content using a variety of high protein sources',
+    'Lower-Carb': '(Lower-Carb) Reduce carbohydrates by using alternatives to high carbohydrate ingredients',
+    'Vegan': '(Vegan) Replace all meat and dairy ingredients with plant-based alternatives',
+    'Gluten-Free': '(Gluten-Free) Use gluten-free grains and avoid wheat-based products',
+    'Dessert-Like': '(Dessert-Like) Transform or sweeten the dish to resemble a dessert',
+    'Dairy-Free': '(Dairy-Free) Remove all dairy ingredients and use non-dairy substitutes such as oat and nut milks, and coconut oil instead of butter',
+    'Nut-Free': '(Nut-Free) Remove nuts and replace with seeds or safe alternatives',
+    'Italian Twist': '(Italian Twist) Replace or incorporate some ingredients with Italian alternatives',
+    'Asian-Inspired': '(Asian-Inspired) Replace or incorporate some ingredients with Oriental/Asian alternatives',
+    'Mexican Flair': '(Mexican Flair) Replace or incorporate some ingredients with Oriental/Asian alternatives',
+    'Simplify': '(Simplify) Reduce cooking steps and streamline ingredients',
+    'Prepare Faster': '(Prepare Faster) Convert the recipe to take 15–30 minutes using quick techniques',
+    'Kid-Friendly': '(Kid-Friendly) Use familiar flavors and mild seasoning. Make the dish fun and easy to eat',
+    'Fancy/Gourmet': '(Fancy/Gourmet) Refine ingredients and presentation for a gourmet experience'
   };
 
 
@@ -99,7 +99,7 @@ const openai = new OpenAI({
         .map(option => enhancementDetails[option] || option)
         .join(', ');
 
-
+        console.log(detailedOptions)
 
   
         systemPrompt = `
@@ -111,6 +111,8 @@ const openai = new OpenAI({
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
           The enhancement criteria are: ${detailedOptions}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
+
+        console.log(userMessage)
       }
 
 
