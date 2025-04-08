@@ -42,6 +42,25 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
   
+  const enhancementDetails = {
+    'Healthier': 'Healthier – Include more organic ingredients and reduce refined ingredients and unhealthy fats.',
+    'High Protein': 'High Protein – Increase protein content using beans, meats, dairy, or tofu.',
+    'Lower-Carb': 'Lower-Carb – Reduce carbohydrates by using alternatives like cauliflower or zucchini.',
+    'Vegan': 'Vegan – Replace all meat and dairy ingredients with plant-based alternatives.',
+    'Gluten-Free': 'Gluten-Free – Use gluten-free grains and avoid wheat-based products.',
+    'Dessert-Like': 'Dessert-Like – Transform or sweeten the dish to resemble a dessert using natural sweeteners.',
+    'Dairy-Free': 'Dairy-Free – Remove all dairy ingredients and use non-dairy substitutes such as oat milk, almond milk and coconut oil instead of butter.',
+    'Nut-Free': 'Nut-Free – Remove nuts and replace with seeds or safe alternatives.',
+    'Italian Twist': 'Italian Twist – Add Italian herbs, cheese, tomatoes, and Mediterranean flair.',
+    'Asian-Inspired': 'Asian-Inspired – Incorporate flavors like soy sauce, ginger, sesame oil, and rice noodles.',
+    'Mexican Flair': 'Mexican Flair – Include cumin, lime, beans, tortillas, chili peppers, and avocado.',
+    'Simplify': 'Simplify – Reduce cooking steps and streamline ingredients.',
+    'Prepare Faster': 'Prepare Faster – Convert the recipe to take 15–30 minutes using quick techniques.',
+    'Kid-Friendly': 'Kid-Friendly – Use familiar flavors and mild seasoning. Make the dish easy to eat.',
+    'Fancy/Gourmet': 'Fancy/Gourmet – Refine ingredients and presentation for a gourmet experience.'
+  };
+
+
   export async function POST(req) {
     try {
       const { recipe, hasOptions, options } = await req.json();
@@ -73,7 +92,15 @@ const openai = new OpenAI({
           Please return me a similar recipe based on the original ingredients and preparation instructions. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
       } else {
-        const optionsString = options.join(', ');
+
+        //Use a switch case here to add more detail to each option, then build the optionsString with better detail for each option
+
+        const detailedOptions = options
+        .map(option => enhancementDetails[option] || option)
+        .join(', ');
+
+
+
   
         systemPrompt = `
           You are an assistant that receives a recipe and enhancement criteria. 
@@ -82,7 +109,7 @@ const openai = new OpenAI({
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          The enhancement criteria are: ${optionsString}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
+          The enhancement criteria are: ${detailedOptions}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
       }
 
