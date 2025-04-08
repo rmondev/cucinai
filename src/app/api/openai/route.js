@@ -50,7 +50,7 @@ const openai = new OpenAI({
     'Gluten-Free': '(Gluten-Free) Use gluten-free grains and avoid wheat-based products',
     'Dessert-Like': '(Dessert-Like) Transform or sweeten the dish to resemble a dessert',
     'Dairy-Free': '(Dairy-Free) Remove all dairy ingredients and use non-dairy substitutes such as oat and nut milks, and coconut oil instead of butter',
-    'Nut-Free': '(Nut-Free) Remove nuts and replace with seeds or safe alternatives',
+    'Nut-Free': '(Nut-Free) Remove nuts or nut based products and replace with seeds or safe, nut-free alternatives',
     'Italian Twist': '(Italian Twist) Replace or incorporate some ingredients with Italian alternatives',
     'Asian-Inspired': '(Asian-Inspired) Replace or incorporate some ingredients with Oriental/Asian alternatives',
     'Mexican Flair': '(Mexican Flair) Replace or incorporate some ingredients with Oriental/Asian alternatives',
