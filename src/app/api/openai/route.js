@@ -117,8 +117,8 @@ const openai = new OpenAI({
       //OpenAI function calling, returning a structured object
       console.time('openai-call');
       const chatResponse = await openai.chat.completions.create({
-        // model: 'gpt-3.5-turbo-1106',
-        model: 'gpt-4',
+        model: 'gpt-3.5-turbo-1106',
+        // model: 'gpt-4',
         messages: [
           {role: 'system', content: systemPrompt},
           {role: 'user', content: userMessage}
