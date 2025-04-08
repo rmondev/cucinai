@@ -83,7 +83,9 @@ const openai = new OpenAI({
       if (!hasOptions || options.length === 0) {
         systemPrompt = `
           You are an assistant that receives a recipe including a title, ingredients, and instructions.
-          You suggest a new recipe that is similar to the original one. It can reuse some or all original ingredients, and introduce a few new ones.
+          You suggest a new recipe that is similar to the original one either in method, ingredients or ethnic identity of the recipe. 
+          You can reuse some of the original ingredients, and introduce a few new ones.
+        
          
         `;
   
