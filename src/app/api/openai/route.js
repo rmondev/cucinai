@@ -83,13 +83,13 @@ const openai = new OpenAI({
       if (!hasOptions || options.length === 0) {
         systemPrompt = `
           You are an assistant that receives a recipe including a title, ingredients, and instructions.
-          You suggest a new recipe that is similar to the original one. It can reuse some or all original ingredients, and optionally introduce a few new ones.
+          You suggest a new recipe that is similar to the original one. It can reuse some or all original ingredients, and introduce a few new ones.
          
         `;
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          Please return me a similar recipe based on the original ingredients and preparation instructions. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
+          Please return me a similar recipe. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
       } else {
 
