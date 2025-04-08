@@ -48,7 +48,7 @@ const RainingFood = () => {
           animationDelay: `${drop.delay}s`,
           animationDuration: `${drop.duration}s`,
           zIndex: 0,
-          opacity: 0.5, // 💡 this stays the same all the way down
+          opacity: 0.2,
         }}
       />
       ))}
