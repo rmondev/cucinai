@@ -88,9 +88,9 @@ const openai = new OpenAI({
 
 
       //OpenAI function calling, returning a structured object
-
+      console.time('openai-call');
       const chatResponse = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: 'gpt-3.5-turbo-1106',
         messages: [
           {role: 'system', content: systemPrompt},
           {role: 'user', content: userMessage}
@@ -133,10 +133,14 @@ const openai = new OpenAI({
 
       })
 
+      console.timeEnd('openai-call');
+
       const toolCall = chatResponse.choices[0]?.message?.tool_calls?.[0]
-        if (!toolCall || !toolCall.function?.arguments) {
-          return NextResponse.json({ error: 'No structured data returned' }, { status: 500 })
-        }
+      if (!toolCall || !toolCall.function?.arguments) {
+        console.error('No structured data returned:', chatResponse);
+        return NextResponse.json({ error: 'No structured data returned' }, { status: 500 });
+      }
+      
 
 
       const parsed = JSON.parse(toolCall.function.arguments);
@@ -152,9 +156,13 @@ const openai = new OpenAI({
       return NextResponse.json(parsed);
 
       } catch (error) {
-        console.error('Error in OpenAI API route:', error)
-        return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
-      }
+      console.error('Error in OpenAI API route:', error);
+    
+      return NextResponse.json(
+        { error: error.message || 'Something went wrong' },
+        { status: 500 }
+      );
+    }
 
 
   
