@@ -278,49 +278,31 @@ const AIChef = () => {
                     xl:text-2xl
                     "
                     >
-                    1. Choose a Recipe from Your Recipe Collection Below
+                    1. Choose a recipe from your recipe collection below:
                     </p>
                 </section>  
                 
                   {recipeSelection()}
 
-                <section className="mt-6 mb-2">
-                  <p className="
-                    font-bold
-                    text-lg
-                    sm:text-xl
-                    md:text-xl
-                    lg:text-2xl
-                    xl:text-2xl
-                    m-4
-                    "
-                    >
-                    2. Select 'Generate Similar Recipe' to have CucinAI create a Similar Recipe
-                        <br />
-                        <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700 bg-white
-                        text-sm 
-                        transition-colors duration-400
-                        hover:bg-blue-700 hover:text-white
-                        sm:text-sm 
-                        md:text-lg 
-                        lg:text-xl 
-                        xl:text-2xl
-                        m-4
-                        ' 
-                        onClick={fetchSimilarRecipe}
-                          >
-                            Generate Similar Recipe
-                        </button>
-                        
-                        <br />
-                        OR 
-                        <br />
-                        (More Fun!)
-                        <br />
-                        <br />
-                        Choose criteria below to have CucinAI 'Generate an Enhanced Recipe' based on your criteria:
+                  <section className="mt-6 mb-2">
+                    <p className="font-bold text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-2xl m-4">
+                      2. Choose what you want CucinAI to do with your recipe:
                     </p>
-                </section>  
+
+                    <div className="m-4">
+                      <p className="mb-2">🔹 Generate a similar recipe with minimal changes:</p>
+                      <button className='cursor-pointer border-2 rounded-xl p-2 border-blue-700 text-blue-700 bg-white
+                        text-sm transition-colors duration-400 hover:bg-blue-700 hover:text-white
+                        sm:text-sm md:text-lg lg:text-xl xl:text-2xl mb-6'
+                        onClick={fetchSimilarRecipe}>
+                          Generate Similar Recipe
+                      </button>
+
+                      <p className="mb-2">🔹 Or select enhancement options below for a more creative twist!</p>
+                      <p className="italic text-sm text-gray-600">(e.g. make it Vegan, Healthier, or give it a Mexican flair)</p>
+                    </div>
+                  </section>
+
 
                 <section className='
                   flex flex-col justify-center items-center
