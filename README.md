@@ -1,8 +1,51 @@
 # CucinAI - Your AI-powered kitchen companion for smarter, tastier recipes.
+## Access the CucinAI App @ http://cucinai.vercel.app
 
 ## Author: Riccardo Moncada (rmondev)
 
 #### A recipe organizer with AI-powered enhancements to keep meals exciting. This project helps me explore AI integration, authentication, and full-stack development while building a useful and interactive app.
+
+---
+## 🧠 Technologies & Concepts
+
+### 🔧 **Frontend Development**
+- React & Next.js
+- Tailwind CSS for responsive design
+- React-Bootstrap integration
+- React state management with `useState`, `useEffect`
+- Custom button & animated components
+- Responsive navigation bar with dropdown for mobile
+- Conditional rendering for authentication UI
+
+### 🔐 **Authentication & Authorization**
+- Firebase Authentication (Google Sign-In)
+- Securing routes and user-specific actions
+
+### 📦 **Backend & Database**
+- Firebase Firestore for recipe storage
+- Firestore security rules (user-based access)
+- Firebase Storage for image uploads (planned)
+
+### ⚙️ **AI Integration**
+- OpenAI API for recipe generation (chat completion + tool calling)
+- AI-enhanced recipe criteria
+- Handling structured data returned by OpenAI tools
+- Prompt design & enhancement criteria mapping
+
+### 🌍 **Deployment**
+- Vercel hosting & configuration
+- Handling environment variables securely in deployment
+- Firebase authorized domains for auth
+
+### ⚠️ **Error Handling & Debugging**
+- Client/server error debugging
+- Network failures (CORS, connection errors, 504s)
+- Handling missing/nullable fields (e.g., ingredient units)
+
+### 💡 **UX Improvements**
+- Custom Toast notifications with `react-toastify`
+- Loading animation while awaiting OpenAI response
+- Enhanced markdown output formatting for AI-generated recipes
 
 ---
 
@@ -44,3 +87,5 @@ npm run dev
 ```
 
 #### Project will run at http://localhost:3000
+
+---
