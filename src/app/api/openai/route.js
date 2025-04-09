@@ -6,22 +6,22 @@ import OpenAI from 'openai';
 // You are an assistant that receives a recipe including a title, ingredients and instructions from the user. You suggest a new recipe, based on certain criteria the user gives you. The new recipe can be made with some or all of the ingredients of the original recipe. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients the user didn't mention, but try not to include too many extra ingredients. Format your response in markdown with appropriate headings for recipe title, ingredients and instruction steps, to make it easier to render to a web page.
 
 // 🔹 Health-Focused Enhancements
-// Make it Healthier – Reduce fats, sugars, or processed ingredients.
-// Make it High-Protein – Increase protein content using ingredients like beans, meats, or dairy.
-// Make it Lower-Carb – Reduce carbs, use alternatives (e.g., cauliflower instead of pasta).
-// Make it Low-Calorie – Adjust portions and high-calorie ingredients.
-// Make it Vegan or Vegetarian – Replace meat or dairy with plant-based alternatives.
-// Make it Gluten-Free – Replace wheat-based ingredients with alternatives.
+// Healthier – Reduce fats, sugars, or processed ingredients.
+// High-Protein – Increase protein content using ingredients like beans, meats, or dairy.
+// Lower-Carb – Reduce carbs, use alternatives (e.g., cauliflower instead of pasta).
+// Low-Calorie – Adjust portions and high-calorie ingredients.
+// Vegan or Vegetarian – Replace meat or dairy with plant-based alternatives.
+// Gluten-Free – Replace wheat-based ingredients with alternatives.
 
 // 🔹 Flavor-Based Enhancements
-// Make it Spicy – Add chili, pepper, or other heat-enhancing ingredients.
-// Add Bold Flavors – Boost flavor intensity with herbs, citrus, umami (e.g., miso, anchovy).
-// Make it Sweet or Dessert-Like – Add natural or artificial sweetness.
+// Spicy – Add chili, pepper, or other heat-enhancing ingredients.
+// Bold Flavors – Boost flavor intensity with herbs, citrus, umami (e.g., miso, anchovy).
+// Sweet or Dessert-Like – Add natural or artificial sweetness.
 
 // 🔹 Ingredient Substitutions
 // Use Pantry Staples Only – Replace fancy ingredients with common ones.
-// Make it Dairy-Free – Use non-dairy substitutes like oat milk, vegan butter, etc.
-// Make it Nut-Free – Remove or replace nuts with safe alternatives.
+// Dairy-Free – Use non-dairy substitutes like oat milk, vegan butter, etc.
+// Nut-Free – Remove or replace nuts with safe alternatives.
 
 // 🔹 Cultural/Style-Based Enhancements
 // Give it an Italian Twist – Add herbs, cheeses, and Mediterranean elements.
@@ -34,9 +34,6 @@ import OpenAI from 'openai';
 // Make it Faster to Prepare – Convert to a 15–30 minute meal.
 // Make it Kid-Friendly – Mild, familiar flavors and presentation.
 // Make it Fancy/Gourmet – Refine presentation, elevate ingredients.
-
-// Make sure you set an environment variable in env.local 
-// for HF_ACCESS_TOKEN
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -51,10 +48,10 @@ const openai = new OpenAI({
     'Dessert-Like': '(Dessert-Like) Transform or sweeten the dish to resemble a dessert',
     'Dairy-Free': '(Dairy-Free) Remove all dairy ingredients and use non-dairy substitutes such as oat and nut milks, and coconut oil instead of butter',
     'Nut-Free': '(Nut-Free) Remove nuts or nut based products and replace with seeds or safe, nut-free alternatives',
-    'Italian Twist': '(Italian Twist) Replace or incorporate some ingredients with Italian alternatives',
-    'Asian-Inspired': '(Asian-Inspired) Replace or incorporate some ingredients with Oriental/Asian alternatives',
-    'Mexican Flair': '(Mexican Flair) Replace or incorporate some ingredients with Oriental/Asian alternatives',
-    'Simplify': '(Simplify) Reduce cooking steps and streamline ingredients',
+    'Italian Twist': '(Give it an Italian Twist) Replace or incorporate some ingredients with Italian alternatives',
+    'Asian-Inspired': '(Make it Asian-Inspired) Replace or incorporate some ingredients with Oriental/Asian alternatives',
+    'Mexican Flair': '(Add a Mexican Flair) Replace or incorporate some ingredients with Oriental/Asian alternatives',
+    'Simplify': '(Simplify the Recipe) Reduce cooking steps, simplify techniques and streamline ingredients',
     'Prepare Faster': '(Prepare Faster) Convert the recipe to take 15–30 minutes using quick techniques',
     'Kid-Friendly': '(Kid-Friendly) Use familiar flavors and mild seasoning. Make the dish fun and easy to eat',
     'Fancy/Gourmet': '(Fancy/Gourmet) Refine ingredients and presentation for a gourmet experience'
