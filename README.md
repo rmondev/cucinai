@@ -24,7 +24,6 @@
 ### 📦 **Backend & Database**
 - Firebase Firestore for recipe storage
 - Firestore security rules (user-based access)
-- Firebase Storage for image uploads (planned)
 
 ### ⚙️ **AI Integration**
 - OpenAI API for recipe generation (chat completion + tool calling)
