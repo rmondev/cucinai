@@ -78,6 +78,7 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id_here
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket_here
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id_here
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id_here
+OPENAI_API_KEY=your_api_key_here
 ```
 #### 🚨Make sure .env.local is never shared or committed. It is ignored in .gitignore.
 
