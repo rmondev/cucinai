@@ -50,7 +50,7 @@ const openai = new OpenAI({
     'Nut-Free': '(Nut-Free) Remove nuts or nut based products and replace with seeds or safe, nut-free alternatives',
     'Italian Twist': '(Give it an Italian Twist) Replace or incorporate some ingredients with Italian alternatives',
     'Asian-Inspired': '(Make it Asian-Inspired) Replace or incorporate some ingredients with Oriental/Asian alternatives',
-    'Mexican Flair': '(Add a Mexican Flair) Replace or incorporate some ingredients with Oriental/Asian alternatives',
+    'Mexican Flair': '(Add a Mexican Flair) Replace or incorporate some ingredients with Mexican alternatives',
     'Simplify': '(Simplify the Recipe) Reduce cooking steps, simplify techniques and streamline ingredients',
     'Prepare Faster': '(Prepare Faster) Convert the recipe to take 15–30 minutes using quick techniques',
     'Kid-Friendly': '(Kid-Friendly) Use familiar flavors and mild seasoning. Make the dish fun and easy to eat',
