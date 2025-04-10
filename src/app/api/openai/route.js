@@ -80,7 +80,7 @@ const openai = new OpenAI({
       if (!hasOptions || options.length === 0) {
         systemPrompt = `
           You are an assistant that receives a recipe including a title, ingredients, and instructions.
-          You suggest a new recipe that is similar to the original one either in method, ingredients or ethnic identity of the recipe. 
+          You suggest a new recipe that is a variation to the original one either in method, ingredients or ethnic identity of the recipe. 
           You can reuse some of the original ingredients, and introduce a few new ones.
         
          
@@ -88,7 +88,7 @@ const openai = new OpenAI({
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          Please return me a similar recipe. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
+          Please return me a new variation of the recipe. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
       } else {
 
