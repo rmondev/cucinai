@@ -103,12 +103,12 @@ const openai = new OpenAI({
   
         systemPrompt = `
           You are an assistant that receives a recipe and enhancement criteria. 
-          Based on the criteria, suggest a modified recipe. 
+          Generate a new variation of the original recipe based on the enhancement criteria provided. 
         `;
   
         userMessage = `
           I have a recipe titled "${title}". The ingredients are ${ingredientsString}. The instructions are ${instructionString}.
-          The enhancement criteria are: ${detailedOptions}. Return a recipe that is an altered version of the one I gave you, based on the enhancement criteria I provided. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
+          The enhancement criteria are: ${detailedOptions}. Return a recipe that is a variation of the one I gave you, based on the enhancement criteria I provided. Always provide a unit for each ingredient, even if it's just an empty string if not applicable.
         `;
 
         console.log(userMessage)
