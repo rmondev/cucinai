@@ -1,5 +1,5 @@
 'use client'
-import React, {useState, useEffect, useSyncExternalStore} from 'react'
+import React, {useState, useEffect, useSyncExternalStore, useRef} from 'react'
 import { listenToRecipes } from '@/lib/db'
 import {UserAuth} from '@/context/AuthContext'
 import GoogleButton from 'react-google-button'
@@ -18,6 +18,12 @@ const AIChef = () => {
     const [isLoading, setIsLoading] = useState(false)
     
     const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
+    const recipeSection = useRef(null)
+
+    useEffect(()=>{
+      if (recipe !== '' && recipeSection.current !== null)
+        recipeSection.current.scrollIntoView({behavior: 'smooth'})
+    }, [recipe])
     
     useEffect(() => {
     if (!recipes.find((r) => r.id === selectedRecipeId)) {
@@ -353,7 +359,7 @@ const AIChef = () => {
                 </section>
 
 
-                  <div className='flex flex-row justify-center items-center w-full
+                  <div ref={recipeSection} className='flex flex-row justify-center items-center w-full
                   sm:flex-row sm:w-full
                   md:flex-row md:w-full
                   lg:flex-row lg:w-full
