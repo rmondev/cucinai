@@ -21,7 +21,7 @@ const AIChef = () => {
     const recipeSection = useRef(null)
 
     useEffect(()=>{
-      if (recipe !== '' && recipeSection.current !== null)
+      if (recipe !== null && recipeSection.current !== null)
         recipeSection.current.scrollIntoView({behavior: 'smooth'})
     }, [recipe])
     
