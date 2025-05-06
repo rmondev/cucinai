@@ -56,6 +56,7 @@ const AIChef = () => {
       setRecipeEnhancementOpts([])
       setRecipe(null)
     };
+    
 
     const fetchSimilarRecipe = async () => {
       
@@ -132,6 +133,7 @@ const AIChef = () => {
           md:w-full
           lg:w-full
           xl:w-full 
+
         '
         >
           <select 
@@ -142,6 +144,7 @@ const AIChef = () => {
             md:text-lg
             lg:text-xl
             xl:text-xl
+            bg-white
 
             w-11/12
             sm:w-3/4
@@ -154,7 +157,8 @@ const AIChef = () => {
             defaultValue={''}
             onChange={handleRecipeSelect}
             >
-              <option disabled value=''>
+              <option disabled value=''
+                >
                 Select a Recipe...
                 </option>
               {recipes.map((recipe) => (
@@ -172,19 +176,18 @@ const AIChef = () => {
     console.log('Enhancement Options (updated):', recipeEnhancementOpts);
   }, [recipeEnhancementOpts]);
 
-  const handleCheckboxChange= (e) => {
-    const { value, checked } = e.target
-
+  const handleEnhancementButtonToggle = (enhancement) => {
     setRecipeEnhancementOpts((prevOpts) => {
-      if(checked){
-        return [...prevOpts, value]
+      if (prevOpts.includes(enhancement)) {
+        // Remove if already selected
+        return prevOpts.filter((opt) => opt !== enhancement);
       } else {
-        return prevOpts.filter((option) => option !== value)
+        // Add if not selected
+        return [...prevOpts, enhancement];
       }
-    })
-  }
+    });
+  };
 
- 
 
   const enhancementArr = ['Healthier', 
                           'High Protein', 
@@ -204,10 +207,11 @@ const AIChef = () => {
                         ]
 
 
-  const enhancementSelectionForm = () => (
- 
-      <form className='
-      grid grid-cols-3 
+
+
+  const enhancementSelectionButtons = () => {
+   return (
+    <section className='grid grid-cols-3 
       sm:grid-cols-3
       md:grid-cols-4
       lg:grid-cols-5
@@ -216,39 +220,23 @@ const AIChef = () => {
       gap-y-[1px] 
       w-full 
       p-2
-      ml-[-10px] 
+      
       sm:p-2
       md:p-4
       lg:p-4
       xl:p-4
       text-start'>
-        {enhancementArr.map((criteria, index)=>
-          <div key={index} 
-                className='
-                  w-full
-                  text-sm
-                  sm:text-sm
-                  md:text-sm
-                  lg:text-lg
-                  xl:text-xl
-                  text-nowrap
-              '>
-            <input className='
-              m-[0.6rem]
-              
-              '
-                  onChange={handleCheckboxChange}
-                  type="checkbox" 
-                  name='enhancements' 
-                  value={criteria}
-                  checked={recipeEnhancementOpts.includes(criteria)}
-              />
-            <label>{criteria}</label>
-          </div>
-        )}
-      </form>
+      {enhancementArr.map((enhancement) => <button key={enhancement} className={`cursor-pointer border border-black rounded-md p-1 m-1 
+        ${recipeEnhancementOpts.includes(enhancement) ? 'bg-[#2f2648] ' : 'bg-white '}
+        ${recipeEnhancementOpts.includes(enhancement) ? 'text-white ' : 'text-black '}
+        ${recipeEnhancementOpts.includes(enhancement) ? 'border-[#d5c4f1]' : 'border-black'}
+        `} onClick={() => handleEnhancementButtonToggle(enhancement)}>{enhancement}</button>
+      )}
+    </section>
+   )
+  }
 
-  )
+
   return (
     <>
      {!loading ? (
@@ -334,7 +322,8 @@ const AIChef = () => {
                     w-full'>
                     <section className='flex flex-col'>
                       <label>For Generating an Enhanced recipe, select the options below: </label>
-                      {enhancementSelectionForm()}
+              
+                    {enhancementSelectionButtons()}
                     </section>
 
                     {/* Button Container */}
