@@ -95,7 +95,7 @@ const NavBar = () => {
           md:m-[16px]
           sm:m-[16px]
         ">
-          <Link className='cursor-pointer' href='/'>
+          <Link className='cursor-pointer' href='/' onClick={() => setMobileMenuOpen(false)}>
             <div className='
               flex 
               items-center 
