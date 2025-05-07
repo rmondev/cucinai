@@ -68,6 +68,7 @@ const Recipes = () => {
       >
         <select 
           className="
+          bg-white
           border border-black p-1 rounded w-11/12
           text-xs
           sm:text-md
